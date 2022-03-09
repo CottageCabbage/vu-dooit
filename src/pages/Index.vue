@@ -1,10 +1,10 @@
 <template>
-  <q-page class="flex flex-center">
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-vertical.svg"
-      style="width: 200px; height: 200px"
-    />
+  <q-page>
+    <div class="row q-gutter-md">
+      <div class="col q-gutter-md q-pa-md text-white">
+        <q-checkbox dark v-model="val" label="test" color="orange" keep-color />
+      </div>
+    </div>
   </q-page>
 </template>
 
@@ -13,5 +13,10 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "PageIndex",
+  data() {
+    return {
+      val: false,
+    };
+  },
 });
 </script>

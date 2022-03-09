@@ -10,23 +10,19 @@
           aria-label="Menu"
           @click="toggleLeftDrawer"
         />
-
-        <q-toolbar-title> Quasar App </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
+        <q-toolbar-title> Task List </q-toolbar-title>
       </q-toolbar>
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
-      <q-list>
-        <q-item-label header> Essential Links </q-item-label>
-
+      <Sidebar />
+      <!-- <q-list>
         <EssentialLink
           v-for="link in essentialLinks"
           :key="link.title"
           v-bind="link"
         />
-      </q-list>
+      </q-list> -->
     </q-drawer>
 
     <q-page-container>
@@ -36,7 +32,8 @@
 </template>
 
 <script>
-import EssentialLink from "components/EssentialLink.vue";
+// import EssentialLink from "components/EssentialLink.vue";
+import Sidebar from "components/Sidebar.vue";
 
 const linksList = [
   {
@@ -89,11 +86,12 @@ export default defineComponent({
   name: "MainLayout",
 
   components: {
-    EssentialLink,
+    // EssentialLink,
+    Sidebar,
   },
 
   setup() {
-    const leftDrawerOpen = ref(false);
+    const leftDrawerOpen = ref(true);
 
     return {
       essentialLinks: linksList,
