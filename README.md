@@ -1,7 +1,4 @@
-# vue-todoist
-
-Made with https://nklayman.github.io/vue-cli-plugin-electron-builder/
-
+# vu-dooit
 
 ## Project setup
 ```
