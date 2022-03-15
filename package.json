@@ -1,47 +1,45 @@
 {
-  "name": "task-list",
-  "version": "0.0.1",
-  "description": "A Quasar Framework app",
-  "productName": "TaskList",
-  "author": "CottageCabbage <96266734+CottageCabbage@users.noreply.github.com>",
+  "name": "vue-todoist",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "lint": "eslint --ext .js,.vue ./",
-    "format": "prettier --write \"**/*.{js,vue,scss,html,md,json}\" --ignore-path .gitignore",
-    "test": "echo \"No test specified\" && exit 0"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit",
+    "test:e2e": "vue-cli-service test:e2e",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@quasar/extras": "^1.0.0",
-    "core-js": "^3.6.5",
-    "quasar": "^2.0.0",
-    "vue": "^3.0.0",
-    "vue-router": "^4.0.0",
-    "vuex": "^4.0.1"
+    "core-js": "^3.8.3",
+    "register-service-worker": "^1.7.2",
+    "vue": "^3.2.13",
+    "vue-router": "^4.0.3",
+    "vuex": "^4.0.0"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.13.14",
-    "@quasar/app": "^3.0.0",
-    "electron": "^17.1.1",
-    "eslint": "^7.14.0",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-vue": "^7.0.0",
-    "eslint-webpack-plugin": "^2.4.0",
-    "prettier": "^2.5.1"
-  },
-  "browserslist": [
-    "last 10 Chrome versions",
-    "last 10 Firefox versions",
-    "last 4 Edge versions",
-    "last 7 Safari versions",
-    "last 8 Android versions",
-    "last 8 ChromeAndroid versions",
-    "last 8 FirefoxAndroid versions",
-    "last 10 iOS versions",
-    "last 5 Opera versions"
-  ],
-  "engines": {
-    "node": ">= 12.22.1",
-    "npm": ">= 6.13.4",
-    "yarn": ">= 1.21.1"
+    "@types/jest": "^27.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-e2e-cypress": "~5.0.0",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-plugin-pwa": "~5.0.0",
+    "@vue/cli-plugin-router": "~5.0.0",
+    "@vue/cli-plugin-typescript": "~5.0.0",
+    "@vue/cli-plugin-unit-jest": "~5.0.0",
+    "@vue/cli-plugin-vuex": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "@vue/eslint-config-typescript": "^9.1.0",
+    "@vue/test-utils": "^2.0.0-0",
+    "@vue/vue3-jest": "^27.0.0-alpha.1",
+    "babel-jest": "^27.0.6",
+    "cypress": "^8.3.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-vue": "^8.0.3",
+    "jest": "^27.0.5",
+    "sass": "^1.32.7",
+    "sass-loader": "^12.0.0",
+    "ts-jest": "^27.0.4",
+    "typescript": "~4.5.5"
   }
 }
