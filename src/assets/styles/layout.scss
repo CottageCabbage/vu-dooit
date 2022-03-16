@@ -1,0 +1,20 @@
+$header-height: 40px;
+
+#app {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+header {
+  width: 100vw;
+  height: $header-height;
+}
+aside, #mainContainer {
+  height: calc(100% - $header-height);
+}
+aside {
+  width: 20vw;
+}
+#mainContainer {
+  width: 80vw;
+}

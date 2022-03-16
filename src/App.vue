@@ -1,30 +1,22 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <HeaderContainer />
+  <SidebarContainer />
+  <div id="mainContainer">
+    <router-view/>
+  </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import SidebarContainer from './components/SidebarContainer.vue'
+import HeaderContainer from './components/HeaderContainer.vue'
 
-nav {
-  padding: 30px;
+import './assets/styles/layout.scss'
+import './assets/styles/main.scss'
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+export default {
+  components: {
+    SidebarContainer,
+    HeaderContainer
   }
 }
-</style>
+</script>
