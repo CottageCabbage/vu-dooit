@@ -1,3 +1,6 @@
+@import './variables.scss';
+
+
 * {
   margin: 0;
   padding: 0;
@@ -6,8 +9,37 @@
 html, body, #app {
   height: 100%;
   width: 100%;
+  font-family: Helvetica;
 }
 
-header {background-color: red;}
-aside {background-color: blue;}
-#mainContainer {background-color: green;}
+header {
+  display: flex;
+  align-items: center;
+  fill: #eee;
+  background-color: $de-york-500;
+  padding: 5px 20px 5px 20px;
+
+  #searchInput {
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    border: none;
+    appearance: none;
+    background: transparent;
+    flex-grow: 0.4;
+    color: #eee;
+    outline: none;
+    font-size: 1rem;
+  }
+  box-icon {
+    + box-icon {
+      margin-left: 15px;
+    }
+  }
+}
+
+
+#mainContainer {
+  background-color: #fff;
+  padding: 8px;
+}

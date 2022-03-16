@@ -1,0 +1,25 @@
+@import './variables.scss';
+
+aside {
+  position: relative;
+  background: $light-sidebar;
+  border-right: 2px solid $light-sidebar-border;
+  padding: 20px;
+  font-size: 1rem;
+
+  div {
+    display: flex;
+    align-items: center;
+
+    box-icon {
+      margin-right: 7px;
+    }
+  }
+
+  footer {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
