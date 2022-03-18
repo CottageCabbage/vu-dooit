@@ -16,7 +16,7 @@
     <el-dialog v-model="addTaskFormVisible" title="Create New Task">
       <el-form>
         <el-form-item label="Task:">
-          <el-input></el-input>
+          <el-input v-model="newTaskText"></el-input>
         </el-form-item>
         <el-cascader
           :options="dummyProjectList"
@@ -24,6 +24,14 @@
           placeholder="Projects"
           clearable
         />
+        <el-select v-model="selectedPriority" placeholder="Priority">
+          <el-option
+            v-for="priority in dummyPriorityList"
+            :key="priority.value"
+            :label="priority.label"
+            :value="priority.value"
+          />
+        </el-select>
       </el-form>
     </el-dialog>
 
@@ -60,6 +68,7 @@ export default {
     return {
       settings: useSettingsStore(),
       addTaskFormVisible: false,
+      newTaskText: '',
       dummyProjectList: [
         {
           value: 'inbox',
@@ -84,7 +93,13 @@ export default {
       ],
       props: {
         checkStrictly: true
-      }
+      },
+      dummyPriorityList: [
+        { label: '1', value: '1' },
+        { label: '2', value: '2' },
+        { label: '3', value: '3' }
+      ],
+      selectedPriority: ''
     }
   }
 }
