@@ -13,11 +13,18 @@
       </div>
     </div>
   </div>
+
 </template>
 <script>
 import '@/assets/styles/todo-list.scss'
 
 export default {
-
+  data () {
+    return {
+      cities: [
+        { city: 'adasd' }
+      ]
+    }
+  }
 }
 </script>

@@ -1,0 +1,53 @@
+@import './variables.scss';
+
+header {
+  display: flex;
+  align-items: center;
+  fill: #eee;
+  color: #eee;
+  background-color: $de-york-500;
+  padding: 5px 20px 5px 20px;
+
+  > * {
+    height: 24px;
+  }
+
+  #searchInput {
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    border: none;
+    appearance: none;
+    background: transparent;
+    flex-grow: 0.4;
+    color: #eee !important;
+    outline: none;
+    font-size: 1rem;
+  }
+
+  box-icon, a > box-icon, div > box-icon {
+    fill: #eee;
+    transition: transform 0.5s;
+
+    &:hover:not(#logo) {
+      transform: scale(1.1);
+      background-color: #aaa6;
+    }
+  }
+}
+
+
+.settingsDropdown {
+  position: relative;
+
+  .settingsItems {
+    position: absolute;
+    right: 50%;
+    transform: translateX(-0%);
+    width: 200px;
+    background-color: $light-sidebar-border;
+    color: #333;
+    border-radius: 4px;
+    padding: 5px;
+  }
+}
