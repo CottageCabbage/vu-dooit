@@ -1,25 +1,50 @@
-@import './variables.scss';
-
 aside {
   position: relative;
-  background: $light-sidebar;
-  border-right: 2px solid $light-sidebar-border;
   padding: 20px;
   font-size: 1rem;
 
-  div {
+  display: flex;
+  flex-direction: column;
+
+  a {
     display: flex;
     align-items: center;
-
-    box-icon {
+    font-size: 1rem;
+    > * {
       margin-right: 7px;
+    }
+  }
+
+  .project-tree {
+    background-color: transparent;
+
+    * {
+      font-size: 1rem;
+    }
+
+    .el-tree-node__children {
+      margin-left: -10px;
     }
   }
 
   footer {
     position: absolute;
-    bottom: 0;
+    bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+
+    padding-top: 10px;
+    border-top: 2px solid #e6e6e6;
+    box-icon:hover {
+      background-color: #4445;
+    }
   }
+}
+
+el-tree, tree {
+  background-color: red;
 }

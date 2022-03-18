@@ -16,6 +16,8 @@ import HeaderContainer from './components/HeaderContainer.vue'
 
 import './assets/styles/layout.scss'
 import './assets/styles/main.scss'
+
+import './assets/styles/themes/light.scss'
 import './assets/styles/themes/dark.scss'
 
 import { useSettingsStore } from '@/store/settings.js'
