@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <el-header>
     <router-link to="/">
       <box-icon type='solid' name='badge-check' id="logo"></box-icon>
     </router-link>
@@ -31,7 +31,7 @@
       </template>
     </el-dropdown>
 
-  </header>
+  </el-header>
 </template>
 <script>
 import '@/assets/styles/header.scss'

@@ -1,0 +1,14 @@
+@import '../variables.scss';
+
+.dark {
+  aside {
+    background-color: $dark-sidebar;
+    color: #eee;
+
+    border-right: #111;
+    a { color: pink; }
+  }
+  main {
+    background-color: #222;
+  }
+}

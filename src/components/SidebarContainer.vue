@@ -1,5 +1,5 @@
 <template>
-  <aside width="200px">
+  <el-aside width="225px">
     <div>
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +26,7 @@
       <box-icon name='coin-stack' type='solid' ></box-icon>
       <box-icon name='store-alt' type='solid' ></box-icon>
     </footer>
-  </aside>
+  </el-aside>
 </template>
 <script>
 import '@/assets/styles/sidebar.scss'

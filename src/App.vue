@@ -1,9 +1,13 @@
 <template>
-  <HeaderContainer />
-  <SidebarContainer />
-  <div id="mainContainer">
-    <router-view/>
-  </div>
+  <el-container direction="vertical" :class="settings.darkMode ? 'dark' : ''">
+    <HeaderContainer />
+    <el-container>
+      <SidebarContainer />
+      <el-main id="mainContainerx">
+        <router-view />
+      </el-main>
+    </el-container>
+  </el-container>
 </template>
 
 <script>
@@ -12,11 +16,19 @@ import HeaderContainer from './components/HeaderContainer.vue'
 
 import './assets/styles/layout.scss'
 import './assets/styles/main.scss'
+import './assets/styles/themes/dark.scss'
+
+import { useSettingsStore } from '@/store/settings.js'
 
 export default {
   components: {
     SidebarContainer,
     HeaderContainer
+  },
+  data () {
+    return {
+      settings: useSettingsStore()
+    }
   }
 }
 </script>

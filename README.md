@@ -52,9 +52,10 @@ Right now, making the UI similar to Todoist, since it's simple and functional. G
   + https://openbase.com/js/lowdb/documentation
   + https://github.com/typicode/lowdb
   + https://www.npmjs.com/package/lowdb
-  + https://openbase.com/js/lowdb
-> Element-plus & Box-Icons are currently being used as CDNs as I test them out. Remember to actually install them later if they work.
+  + https://openbase.com/js/lowdbd
 
+
+> Box-icons are being used as CDNs right now. Fix that whenever.
 > Uninstall PWA Support from dependencies. Had toggled it in CLI, but don't think it'll work.
 
 ## Project setup

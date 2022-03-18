@@ -1,4 +1,4 @@
-$header-height: 40px;
+$header-height: 45px;
 
 #app {
   display: flex;
@@ -7,13 +7,12 @@ $header-height: 40px;
 }
 header {
   width: 100vw;
-  height: $header-height;
+  // height: $header-height;
+  // flex: 0;
+  flex-basis: $header-height;
 }
 aside, #mainContainer {
-  height: calc(100% - $header-height);
-}
-aside {
-  width: 20vw;
+  height: calc(100%);
 }
 #mainContainer {
   flex-basis: 80%;
