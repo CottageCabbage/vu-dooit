@@ -20,7 +20,7 @@ import './assets/styles/main.scss'
 import './assets/styles/themes/light.scss'
 import './assets/styles/themes/dark.scss'
 
-import { useSettingsStore } from '@/store/settings.js'
+import { useSettingsStore } from '@/store/modules/settings.js'
 
 export default {
   components: {

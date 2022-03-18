@@ -60,7 +60,7 @@
 <script>
 import '@/assets/styles/header.scss'
 
-import { useSettingsStore } from '@/store/settings.js'
+import { useSettingsStore } from '@/store/modules/settings.js'
 
 export default {
   name: 'HeaderContainer',

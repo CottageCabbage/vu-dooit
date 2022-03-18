@@ -11,7 +11,9 @@
     "electron:build": "vue-cli-service electron:build",
     "electron:serve": "vue-cli-service electron:serve",
     "postinstall": "electron-builder install-app-deps",
-    "postuninstall": "electron-builder install-app-deps"
+    "postuninstall": "electron-builder install-app-deps",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "main": "background.js",
   "dependencies": {
@@ -50,6 +52,7 @@
     "sass": "^1.32.7",
     "sass-loader": "^12.0.0",
     "spectron": "15.0.0",
-    "vue-cli-plugin-electron-builder": "~2.1.1"
+    "vue-cli-plugin-electron-builder": "~2.1.1",
+    "vuepress": "^2.0.0-beta.36"
   }
 }
