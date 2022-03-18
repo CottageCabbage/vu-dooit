@@ -29,24 +29,6 @@ Right now, making the UI similar to Todoist, since it's simple and functional. G
   + https://boxicons.com/
   + https://atomicons.com/
 
-+ **Reference:**
-  + Open Source:
-    + https://planner-todo.web.app/
-    + https://github.com/karlhadwen/todoist (It's a React & Firebase Tutorial, but still should be able to learn something. Watch ltr)
-    + https://www.youtube.com/watch?v=HgfA4W_VjmI
-    + Small Projects:
-      + https://simpletasks.meteorapp.com/tasks
-  + Proprietary:
-    + UI:
-      + https://todoist.com/
-      + https://culturedcode.com/things/
-      + https://ticktick.com/
-      + https://getslash.co/
-      + https://www.omnigroup.com/omnifocus/
-    + Day Planner:
-      + https://getplan.co/login
-      + https://www.focuster.com/
-
 + **Lowdb Recourses:**
   + https://headty.medium.com/building-a-crud-app-with-node-express-and-lowdb-beginner-cec2d5d1b65e
   + https://openbase.com/js/lowdb/documentation
