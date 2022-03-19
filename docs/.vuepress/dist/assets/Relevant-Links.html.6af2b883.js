@@ -1,1 +1,0 @@
-const e={key:"v-de0b7352",path:"/Relevant-Links.html",title:"Relevant Links",lang:"en-US",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1647688087e3,contributors:[{name:"CottageCabbage",email:"96266734+CottageCabbage@users.noreply.github.com",commits:1}]},filePathRelative:"Relevant-Links.md"};export{e as data};

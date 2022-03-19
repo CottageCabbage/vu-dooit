@@ -1,12 +1,18 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import TodoList from '../views/TodoList.vue'
+import AvatarView from '../views/AvatarView.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/Avatar/',
+    name: 'Avatar',
+    component: AvatarView
   },
   {
     path: '/TodoList/',

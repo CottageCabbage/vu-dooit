@@ -3,7 +3,7 @@
     <HeaderContainer />
     <el-container>
       <SidebarContainer />
-      <el-main id="mainContainerx">
+      <el-main id="mainContainer">
         <router-view />
       </el-main>
     </el-container>

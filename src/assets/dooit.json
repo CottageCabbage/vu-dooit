@@ -1,25 +1,18 @@
 {
+  "settings": {
+    "darkMode": true
+  },
   "projects": [
     {
-      "id": "inbox",
       "label": "Inbox",
       "items": [
-        {
-          "text": "Hello this is a sample task, don't mine me.",
-          "isDone": false
-        }
-      ],
+        { "text": "HELLO DONT MIND ME" }
+      ]
+    },
+    {
+      "label": "Home",
       "children": [
-        {
-          "id": "Test",
-          "label": "TESTING",
-          "items": [
-            {
-              "text": "This is also a sample task.",
-              "isDone": true
-            }
-          ]
-        }
+        { "label": "DIY" }
       ]
     }
   ]

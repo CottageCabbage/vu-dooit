@@ -26,23 +26,6 @@ aside {
       margin-left: -10px;
     }
   }
-
-  footer {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-items: center;
-
-    padding-top: 10px;
-    border-top: 2px solid #e6e6e6;
-    box-icon:hover {
-      background-color: #4445;
-    }
-  }
 }
 
 el-tree, tree {

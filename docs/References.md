@@ -6,6 +6,8 @@ Some other Task Managers that may serve as reference while designing Vu-dooit.
   + [Czytelny/backlog](https://github.com/czytelny/backlog)
   + [KarlHadwen/todoist](https://github.com/karlhadwen/todoist)
     + [Building Todoist From Scratch - React Tutorial - Learn React in 2021](https://www.youtube.com/watch?v=HgfA4W_VjmI)
+  + [Ayazsayyed/vue-todo](https://github.com/ayazsayyed/vue-todo)
+  + [Blaadje/Todolist](https://github.com/blaadje/Todolist)
 
 + **Proprietary**
   + [Todoist](https://todoist.com/)

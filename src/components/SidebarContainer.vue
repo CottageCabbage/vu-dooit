@@ -1,48 +1,45 @@
 <template>
-  <el-aside width="225px">
-    <router-link to="/TodoList/">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#000000" stroke-width="1.5"
-        stroke-linecap="butt" stroke-linejoin="round">
-        <path d="M22,13.2V19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V13.2a1.67,1.67,0,0,1,0-.39l1.64-8.2A2,2,0,0,1,5.64,3H18.36a2,2,0,0,1,2,1.61L22,12.81A1.67,1.67,0,0,1,22,13.2Z"></path>
-        <path d="M2,13H5.93a2,2,0,0,1,1.66.89l.82,1.22a2,2,0,0,0,1.66.89h3.86a2,2,0,0,0,1.66-.89l.82-1.22A2,2,0,0,1,18.07,13H22" stroke-linecap="round"></path>
+  <el-container>
+    <el-aside width="50px" style="display: flex; flex-direction: column; align-items: center;">
+      <router-link to="/Avatar/">
+        <el-avatar :size="35" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"/>
+      </router-link>
+
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none"
+        stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17,8h5a0,0,0,0,1,0,0v8a0,0,0,0,1,0,0H17a4,4,0,0,1-4-4v0A4,4,0,0,1,17,8Z"></path>
+        <rect x="2" y="3" width="20" height="18" rx="2"></rect>
+        <line x1="17" y1="12" x2="17.1" y2="12" stroke-linecap="round" stroke-width="2"></line>
       </svg>
-      Inbox
-    </router-link>
 
-    <el-tree
-      :data="data"
-      class="project-tree"
-    />
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none"
+        stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21,6V20a2,2,0,0,1-2,2H5a2,2,0,0,1-2-2V6L5.7,2.4A1,1,0,0,1,6.5,2h11a1,1,0,0,1,.8.4Z"></path>
+        <line x1="21" y1="6" x2="3" y2="6" stroke-linecap="round"></line>
+        <path d="M17,10A5,5,0,0,1,7,10"></path>
+      </svg>
+    </el-aside>
 
-    <footer>
-      <box-icon name='check-square'></box-icon>
-      <box-icon name='coin-stack' type='solid' ></box-icon>
-      <box-icon name='store-alt' type='solid' ></box-icon>
-    </footer>
-
-  </el-aside>
+    <el-aside width="225px">
+      <el-tree :data="dooitTree">
+        <template #default="{ data }">
+          <span>
+            <router-link to="/">{{ data.label }} IT WORKS</router-link>
+          </span>
+        </template>
+      </el-tree>
+    </el-aside>
+  </el-container>
 </template>
 <script>
 import '@/assets/styles/sidebar.scss'
+import dooitJSON from '@/assets/dooit.json'
 
 export default {
   name: 'SidebarContainer',
   data () {
     return {
-      data: [
-        {
-          label: 'Projects',
-          children: [
-            { label: 'Default' },
-            {
-              label: 'Home',
-              children: [{ label: 'Bedroom' }]
-            }
-          ]
-        }
-      ]
+      dooitTree: dooitJSON.projects
     }
   }
 }

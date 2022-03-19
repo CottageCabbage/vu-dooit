@@ -1,1 +1,0 @@
-const e={key:"v-8daa1a0e",path:"/",title:"Getting Started",lang:"en-US",frontmatter:{home:!0,heroImage:!1},excerpt:"",headers:[{level:2,title:"Contributing",slug:"contributing",children:[]}],git:{updatedTime:1647688087e3,contributors:[{name:"CottageCabbage",email:"96266734+CottageCabbage@users.noreply.github.com",commits:2}]},filePathRelative:"README.md"};export{e as data};
