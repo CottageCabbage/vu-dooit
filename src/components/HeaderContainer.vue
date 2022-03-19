@@ -1,7 +1,7 @@
 <template>
   <el-header>
     <router-link to="/">
-      <box-icon type='solid' name='badge-check' id="logo"></box-icon>
+      <img src="@/assets/Logo1.png" alt="logo" id="logo">
     </router-link>
     <input
       type="text"
@@ -14,25 +14,7 @@
       @click="addTaskFormVisible = true"
     ></box-icon>
     <el-dialog v-model="addTaskFormVisible" title="Create New Task">
-      <el-form>
-        <el-form-item label="Task:">
-          <el-input v-model="newTaskText"></el-input>
-        </el-form-item>
-        <el-cascader
-          :options="dummyProjectList"
-          :props="props"
-          placeholder="Projects"
-          clearable
-        />
-        <el-select v-model="selectedPriority" placeholder="Priority">
-          <el-option
-            v-for="priority in dummyPriorityList"
-            :key="priority.value"
-            :label="priority.label"
-            :value="priority.value"
-          />
-        </el-select>
-      </el-form>
+      <NewTaskForm />
     </el-dialog>
 
     <el-dropdown trigger="click">
@@ -62,8 +44,11 @@ import '@/assets/styles/header.scss'
 
 import { useSettingsStore } from '@/store/modules/settings.js'
 
+import NewTaskForm from './NewTaskForm.vue'
+
 export default {
   name: 'HeaderContainer',
+  components: { NewTaskForm },
   data () {
     return {
       settings: useSettingsStore(),

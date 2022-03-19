@@ -1,0 +1,26 @@
+{
+  "projects": [
+    {
+      "id": "inbox",
+      "label": "Inbox",
+      "items": [
+        {
+          "text": "Hello this is a sample task, don't mine me.",
+          "isDone": false
+        }
+      ],
+      "children": [
+        {
+          "id": "Test",
+          "label": "TESTING",
+          "items": [
+            {
+              "text": "This is also a sample task.",
+              "isDone": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

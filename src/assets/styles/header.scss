@@ -12,6 +12,12 @@ header {
     height: 24px;
   }
 
+  a {display: flex; align-items: center; height: min-content; width: min-content; align-self: center;}
+  #logo {
+    height: 36px;
+    width: 36px;
+  }
+
   #searchInput {
     margin-left: auto;
     margin-right: auto;
