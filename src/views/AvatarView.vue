@@ -1,40 +1,22 @@
 <template>
-  <div id="profile">
-    <div id="profileBanner">
-      <img
-        src="@/assets/banner.png"
-        alt="Banner"
+  <div id="profilePage">
+    <div id="banner">
+      <el-avatar id="profilePicture"
+        src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
       />
     </div>
-    <el-avatar
-      src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
-    />
-    <h1>Profile</h1>
+    <h1>Default Title</h1>
+    Inbox tab, Today Tab
   </div>
 </template>
 <script>
-export default {
+import '@/assets/styles/profile.scss'
 
+export default {
+  data () {
+    return {
+
+    }
+  }
 }
 </script>
-<style>
-#profile {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0;
-  margin-top: -20px;
-  padding: 0;
-}
-
-#profileBanner {
-  display: flex;
-  justify-content: flex-end;
-}
-
-img {
-  width: 100%;
-}
-
-</style>

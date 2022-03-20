@@ -31,3 +31,4 @@ pnpm-debug.log*
 # VuePress
 .temp
 .cache
+.obsidian

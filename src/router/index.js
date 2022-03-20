@@ -20,6 +20,9 @@ const routes = [
     component: TodoList
   }
   // {
+  //   path: '/project/:id', component: TodoList
+  // }
+  // {
   //   path: '/about',
   //   name: 'about',
   //   // route level code-splitting

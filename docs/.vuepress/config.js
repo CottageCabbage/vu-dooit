@@ -8,14 +8,10 @@ module.exports = {
   // theme and its config
   theme: '@vuepress/theme-default',
   themeConfig: {
-    logo: '',
+    logo: 'https://raw.githubusercontent.com/CottageCabbage/Vu-dooit/main/docs/images/Logo.svg',
     navbar: [
       {text: 'References', link: 'References.md'},
-      '/Relevant-Links.md',
-      {
-        text: 'Group',
-        children: []
-      }
+      '/Relevant-Links.md'
     ]
   },
 }

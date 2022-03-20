@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: false
+heroImage: https://raw.githubusercontent.com/CottageCabbage/Vu-dooit/main/docs/images/Logo.svg
 ---
 
 # Getting Started

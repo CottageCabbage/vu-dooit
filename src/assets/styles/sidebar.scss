@@ -2,6 +2,7 @@ aside {
   position: relative;
   padding: 20px;
   font-size: 1rem;
+  overflow-x: hidden !important;
 
   display: flex;
   flex-direction: column;
@@ -10,9 +11,6 @@ aside {
     display: flex;
     align-items: center;
     font-size: 1rem;
-    > * {
-      margin-right: 7px;
-    }
   }
 
   .project-tree {

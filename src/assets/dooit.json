@@ -6,13 +6,21 @@
     {
       "label": "Inbox",
       "items": [
-        { "text": "HELLO DONT MIND ME" }
+        { "text": "Inbox Task" }
       ]
     },
     {
       "label": "Home",
+      "items": [
+        { "text": "Home Task" }
+      ],
       "children": [
-        { "label": "DIY" }
+        {
+          "label": "DIY",
+          "items": [
+            { "text": "DIY Task" }
+          ]
+        }
       ]
     }
   ]
