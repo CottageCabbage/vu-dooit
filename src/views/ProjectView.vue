@@ -17,14 +17,8 @@
     </div>
 
     <div class="addTaskThing">
-      <svg xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#000000"
-        stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10"></circle>
-        <line x1="12" y1="8" x2="12" y2="16"></line>
-        <line x1="16" y1="12" x2="8" y2="12"></line>
-      </svg>
-      <el-input placeholder="Add Task"/>
+      <el-input placeholder="Add Task" v-model="newTaskText" style="width: 60%;"/>
+      <el-button @click="addTask">Done</el-button>
     </div>
 
   </div>
@@ -37,7 +31,8 @@ export default {
   data () {
     return {
       title: '',
-      tasks: ''
+      tasks: '',
+      newTaskText: ''
     }
   },
   methods: {
@@ -48,6 +43,13 @@ export default {
       if (this.$route.params.tasks !== null) {
         this.tasks = JSON.parse(this.$route.params.tasks)
       }
+    },
+    addTask () {
+      const newTask = {
+        text: this.newTaskText,
+        completed: false
+      }
+      this.tasks.push(newTask)
     }
   },
   watch: {

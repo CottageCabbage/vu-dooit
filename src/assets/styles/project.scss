@@ -31,10 +31,7 @@
   margin-left: 15px;
   margin-top: 15px;
 
-  svg:hover {
-    transform: scale(1.1);
-  }
-  input {
-    width: 60%;
+  .el-input {
+    flex-basis: 50%;
   }
 }
