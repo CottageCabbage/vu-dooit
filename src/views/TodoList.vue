@@ -5,6 +5,7 @@
     <div v-for="(task, index) in tasks" :key="index">
       <el-checkbox
         :label="task.text"
+        v-model="task.completed"
         size="large"
       />
     </div>
@@ -35,7 +36,7 @@ export default {
   },
   watch: {
     '$route' (to, from) {
-      if (from.params.projectID !== to.params.projectID) {
+      if (to.name === 'TodoList' && to.params.projectID !== null) {
         return this.getProjectInfo()
       }
     }

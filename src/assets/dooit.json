@@ -6,13 +6,16 @@
     {
       "label": "Inbox",
       "items": [
-        { "text": "Inbox Task", "completed": false }
+        { "text": "Inbox Task", "completed": false },
+        { "text": "Testing Task", "completed": true },
+        { "text": "Another one", "completed": false }
       ]
     },
     {
       "label": "Home",
       "items": [
-        { "text": "Home Task", "completed": false }
+        { "text": "Home Task", "completed": true },
+        { "text": "Hey there", "completed": false }
       ],
       "children": [
         {
