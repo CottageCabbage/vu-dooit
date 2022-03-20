@@ -6,19 +6,19 @@
     {
       "label": "Inbox",
       "items": [
-        { "text": "Inbox Task" }
+        { "text": "Inbox Task", "completed": false }
       ]
     },
     {
       "label": "Home",
       "items": [
-        { "text": "Home Task" }
+        { "text": "Home Task", "completed": false }
       ],
       "children": [
         {
           "label": "DIY",
           "items": [
-            { "text": "DIY Task" }
+            { "text": "DIY Task", "completed": false }
           ]
         }
       ]

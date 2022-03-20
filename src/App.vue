@@ -4,7 +4,7 @@
     <el-container>
       <SidebarContainer />
       <el-main id="mainContainer">
-        <router-view />
+        <router-view :key="$route.fullPath"/>
       </el-main>
     </el-container>
   </el-container>
