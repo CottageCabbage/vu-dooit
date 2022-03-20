@@ -5,6 +5,7 @@
   "projects": [
     {
       "label": "Inbox",
+      "id": "inbox",
       "items": [
         { "text": "Inbox Task", "completed": false },
         { "text": "Testing Task", "completed": true,

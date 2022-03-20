@@ -54,39 +54,7 @@ export default {
   data () {
     return {
       settings: useSettingsStore(),
-      addTaskFormVisible: false,
-      newTaskText: '',
-      dummyProjectList: [
-        {
-          value: 'inbox',
-          label: 'Inbox'
-        },
-        {
-          value: 'guide',
-          label: 'Guide',
-          children: [
-            {
-              value: 'disciplines',
-              label: 'Disciplines',
-              children: [
-                {
-                  value: 'consistency',
-                  label: 'Consistency'
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      props: {
-        checkStrictly: true
-      },
-      dummyPriorityList: [
-        { label: '1', value: '1' },
-        { label: '2', value: '2' },
-        { label: '3', value: '3' }
-      ],
-      selectedPriority: ''
+      addTaskFormVisible: false
     }
   }
 }
