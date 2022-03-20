@@ -14,9 +14,9 @@ const routes = [
     component: () => import('@/views/AvatarView.vue')
   },
   {
-    path: '/TodoList/',
-    name: 'TodoList',
-    component: () => import('@/views/TodoList.vue')
+    path: '/Project/',
+    name: 'Project',
+    component: () => import('@/views/ProjectView.vue')
   }
 ]
 

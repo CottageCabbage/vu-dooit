@@ -12,7 +12,7 @@
           <span>
             <router-link
               :to="{
-                name: 'TodoList',
+                name: 'Project',
                 params: {
                   projectID: data.label,
                   tasks: JSON.stringify(data.items)

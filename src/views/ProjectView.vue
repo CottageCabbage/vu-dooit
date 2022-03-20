@@ -1,21 +1,26 @@
 <template>
-  <div id="listContainer">
+  <div id="projectContainer">
     <h1>{{title}}</h1>
 
-    <div v-for="(task, index) in tasks" :key="index">
+    <div v-for="(task, index) in tasks" :key="index" class="taskContainer">
       <el-checkbox
         :label="task.text"
         v-model="task.completed"
         size="large"
       />
+      <div v-for="(subtask, i) in task.children" :key="i" class="subtasksContainer">
+        <el-checkbox
+          :label="subtask.text"
+          v-model="subtask.completed"
+        />
+      </div>
     </div>
 
   </div>
 
 </template>
 <script>
-import '@/assets/styles/todo-list.scss'
-// import dooit from '@/assets/dooit.json'
+import '@/assets/styles/project.scss'
 
 export default {
   data () {
@@ -36,7 +41,7 @@ export default {
   },
   watch: {
     '$route' (to, from) {
-      if (to.name === 'TodoList' && to.params.projectID !== null) {
+      if (to.name === 'Project' && to.params.projectID !== null) {
         return this.getProjectInfo()
       }
     }
