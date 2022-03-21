@@ -12,7 +12,12 @@ header {
     height: 24px;
   }
 
-  a {display: flex; align-items: center; height: min-content; width: min-content; align-self: center;}
+  a {
+    display: flex;
+    height: min-content;
+    width: min-content;
+  }
+
   #logo {
     height: 36px;
     width: 36px;
@@ -34,11 +39,14 @@ header {
   svg {
     fill: #eee;
     transition: transform 0.5s;
-
     &:hover:not(#logo) {
       transform: scale(1.1);
       background-color: #aaa6;
     }
+  }
+
+  .el-dropdown {
+    margin-left: 15px;
   }
 }
 
