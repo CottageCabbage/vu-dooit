@@ -29,6 +29,7 @@
       </span>
       <template #dropdown>
         <el-dropdown-menu>
+          <el-dropdown-item>Edit Profile</el-dropdown-item>
           <el-dropdown-item>
             <el-switch
               v-model="settings.darkMode"

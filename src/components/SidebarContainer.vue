@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-aside width="50px" style="display: flex; flex-direction: column; align-items: center;">
-      <router-link to="/Avatar/">
+      <router-link to="/Profile/">
         <el-avatar :size="35" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"/>
       </router-link>
     </el-aside>

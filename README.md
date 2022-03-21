@@ -1,7 +1,7 @@
 <p align="center"><img src="./README/Logo1.png"/></p>
 
 <h1 align="center">Vu-dooit</h1>
-A Task Manager Desktop App made with Vue & Electron. Currently in development.
+A gamified Task Manager made with Vue & Electron. Open Source, made with Electron.
 
 Right now, making the UI similar to Todoist, since it's simple and functional. Going to try making something more unique once app is somewhat-working.
 

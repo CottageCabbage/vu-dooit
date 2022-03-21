@@ -9,9 +9,9 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/Avatar/',
-    name: 'Avatar',
-    component: () => import('@/views/AvatarView.vue')
+    path: '/Profile/',
+    name: 'Profile',
+    component: () => import('@/views/ProfileView.vue')
   },
   {
     path: '/Project/',
