@@ -1,22 +1,16 @@
-import { join, dirname } from 'path'
-import { Low, JSONFile } from 'lowdb'
-import { fileURLToPath } from 'url'
+// eslint-disable-next-line no-unused-vars
+import fs from 'fs'
+const low = require('lowdb')
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
+const FileSync = require('lowdb/adapters/FileSync')
 
-// Use JSON file for storage
-const file = join(__dirname, 'vu_dooit.json')
-const adapter = new JSONFile(file)
-const db = new Low(adapter)
+const userDataPath = require('electron').remote.getCurrentWindow().userDataPath
 
-// Read data from JSON file, this will set db.data content
-await db.read()
+const dataAdapter = new FileSync(userDataPath)
 
-// If file.json doesn't exist, db.data will be null
-// Set default data
-db.data ||= { settings: [] }
+const db = low(dataAdapter)
+db.write(['hi'])
 
-db.data.settings.push('darkModePls')
-
-// Finally write db.data content to file
-await db.write()
+module.exports = {
+  db
+}
