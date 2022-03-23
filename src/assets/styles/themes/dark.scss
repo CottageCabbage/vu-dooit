@@ -5,13 +5,16 @@
     background-color: $dark-sidebar;
     color: #eee;
 
-    border-right: 2px solid #666;
+    border-right: 2px solid #666a;
+
     a { color: pink; }
+    a:hover {color: palevioletred;}
+
+    #thin-aside {
+      border-right: 2px solid #6669;
+    }
   }
   main {
-    background-color: #222;
-  }
-  #mainContainer {
     background-color: #333 !important;
     color: #eee;
   }

@@ -1,6 +1,8 @@
 @import './variables.scss';
 
 header {
+  width: 100vw;
+  flex-basis: 45px;
   display: flex;
   align-items: center;
   fill: #eee;

@@ -1,9 +1,12 @@
 <template>
-  <el-container direction="vertical" :class="settings.darkMode ? 'dark' : ''">
+  <el-container
+    direction="vertical"
+    :class="settings.darkMode ? 'dark' : ''"
+    id="app">
     <HeaderContainer />
     <el-container>
       <SidebarContainer />
-      <el-main id="mainContainer">
+      <el-main>
         <router-view :key="$route.fullPath"/>
       </el-main>
     </el-container>
@@ -14,7 +17,6 @@
 import SidebarContainer from './components/SidebarContainer.vue'
 import HeaderContainer from './components/HeaderContainer.vue'
 
-import './assets/styles/layout.scss'
 import './assets/styles/main.scss'
 
 import './assets/styles/themes/light.scss'
@@ -36,3 +38,15 @@ export default {
   }
 }
 </script>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body, #app {
+  height: 100%;
+  font-family: Helvetica;
+}
+</style>
