@@ -1,21 +1,38 @@
 @import '../variables.scss';
 
 .dark {
+
   aside {
     background-color: $dark-sidebar;
     color: #eee;
-
-    border-right: 2px solid #666a;
+    border-right: $dark-sidebar-border;
 
     a { color: pink; }
     a:hover {color: palevioletred;}
 
     #thin-aside {
-      border-right: 2px solid #6669;
+      border-right: $dark-sidebar-border;
     }
   }
   main {
-    background-color: #333 !important;
+    background-color: $dark-main;
     color: #eee;
+  }
+
+  .el-checkbox__label {
+    color: #ccc;
+  }
+
+  .addTaskThing {
+    .el-input__inner {
+      background-color: #555;
+      border-color: #6666;
+    }
+    .el-button {
+      background-color: #606266;
+      color: #fff;
+      &:hover {background-color: #606266aa;}
+      &:active {background-color: #60626688;}
+    }
   }
 }
