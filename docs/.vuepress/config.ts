@@ -19,8 +19,8 @@ export default defineHopeConfig({
   locales: {
     "/": {
       lang: "en-US",
-      title: "Theme Demo",
-      description: "A demo for vuepress-theme-hope",
+      title: "Vu-dooit",
+      description: "Documentation",
     },
     "/zh/": {
       lang: "zh-CN",
