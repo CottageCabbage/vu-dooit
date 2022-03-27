@@ -3,7 +3,10 @@ import * as navbar from "./navbar";
 import * as sidebar from "./sidebar";
 
 export default defineThemeConfig({
-  hostname: "https://vuepress-theme-hope-v2-demo.mrhope.site",
+  hostname: "https://cottagecabbage.github.io/Vu-dooit/",
+
+  darkmode: "switch",
+  themeColor: false,
 
   author: {
     name: "Cottage Cabbage"

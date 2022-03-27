@@ -6,12 +6,15 @@ heroImage: /Logo.svg
 heroText: Vu-dooit
 tagline: Open Source Task Manager made with Vue
 actions:
-  - text: Get Started on Contributing
-    link: /guide/
+  - text: Contribute
+    link: /intro/
+features:
+  - title: Markdown
+    icon: markdown
+    details: Create beautiful tasks with Markdown
+  - title: Offline-First
+    icon: folder
+    details: Your data is available regardless of conection
 copyright: false
-footer: MIT Licensed | Copyright © 2019-present Mr.Hope
+footer: false
 ---
-
-- [Inspiration](Inspiration.md)
-- [Relevant Links](Relevant.md)
-- [Vue Communities](VueComunities.md)
