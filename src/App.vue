@@ -24,8 +24,6 @@ import './assets/styles/themes/dark.scss'
 
 import { useSettingsStore } from '@/store/modules/settings.js'
 
-// import './database.js'
-
 export default {
   components: {
     SidebarContainer,

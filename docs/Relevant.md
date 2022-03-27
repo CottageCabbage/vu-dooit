@@ -43,7 +43,11 @@ Not implemented yet. Here some links still tho.
 
 ## Persisntence
 - [AwesomeVue#Persistence](https://github.com/vuejs/awesome-vue#persistence)
+
+
 - Lowdb
+- Nedb
+- Indexeddb
 
 ### Questions & Articles
 - [Stackoverflow: Local, file-based database for an Electron application](https://stackoverflow.com/questions/37655020/local-file-based-database-for-an-electron-application?rq=1)
