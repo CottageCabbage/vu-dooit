@@ -1,7 +1,12 @@
+'use strict'
+
 import { app, protocol, BrowserWindow } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
+
 const isDevelopment = process.env.NODE_ENV !== 'production'
+
+const path = require('path')
 
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
@@ -20,10 +25,10 @@ async function createWindow () {
 
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
-      nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
-      contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
+      nodeIntegration: true
     }
   })
+  win.userDataPath = path.join(app.getPath('userData'), 'dooit.json')
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
