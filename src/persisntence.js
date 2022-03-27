@@ -1,10 +1,8 @@
-const low = require('lowdb')
-const FileSync = require('lowdb/adapters/FileSync')
+import { Low } from 'lowdb'
 
 const userDataPath = require('electron').remote.getCurrentWindow().userDataPath
 
-const dataAdapter = new FileSync(userDataPath)
-const db = low(dataAdapter)
+const db = new Low(userDataPath)
 
 module.exports = {
   db

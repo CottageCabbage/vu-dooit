@@ -7,6 +7,9 @@ import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 const path = require('path')
+// eslint-disable-next-line no-unused-vars
+const fs = window.require('fs')
+// window.fs = require('fs')
 
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
@@ -25,7 +28,10 @@ async function createWindow () {
 
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
-      nodeIntegration: true
+      nodeIntegration: true,
+      contextIsolation: false,
+      nodeIntegrationInWorker: true,
+      nodeIntegrationInSubFrames: true
     }
   })
   win.userDataPath = path.join(app.getPath('userData'), 'dooit.json')

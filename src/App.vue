@@ -4,6 +4,7 @@
     :class="settings.darkMode ? 'dark' : ''"
     id="app">
     <HeaderContainer />
+    <el-button @click="asd()">asdsad</el-button>
     <el-container>
       <SidebarContainer />
       <el-main>
@@ -32,6 +33,11 @@ export default {
   data () {
     return {
       settings: useSettingsStore()
+    }
+  },
+  methods: {
+    asd () {
+      this.$store.dispatch('doThing')
     }
   }
 }
