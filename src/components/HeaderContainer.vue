@@ -21,6 +21,10 @@
       <NewTaskForm />
     </el-dialog>
 
+    <el-dialog v-model="editProfileFormVisible" title="Edit Profile Information">
+      <EditProfileForm />
+    </el-dialog>
+
     <el-dropdown trigger="click" effect="dark">
       <span class="el-dropdown-link">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
@@ -29,7 +33,9 @@
       </span>
       <template #dropdown>
         <el-dropdown-menu effect="dark">
-          <el-dropdown-item>Edit Profile</el-dropdown-item>
+          <el-dropdown-item @click="editProfileFormVisible = true">
+            Edit Profile
+            </el-dropdown-item>
           <el-dropdown-item>
             <el-switch
               v-model="settings.darkMode"
@@ -47,15 +53,20 @@ import '@/assets/styles/header.scss'
 
 import { useSettingsStore } from '@/store/modules/settings.js'
 
-import NewTaskForm from './NewTaskForm.vue'
+import NewTaskForm from './Forms/NewTaskForm.vue'
+import EditProfileForm from './Forms/EditProfileForm.vue'
 
 export default {
   name: 'HeaderContainer',
-  components: { NewTaskForm },
+  components: {
+    NewTaskForm,
+    EditProfileForm
+  },
   data () {
     return {
       settings: useSettingsStore(),
-      addTaskFormVisible: false
+      addTaskFormVisible: false,
+      editProfileFormVisible: false
     }
   }
 }

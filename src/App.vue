@@ -4,7 +4,7 @@
     :class="settings.darkMode ? 'dark' : ''"
     id="app">
     <HeaderContainer />
-    <el-button @click="asd()">asdsad</el-button>
+    <!-- <el-button @click="asd()">asdsad</el-button> -->
     <el-container>
       <SidebarContainer />
       <el-main>
@@ -38,6 +38,15 @@ export default {
   methods: {
     asd () {
       this.$store.dispatch('doThing')
+    }
+  },
+  mounted () {
+    if (localStorage.getItem('profile') === null) {
+      const defaults = {
+        username: 'Task Ninja',
+        theme: 'dark'
+      }
+      localStorage.setItem('profile', JSON.stringify(defaults))
     }
   }
 }

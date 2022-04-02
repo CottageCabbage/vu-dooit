@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import things from '@/thing.js'
+// import things from '@/thing.js'
 
 export default createStore({
   state: {
@@ -14,7 +14,7 @@ export default createStore({
   },
   actions: {
     doThing ({ commit }, updated) {
-      things.doThingPls(updated)
+      // things.doThingPls(updated)
     }
   },
   modules: {

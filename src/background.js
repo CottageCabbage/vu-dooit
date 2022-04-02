@@ -8,7 +8,7 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 
 const path = require('path')
 // eslint-disable-next-line no-unused-vars
-const fs = window.require('fs')
+// const fs = window.require('fs')
 // window.fs = require('fs')
 
 // Scheme must be registered before the app is ready
