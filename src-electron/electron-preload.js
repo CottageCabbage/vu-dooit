@@ -1,4 +1,6 @@
 /**
+ * DOCS: https://quasar.dev/quasar-cli-vite/developing-electron-apps/electron-preload-script
+ *
  * This file is used specifically for security reasons.
  * Here you can access Nodejs stuff and inject functionality into
  * the renderer thread (accessible there through the "window" object)

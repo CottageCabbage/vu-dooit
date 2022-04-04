@@ -1,116 +1,73 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
-
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
-      </q-toolbar>
-    </q-header>
-
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-    >
-      <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
-
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
-    </q-drawer>
-
-    <q-page-container>
-      <router-view />
-    </q-page-container>
-  </q-layout>
+  <div class="flexColumnContainer">
+    <header class="flexRowContainer">
+      <q-btn dense flat icon="expand_more" />
+    </header>
+    <div class="flexRowContainer">
+      <aside>
+        <div id="narrowSidebar" class="flexColumnContainer">
+          <q-btn dense flat icon="account_circle" />
+          <q-btn dense flat icon="task_alt" />
+          <q-btn
+            dense
+            flat
+            :icon="sidebarOpen ? 'chevron_left' : 'chevron_right'"
+            @click="toggleSidebar"
+            style="margin-top: auto"
+          />
+          <q-btn dense flat icon="settings" />
+        </div>
+        <div id="wideSidebar" v-if="sidebarOpen">Wide</div>
+      </aside>
+      asd
+    </div>
+  </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
-import EssentialLink from 'components/EssentialLink.vue';
+<script>
+import { ref } from 'vue';
 
-const linksList = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-];
-
-export default defineComponent({
-  name: 'MainLayout',
-
-  components: {
-    EssentialLink
-  },
-
-  setup () {
-    const leftDrawerOpen = ref(false)
+export default {
+  setup() {
+    const sidebarOpen = ref(false);
 
     return {
-      essentialLinks: linksList,
-      leftDrawerOpen,
-      toggleLeftDrawer () {
-        leftDrawerOpen.value = !leftDrawerOpen.value
-      }
-    }
-  }
-});
+      sidebarOpen,
+      toggleSidebar() {
+        sidebarOpen.value = !sidebarOpen.value;
+      },
+    };
+  },
+};
 </script>
+
+<style lang="scss" scoped>
+header {
+  width: 100vw;
+  height: 35px;
+  align-items: center;
+  background: #56b67a;
+}
+
+aside {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: min-content;
+  height: calc(100vh - 35px);
+  display: flex;
+  flex-direction: row;
+
+  border-right: 2px solid #9999;
+
+  #narrowSidebar {
+    width: min-content;
+    padding: 6px 3px 6px 3px;
+    background: #e6e6e6;
+  }
+  #wideSidebar {
+    background: #f9f9f9;
+    width: 250px;
+  }
+}
+</style>

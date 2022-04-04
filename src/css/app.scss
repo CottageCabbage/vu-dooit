@@ -1,1 +1,10 @@
 // app global css in SCSS form
+.flexColumnContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.flexRowContainer {
+  display: flex;
+  flex-direction: row;
+}
