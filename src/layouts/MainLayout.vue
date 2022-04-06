@@ -1,14 +1,34 @@
 <template>
   <div class="flexColumnContainer">
     <header class="flexRowContainer">
-      VU-DOOIT
-      <q-btn dense flat icon="add" style="margin-left: auto" />
+      <span id="logo">VUDOOIT</span>
+
+      <q-space />
+
+      <q-btn dense flat icon="add" />
       <q-btn-dropdown flat dense>
-        <div style="padding: 5px; width: 150px">
+        <div
+          style="
+            padding: 5px;
+            width: 150px;
+            display: flex;
+            flex-direction: column;
+          "
+        >
+          <q-btn
+            flat
+            label="Edit Profile"
+            style="margin: 0 auto 0 auto"
+            @click="profileDialog = true"
+          />
           <q-toggle label="Dark Mode" v-model="nightmode" icon="dark_mode" />
         </div>
       </q-btn-dropdown>
     </header>
+
+    <q-dialog v-model="profileDialog">
+      <EditProfileDialog />
+    </q-dialog>
 
     <div class="flexRowContainer">
       <aside>
@@ -41,19 +61,25 @@
 
 <script>
 import { defineComponent, ref } from 'vue';
+import EditProfileDialog from 'src/components/Dialogs/EditProfileDialog.vue';
 
 export default defineComponent({
   setup() {
     const sidebarOpen = ref(false);
     const nightmode = ref(false);
+    const profileDialog = ref(false);
 
     return {
       sidebarOpen,
       nightmode,
+      profileDialog,
       toggleSidebar() {
         sidebarOpen.value = !sidebarOpen.value;
       },
     };
+  },
+  components: {
+    EditProfileDialog,
   },
 });
 </script>
@@ -68,6 +94,13 @@ header {
   align-items: center;
   padding: 0 5px 0 30px;
   background: #56b67a;
+
+  #logo {
+    color: #dbffdb;
+    font-size: 1.15rem;
+    font-weight: bolder;
+    user-select: none;
+  }
 }
 
 aside {

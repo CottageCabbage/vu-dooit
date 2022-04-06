@@ -1,92 +1,86 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */ /* eslint-disable
-@typescript-eslint/no-unused-vars */ /* eslint-disable
-@typescript-eslint/no-unused-vars */
 <template>
   <div class="flexColumnContainer" id="projectPage">
-    <div class="projectDetails">
-      <h2>{{ project.title }}</h2>
-      <p>{{ project.tasksDone }}/{{ project.tasksTotal }}</p>
+    <section class="projectDetails">
+      <h2>{{ projects[0].title }}</h2>
+      <p>{{ projects[0].description }}</p>
+    </section>
+
+    <div class="taskList">
+      <TaskComponent
+        v-for="(task, index) in projects[0].tasks"
+        :key="index"
+        :taskDetails="task"
+      />
     </div>
-
-    <q-list>
-      <q-item
-        v-for="(task, index) in tasks"
-        :key="index"
-        @click="task.done = !task.done"
-        clickable
-      >
-        <q-item-section>
-          <q-checkbox v-model="task.done" class="no-pointer-events" />
-        </q-item-section>
-        <q-item-section>
-          <q-item-label>{{ task.title }}</q-item-label>
-        </q-item-section>
-      </q-item>
-    </q-list>
-
-    <!-- <div class="taskList">
-      <div
-        class="task"
-        v-for="(task, index) in tasks"
-        :key="index"
-        @click="task.done = !task.done"
-        clickable
-      >
-        <q-checkbox :label="task.title" v-model="task.done" />
-      </div>
-    </div> -->
   </div>
 </template>
+
 <script>
 import { defineComponent } from 'vue';
+import TaskComponent from 'src/components/TaskComponent.vue';
 
 import Localbase from 'localbase';
 let db = new Localbase('projects');
 
-const project = {
-  title: 'Inbox',
-  tasksTotal: 12,
-  tasksDone: 5,
-};
-
-const tasks = [
-  {
-    title: 'Testing, 1st',
-    done: false,
-  },
-  {
-    title: 'Second Task',
-    done: false,
-  },
-];
-
 export default defineComponent({
+  components: {
+    TaskComponent,
+  },
   setup() {
     return {
-      project: project,
-      tasks: tasks,
+      projects: [
+        {
+          title: 'Inbox',
+          description: 'Hello World, this is the Inbox',
+          tasksTotal: 12,
+          tasksDone: 5,
+          tasks: [
+            {
+              title: 'Test',
+              done: false,
+            },
+            { title: 'Hello World', done: true },
+          ],
+        },
+      ],
     };
   },
-  created() {
-    // db.collection('users').add({
-    //   id: 1,
-    //   name: 'Bill',
-    //   age: 47,
-    // });
+  methods: {
+    doThing() {
+      db.collection('users').add({ id: 1 });
+    },
   },
 });
 </script>
 
 <style lang="scss">
 #projectPage {
-  padding: 10px;
-
   .projectDetails {
+    padding: 10px;
+    background: #6a6;
+    color: #ded;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+
     h2 {
-      margin: 0;
-      font-size: 2rem;
+      min-width: 15%;
+      margin: 0 0 15px 0;
+      display: inline-block;
+      border-bottom: 2px solid #8c8;
+      font-size: 2.5rem;
       font-weight: bold;
+      text-align: center;
     }
+    p {
+      font-size: 1rem;
+      text-align: center;
+    }
+  }
+
+  .newTaskContainer {
+    border: 1px solid black;
   }
 
   .taskList {
