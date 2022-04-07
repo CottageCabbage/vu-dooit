@@ -1,14 +1,14 @@
 <template>
   <div class="flexColumnContainer" id="projectPage">
     <section class="projectDetails">
-      <h2>{{ $route.params.id }}</h2>
-      <p>{{ data.projects[0].description }}</p>
-      <q-btn label="New task!" @click="data.createTask()" />
+      <h2>{{ data.projects[$route.params.id].title }}</h2>
+      <p>{{ data.projects[$route.params.id].description }}</p>
+      <q-btn label="New task!" @click="data.createTask($route.params.id)" />
     </section>
 
     <div class="taskList">
       <TaskComponent
-        v-for="(task, index) in data.projects[0].tasks"
+        v-for="(task, index) in data.projects[$route.params.id].tasks"
         :key="index"
         :taskDetails="task"
       />
@@ -29,7 +29,6 @@ export default defineComponent({
   setup() {
     return {
       data: useProjectStore(),
-      par: '',
     };
   },
 });

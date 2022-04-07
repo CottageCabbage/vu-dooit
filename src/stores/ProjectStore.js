@@ -16,7 +16,7 @@ export const useProjectStore = defineStore('projects', {
         {
           title: 'Home',
           id: '123',
-          description: 'Hello world!',
+          description: 'Home!',
           tasks: [
             { title: 'This is a task', done: false },
             { title: 'This is also a task, but it is done', done: true },
@@ -26,12 +26,12 @@ export const useProjectStore = defineStore('projects', {
     };
   },
   actions: {
-    createTask() {
+    createTask(projectID) {
       const newTask = {
         title: 'Hello there',
         done: false,
       };
-      this.projects[0].tasks.push(newTask);
+      this.projects[projectID].tasks.push(newTask);
     },
     toggleTaskDone(projectID, taskID) {
       this.projects[projectID].tasks[taskID].done =

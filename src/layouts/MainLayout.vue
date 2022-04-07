@@ -53,10 +53,13 @@
         <div id="wideSidebar" v-if="sidebarOpen">
           <div
             class="sidebar-linkToProject"
-            v-for="project in data.projects"
+            v-for="(project, index) in data.projects"
             :key="project.id"
           >
-            <router-link :to="'/project/' + project.id">{{
+            <!-- <router-link :to="'/project/' + project.id">{{
+              project.title
+            }}</router-link> -->
+            <router-link :to="'/project/' + index">{{
               project.title
             }}</router-link>
 
@@ -67,7 +70,7 @@
       </aside>
 
       <main>
-        <router-view />
+        <router-view :key="$route.fullPath" />
       </main>
     </div>
   </div>
@@ -80,7 +83,7 @@ import { useProjectStore } from 'src/stores/ProjectStore';
 
 export default defineComponent({
   setup() {
-    const sidebarOpen = ref(false);
+    const sidebarOpen = ref(true);
     const nightmode = ref(false);
     const profileDialog = ref(false);
 
