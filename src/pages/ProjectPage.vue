@@ -1,8 +1,7 @@
 <template>
   <div class="flexColumnContainer" id="projectPage">
     <section class="projectDetails">
-      <h2>{{ data.projects[0].title }}</h2>
-      <p>{{ par }}</p>
+      <h2>{{ $route.params.id }}</h2>
       <p>{{ data.projects[0].description }}</p>
       <q-btn label="New task!" @click="data.createTask()" />
     </section>
@@ -32,9 +31,6 @@ export default defineComponent({
       data: useProjectStore(),
       par: '',
     };
-  },
-  mounted() {
-    // console.log($route.params.ID);
   },
 });
 </script>

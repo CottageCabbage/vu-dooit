@@ -56,15 +56,10 @@
             v-for="project in data.projects"
             :key="project.id"
           >
-            <span
-              @click="
-                $router.push({
-                  name: 'project',
-                  params: { id: project.id },
-                })
-              "
-              >{{ project.title }}</span
-            >
+            <router-link :to="'/project/' + project.id">{{
+              project.title
+            }}</router-link>
+
             <q-space />
             <q-btn dense flat icon="more_vert" />
           </div>
