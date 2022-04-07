@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 
-export const useUserStore = defineStore('test', {
+export const useUserStore = defineStore('user', {
   state: () => {
     return {
       username: String('I Dislike Onions'),
@@ -10,6 +10,9 @@ export const useUserStore = defineStore('test', {
   actions: {
     changeProfilePicture() {
       console.log('Changing profile pictures has not been implemented yet');
+    },
+    changeUsername(newUsername) {
+      this.username = newUsername;
     },
   },
 });

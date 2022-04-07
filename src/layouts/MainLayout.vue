@@ -49,7 +49,26 @@
           />
           <q-btn dense flat icon="settings" />
         </div>
-        <div id="wideSidebar" v-if="sidebarOpen">Wide</div>
+
+        <div id="wideSidebar" v-if="sidebarOpen">
+          <div
+            class="sidebar-linkToProject"
+            v-for="project in data.projects"
+            :key="project.id"
+          >
+            <span
+              @click="
+                $router.push({
+                  name: 'project',
+                  params: { id: project.id },
+                })
+              "
+              >{{ project.title }}</span
+            >
+            <q-space />
+            <q-btn dense flat icon="more_vert" />
+          </div>
+        </div>
       </aside>
 
       <main>
@@ -62,6 +81,7 @@
 <script>
 import { defineComponent, ref } from 'vue';
 import EditProfileDialog from 'src/components/Dialogs/EditProfileDialog.vue';
+import { useProjectStore } from 'src/stores/ProjectStore';
 
 export default defineComponent({
   setup() {
@@ -80,6 +100,11 @@ export default defineComponent({
   },
   components: {
     EditProfileDialog,
+  },
+  data() {
+    return {
+      data: useProjectStore(),
+    };
   },
 });
 </script>
@@ -127,6 +152,26 @@ aside {
   #wideSidebar {
     background: #f9f9f9;
     width: 250px;
+    padding: 10px;
+
+    .sidebar-linkToProject {
+      display: flex;
+      align-items: center;
+      font-size: 1.05rem;
+      border-bottom: 1px solid #99999999;
+      padding-left: 10px;
+
+      & + .sidebar-linkToProject {
+        margin-top: 5px;
+      }
+      .projectIcon {
+        margin-right: 5px;
+      }
+      button {
+        opacity: 0.5;
+        transform: scale(0.8);
+      }
+    }
   }
 }
 

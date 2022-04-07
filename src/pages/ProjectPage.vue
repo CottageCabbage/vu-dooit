@@ -1,13 +1,15 @@
 <template>
   <div class="flexColumnContainer" id="projectPage">
     <section class="projectDetails">
-      <h2>{{ projects[0].title }}</h2>
-      <p>{{ projects[0].description }}</p>
+      <h2>{{ data.projects[0].title }}</h2>
+      <p>{{ par }}</p>
+      <p>{{ data.projects[0].description }}</p>
+      <q-btn label="New task!" @click="data.createTask()" />
     </section>
 
     <div class="taskList">
       <TaskComponent
-        v-for="(task, index) in projects[0].tasks"
+        v-for="(task, index) in data.projects[0].tasks"
         :key="index"
         :taskDetails="task"
       />
@@ -19,8 +21,7 @@
 import { defineComponent } from 'vue';
 import TaskComponent from 'src/components/TaskComponent.vue';
 
-import Localbase from 'localbase';
-let db = new Localbase('projects');
+import { useProjectStore } from 'stores/ProjectStore.js';
 
 export default defineComponent({
   components: {
@@ -28,27 +29,12 @@ export default defineComponent({
   },
   setup() {
     return {
-      projects: [
-        {
-          title: 'Inbox',
-          description: 'Hello World, this is the Inbox',
-          tasksTotal: 12,
-          tasksDone: 5,
-          tasks: [
-            {
-              title: 'Test',
-              done: false,
-            },
-            { title: 'Hello World', done: true },
-          ],
-        },
-      ],
+      data: useProjectStore(),
+      par: '',
     };
   },
-  methods: {
-    doThing() {
-      db.collection('users').add({ id: 1 });
-    },
+  mounted() {
+    // console.log($route.params.ID);
   },
 });
 </script>
