@@ -7,25 +7,29 @@
     </section>
 
     <div class="taskList">
-      <TaskComponent
+      <div
+        class="task"
         v-for="(task, index) in data.projects[$route.params.id].tasks"
         :key="index"
-        :taskDetails="task"
-      />
+      >
+        <q-checkbox
+          :label="task.title"
+          style="font-family: Ubuntu; font-size: 1rem"
+          v-model="task.done"
+        />
+        <q-space />
+        <q-btn dense flat icon="more_vert" class="more_btn" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import TaskComponent from 'src/components/TaskComponent.vue';
 
 import { useProjectStore } from 'stores/ProjectStore.js';
 
 export default defineComponent({
-  components: {
-    TaskComponent,
-  },
   setup() {
     return {
       data: useProjectStore(),
@@ -65,11 +69,19 @@ export default defineComponent({
   }
 
   .taskList {
+    padding: 10px;
+
     .task {
-      .subtask {
-        margin-left: 20px;
-        border-left: 2px solid #9999;
+      display: flex;
+      align-items: center;
+      background: #f7f7f7;
+
+      .more_btn {
+        transform: scale(0.7);
       }
+
+      margin-bottom: 5px;
+      border-bottom: 1px solid #9999;
     }
   }
 }
