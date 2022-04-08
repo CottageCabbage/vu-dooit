@@ -12,13 +12,13 @@
         v-for="(task, index) in data.projects[$route.params.id].tasks"
         :key="index"
       >
-        <q-checkbox
-          :label="task.title"
-          style="font-family: Ubuntu; font-size: 1rem"
-          v-model="task.done"
-        />
+        <q-checkbox :label="task.title" v-model="task.done" />
         <q-space />
         <q-btn dense flat icon="more_vert" class="more_btn" />
+      </div>
+
+      <div class="newTaskThingie">
+        <q-btn flat icon="add" label="Create New Task" class="buttonThing" />
       </div>
     </div>
   </div>
@@ -70,11 +70,13 @@ export default defineComponent({
 
   .taskList {
     padding: 10px;
+    font-family: Ubuntu;
+    font-size: 1rem;
 
     .task {
       display: flex;
       align-items: center;
-      background: #f7f7f7;
+      background: #f9f9f9;
 
       .more_btn {
         transform: scale(0.7);
@@ -82,6 +84,20 @@ export default defineComponent({
 
       margin-bottom: 5px;
       border-bottom: 1px solid #9999;
+    }
+
+    .newTaskThingie {
+      display: flex;
+      margin-top: 10px;
+      background: #f7f7f7;
+
+      .buttonThing {
+        &:hover * {
+          background: transparent !important;
+          background-color: transparent !important;
+          color: #595;
+        }
+      }
     }
   }
 }

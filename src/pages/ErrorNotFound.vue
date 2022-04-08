@@ -27,7 +27,7 @@ export default defineComponent({
   name: 'ErrorNotFound',
   mounted() {
     if (this.$route.path === '/project') {
-      this.$router.push('/project/inbox');
+      this.$router.push('/project/0');
     }
   },
 });
