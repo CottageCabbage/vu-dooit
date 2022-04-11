@@ -25,7 +25,7 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'ErrorNotFound',
-  mounted() {
+  created() {
     if (this.$route.path === '/project') {
       this.$router.push('/project/0');
     }

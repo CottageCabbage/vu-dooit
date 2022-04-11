@@ -3,7 +3,6 @@
     <section class="projectDetails">
       <h2>{{ data.projects[$route.params.id].title }}</h2>
       <p>{{ data.projects[$route.params.id].description }}</p>
-      <q-btn label="New task!" @click="data.createTask($route.params.id)" />
     </section>
 
     <div class="taskList">
@@ -16,10 +15,13 @@
         <q-space />
         <q-btn dense flat icon="more_vert" class="more_btn" />
       </div>
+    </div>
 
-      <div class="newTaskThingie">
-        <q-btn flat icon="add" label="Create New Task" class="buttonThing" />
-      </div>
+    <div class="bottom-right column items-center">
+      <q-fab direction="left" icon="add" color="green">
+        <q-fab-action label="Create Task" />
+        <q-fab-action label="Create Section" />
+      </q-fab>
     </div>
   </div>
 </template>
@@ -64,10 +66,6 @@ export default defineComponent({
     }
   }
 
-  .newTaskContainer {
-    border: 1px solid black;
-  }
-
   .taskList {
     padding: 10px;
     font-family: Ubuntu;
@@ -85,20 +83,12 @@ export default defineComponent({
       margin-bottom: 5px;
       border-bottom: 1px solid #9999;
     }
+  }
 
-    .newTaskThingie {
-      display: flex;
-      margin-top: 10px;
-      background: #f7f7f7;
-
-      .buttonThing {
-        &:hover * {
-          background: transparent !important;
-          background-color: transparent !important;
-          color: #595;
-        }
-      }
-    }
+  .bottom-right {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
   }
 }
 </style>

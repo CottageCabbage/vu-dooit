@@ -16,19 +16,16 @@
           "
         >
           <q-btn
+            dense
             flat
-            label="Edit Profile"
-            style="margin: 0 auto 0 auto"
-            @click="profileDialog = true"
+            icon="settings"
+            label="Settings"
+            @click="settingsDialogOpen = true"
           />
           <q-toggle label="Dark Mode" v-model="nightmode" icon="dark_mode" />
         </div>
       </q-btn-dropdown>
     </header>
-
-    <q-dialog v-model="profileDialog">
-      <EditProfileDialog />
-    </q-dialog>
 
     <div class="flexRowContainer">
       <aside>
@@ -36,7 +33,7 @@
           <router-link to="/profile">
             <q-btn dense flat icon="account_circle" />
           </router-link>
-          <router-link to="/project">
+          <router-link to="/project/0">
             <q-btn dense flat icon="task_alt" />
           </router-link>
 
@@ -47,7 +44,6 @@
             @click="toggleSidebar"
             style="margin-top: auto"
           />
-          <q-btn dense flat icon="settings" />
         </div>
 
         <div id="wideSidebar" v-if="sidebarOpen">
@@ -73,31 +69,36 @@
         <router-view :key="$route.fullPath" />
       </main>
     </div>
+
+    <!-- DIALOGS -->
+    <q-dialog v-model="settingsDialogOpen">
+      <settingsDialog />
+    </q-dialog>
   </div>
 </template>
 
 <script>
 import { defineComponent, ref } from 'vue';
-import EditProfileDialog from 'src/components/Dialogs/EditProfileDialog.vue';
+import settingsDialog from 'src/components/Dialogs/settingsDialog.vue';
 import { useProjectStore } from 'src/stores/ProjectStore';
 
 export default defineComponent({
   setup() {
     const sidebarOpen = ref(true);
     const nightmode = ref(false);
-    const profileDialog = ref(false);
+    const settingsDialogOpen = ref(false);
 
     return {
       sidebarOpen,
       nightmode,
-      profileDialog,
+      settingsDialogOpen,
       toggleSidebar() {
         sidebarOpen.value = !sidebarOpen.value;
       },
     };
   },
   components: {
-    EditProfileDialog,
+    settingsDialog,
   },
   data() {
     return {
@@ -114,6 +115,7 @@ header {
   left: 0;
   width: 100vw;
   height: 35px;
+  z-index: 9;
   align-items: center;
   padding: 0 5px 0 30px;
   background: #56b67a;
@@ -128,10 +130,11 @@ header {
 
 aside {
   position: sticky;
-  top: 0;
+  top: 40px;
   left: 0;
   width: min-content;
   height: calc(100vh - 35px);
+  z-index: 9;
   display: flex;
   flex-direction: row;
 
@@ -142,7 +145,8 @@ aside {
     padding: 6px 3px 6px 3px;
     background: #e6e6e6;
 
-    .router-link-active {
+    .router-link-active,
+    .rt-link-active {
       border-radius: 50%;
       background: #5856;
     }
@@ -158,6 +162,15 @@ aside {
       font-size: 1.05rem;
       border-bottom: 1px solid #99999999;
       padding-left: 10px;
+
+      a:hover:not(.router-link-active) {
+        color: #76d69a;
+        text-decoration: underline;
+      }
+
+      .router-link-active {
+        color: #56b67a;
+      }
 
       & + .sidebar-linkToProject {
         margin-top: 5px;
