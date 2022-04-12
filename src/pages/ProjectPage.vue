@@ -19,23 +19,34 @@
 
     <div class="bottom-right column items-center">
       <q-fab direction="left" icon="add" color="green">
-        <q-fab-action label="Create Task" />
+        <q-fab-action label="Create Task" @click="NewTaskDialogIsOpen = true" />
         <q-fab-action label="Create Section" />
       </q-fab>
     </div>
+
+    <q-dialog v-model="NewTaskDialogIsOpen">
+      <NewTaskDialog />
+    </q-dialog>
   </div>
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
+import NewTaskDialog from 'src/components/Dialogs/NewTaskDialog.vue';
 
 import { useProjectStore } from 'stores/ProjectStore.js';
 
 export default defineComponent({
   setup() {
+    const NewTaskDialogIsOpen = ref(false);
+
     return {
       data: useProjectStore(),
+      NewTaskDialogIsOpen,
     };
+  },
+  components: {
+    NewTaskDialog,
   },
 });
 </script>

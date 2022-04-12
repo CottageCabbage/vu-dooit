@@ -1,0 +1,52 @@
+<template>
+  <q-layout
+    view="lhh LpR lff"
+    container
+    style="height: 250px"
+    class="bg-grey-3"
+  >
+    <div id="NewTaskDialogForm">
+      <q-input outlined v-model="taskTitle" label="Task Title:" />
+      <q-select
+        outlined
+        v-model="model"
+        :options="priorityOptions"
+        label="Priority"
+      />
+      <q-btn label="Create Task" color="green" @click="createTask" />
+    </div>
+  </q-layout>
+</template>
+
+<script>
+import { defineComponent, ref } from 'vue';
+import { useProjectStore } from 'stores/ProjectStore.js';
+
+export default defineComponent({
+  name: 'NewTaskDialog',
+  setup() {
+    const priorityOptions = ref(['1', '2', '3']);
+
+    return {
+      data: useProjectStore(),
+      taskTitle: '',
+      priorityOptions,
+    };
+  },
+  methods: {
+    createTask() {
+      let projectPath = this.$route.path;
+      projectPath = projectPath.split('/');
+      projectPath = projectPath.slice(-1);
+
+      this.data.createTask(projectPath, this.taskTitle);
+    },
+  },
+});
+</script>
+
+<style lang="scss">
+#NewTaskDialogForm {
+  padding: 10px;
+}
+</style>

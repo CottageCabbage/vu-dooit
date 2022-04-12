@@ -26,9 +26,9 @@ export const useProjectStore = defineStore('projects', {
     };
   },
   actions: {
-    createTask(projectID) {
+    createTask(projectID, title) {
       const newTask = {
-        title: 'Hello there',
+        title: title,
         done: false,
       };
       this.projects[projectID].tasks.push(newTask);

@@ -70,7 +70,6 @@
       </main>
     </div>
 
-    <!-- DIALOGS -->
     <q-dialog v-model="settingsDialogOpen">
       <settingsDialog />
     </q-dialog>
