@@ -9,8 +9,12 @@ export const useProjectStore = defineStore('projects', {
           id: 'inbox',
           description: 'Hello world!',
           tasks: [
-            { title: 'This is a task', done: false },
-            { title: 'This is also a task, but it is done', done: true },
+            { title: 'This is a task', done: false, priority: '2' },
+            {
+              title: 'This is also a task, but it is done',
+              done: true,
+              priority: '1',
+            },
           ],
         },
         {

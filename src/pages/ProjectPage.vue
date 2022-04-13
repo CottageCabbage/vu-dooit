@@ -10,6 +10,7 @@
         class="task"
         v-for="(task, index) in data.projects[$route.params.id].tasks"
         :key="index"
+        :class="assingTaskPriority(task.priority)"
       >
         <q-checkbox :label="task.title" v-model="task.done" />
         <q-space />
@@ -47,6 +48,21 @@ export default defineComponent({
   },
   components: {
     NewTaskDialog,
+  },
+  methods: {
+    assingTaskPriority(priority) {
+      let priorityClass = '';
+      switch (priority) {
+        case null:
+        case '1':
+          priorityClass = 'priority-1';
+          break;
+        case '2':
+          priorityClass = 'priority-2';
+          break;
+      }
+      return priorityClass;
+    },
   },
 });
 </script>
@@ -101,5 +117,12 @@ export default defineComponent({
     bottom: 25px;
     right: 25px;
   }
+}
+
+.priority-1 {
+  background: red !important;
+}
+.priority-2 {
+  background: green !important;
 }
 </style>
