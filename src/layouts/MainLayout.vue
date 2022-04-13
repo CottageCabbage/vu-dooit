@@ -31,10 +31,27 @@
       <aside>
         <div id="narrowSidebar" class="flexColumnContainer">
           <router-link to="/profile">
-            <q-btn dense flat icon="account_circle" />
+            <q-btn dense flat icon="account_circle">
+              <q-tooltip
+                anchor="top right"
+                self="bottom middle"
+                :offset="[0, 10]"
+              >
+                <strong>Profile</strong>
+              </q-tooltip>
+            </q-btn>
           </router-link>
+
           <router-link to="/project/0">
-            <q-btn dense flat icon="task_alt" />
+            <q-btn dense flat icon="task_alt">
+              <q-tooltip
+                anchor="top right"
+                self="bottom middle"
+                :offset="[0, 10]"
+              >
+                <strong>Tasks</strong>
+              </q-tooltip>
+            </q-btn>
           </router-link>
 
           <q-btn
