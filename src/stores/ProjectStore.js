@@ -9,11 +9,11 @@ export const useProjectStore = defineStore('projects', {
           id: 'inbox',
           description: 'Hello world!',
           tasks: [
-            { title: 'This is a task', done: false, priority: '2' },
+            { title: 'This is a task', done: false, priority: null },
             {
               title: 'This is also a task, but it is done',
               done: true,
-              priority: '1',
+              priority: null,
             },
           ],
         },
@@ -30,10 +30,11 @@ export const useProjectStore = defineStore('projects', {
     };
   },
   actions: {
-    createTask(projectID, title) {
+    createTask(projectID, title, priority) {
       const newTask = {
         title: title,
         done: false,
+        priority: priority,
       };
       this.projects[projectID].tasks.push(newTask);
     },

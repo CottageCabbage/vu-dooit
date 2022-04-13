@@ -6,10 +6,10 @@
     class="bg-grey-3"
   >
     <div id="NewTaskDialogForm">
-      <q-input outlined v-model="taskTitle" label="Task Title:" />
+      <q-input outlined v-model="newTask_title" label="Task Title:" />
       <q-select
         outlined
-        v-model="model"
+        v-model="newTask_priority"
         :options="priorityOptions"
         label="Priority"
       />
@@ -25,11 +25,12 @@ import { useProjectStore } from 'stores/ProjectStore.js';
 export default defineComponent({
   name: 'NewTaskDialog',
   setup() {
-    const priorityOptions = ref(['1', '2', '3']);
+    const priorityOptions = ref(['1', '2']);
 
     return {
       data: useProjectStore(),
-      taskTitle: '',
+      newTask_title: ref('Hello world!'),
+      newTask_priority: ref('1'),
       priorityOptions,
     };
   },
@@ -39,7 +40,11 @@ export default defineComponent({
       projectPath = projectPath.split('/');
       projectPath = projectPath.slice(-1);
 
-      this.data.createTask(projectPath, this.taskTitle);
+      this.data.createTask(
+        projectPath,
+        this.newTask_title,
+        this.newTask_priority
+      );
     },
   },
 });
