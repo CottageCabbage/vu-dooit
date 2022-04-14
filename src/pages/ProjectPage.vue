@@ -119,10 +119,19 @@ export default defineComponent({
   }
 }
 
+// TASK PRIORITY CLASSES
 .priority-1 {
-  background: red !important;
+  .q-checkbox__inner:not(.q-checkbox__inner--truthy) {
+    .q-checkbox__bg {
+      border: 2px solid #727272;
+    }
+  }
 }
 .priority-2 {
-  background: green !important;
+  .q-checkbox__inner:not(.q-checkbox__inner--truthy) {
+    .q-checkbox__bg {
+      border: 2px solid $negative;
+    }
+  }
 }
 </style>
