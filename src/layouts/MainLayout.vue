@@ -15,14 +15,15 @@
             flex-direction: column;
           "
         >
+          <q-toggle label="Dark Mode" v-model="nightmode" icon="dark_mode" />
           <q-btn
             dense
             flat
             icon="settings"
+            style="font-weight: normal; text-transform: none"
             label="Settings"
             @click="settingsDialogOpen = true"
           />
-          <q-toggle label="Dark Mode" v-model="nightmode" icon="dark_mode" />
         </div>
       </q-btn-dropdown>
     </header>
