@@ -61,10 +61,14 @@
             :icon="sidebarOpen ? 'chevron_left' : 'chevron_right'"
             @click="toggleSidebar"
             style="margin-top: auto"
+            v-if="this.$route.name !== 'Profile'"
           />
         </div>
 
-        <div id="wideSidebar" v-if="sidebarOpen">
+        <div
+          id="wideSidebar"
+          v-if="sidebarOpen && this.$route.name !== 'Profile'"
+        >
           <div
             class="sidebar-linkToProject"
             v-for="(project, index) in data.projects"
@@ -121,6 +125,9 @@ export default defineComponent({
     return {
       data: useProjectStore(),
     };
+  },
+  mounted() {
+    this.data.createDefaultInbox();
   },
 });
 </script>

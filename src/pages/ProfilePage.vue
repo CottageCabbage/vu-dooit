@@ -10,44 +10,25 @@
     </div>
     <div id="profileInfo">
       <p id="username">{{ profile.username }}</p>
-      <div id="desc">{{ profile.description }}</div>
+      <div id="desc">{{ profile.desc }}</div>
       <div style="margin-top: 50px">
         Information about projects and tasks should be shown here. <br />
         Make the username and description be editable. <br />
         Kinda harder, but make profile picture a thing later on
 
         <br />
-
-        <li v-for="friend in friends" :key="friend.name">
-          Friend:
-          {{ friend.name }}
-        </li>
-
-        {{ status }}
-
-        <div>
-          <input type="text" v-model="testing" />
-          <button @click="testingDoThing()">Dothing</button>
-        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 import { useUserStore } from 'stores/UserStore.js';
-import { db } from '../db';
-import { liveQuery } from 'dexie';
-import { useObservable } from '@vueuse/rxjs';
 
 export default defineComponent({
   setup() {
     return {
-      db,
       profile: useUserStore(),
-      testing: ref('aaa'),
-      status: ref(''),
-      friends: useObservable(liveQuery(() => db.friends.toArray())),
     };
   },
   methods: {
@@ -63,6 +44,10 @@ export default defineComponent({
         this.status = `failed to add ${this.testing}: ${error}`;
       }
     },
+  },
+  async mounted() {
+    await db.user.put({ key: 'username', value: 'HelloWorldIm' });
+    await db.user.update('username', { value: 'Bar' });
   },
 });
 </script>
