@@ -15,19 +15,54 @@
         Information about projects and tasks should be shown here. <br />
         Make the username and description be editable. <br />
         Kinda harder, but make profile picture a thing later on
+
+        <br />
+
+        <li v-for="friend in friends" :key="friend.name">
+          Friend:
+          {{ friend.name }}
+        </li>
+
+        {{ status }}
+
+        <div>
+          <input type="text" v-model="testing" />
+          <button @click="testingDoThing()">Dothing</button>
+        </div>
       </div>
     </div>
   </div>
 </template>
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script>
+import { defineComponent, ref } from 'vue';
 import { useUserStore } from 'stores/UserStore.js';
+import { db } from '../db';
+import { liveQuery } from 'dexie';
+import { useObservable } from '@vueuse/rxjs';
 
 export default defineComponent({
   setup() {
     return {
+      db,
       profile: useUserStore(),
+      testing: ref('aaa'),
+      status: ref(''),
+      friends: useObservable(liveQuery(() => db.friends.toArray())),
     };
+  },
+  methods: {
+    async testingDoThing() {
+      try {
+        const id = await db.friends.add({
+          name: this.testing,
+        });
+        this.status = `Friend ${this.testing} added. Got id ${id}`;
+
+        this.testing = '';
+      } catch (error) {
+        this.status = `failed to add ${this.testing}: ${error}`;
+      }
+    },
   },
 });
 </script>

@@ -2,10 +2,10 @@
   <router-view />
 </template>
 
-<script lang="ts">
+<script>
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'App'
+  name: 'App',
 });
 </script>
