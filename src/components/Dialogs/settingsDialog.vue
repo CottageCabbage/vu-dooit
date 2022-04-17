@@ -36,12 +36,7 @@
                 label="Username"
                 maxlength="15"
               />
-              <q-input
-                outlined
-                v-model="userStore.description"
-                label="Bio"
-                type="textarea"
-              />
+              <q-input outlined v-model="new_bio" label="Bio" type="textarea" />
               <q-btn label="Submit" type="submit" color="green" />
             </q-form>
 
@@ -116,16 +111,19 @@ export default defineComponent({
       showBanner: ref(false),
       userStore: useUserStore(),
       new_username: '',
+      new_bio: '',
     };
   },
   methods: {
     saveChangesToProfile() {
       this.showBanner = true;
       this.userStore.saveUsername(this.new_username);
+      this.userStore.saveBiography(this.new_bio);
     },
   },
   mounted() {
     this.new_username = this.userStore.username;
+    this.new_bio = this.userStore.bio;
   },
 });
 </script>
