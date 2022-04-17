@@ -32,11 +32,16 @@
             >
               <q-input
                 outlined
-                v-model="text"
+                v-model="new_username"
                 label="Username"
                 maxlength="15"
               />
-              <q-input outlined v-model="text" label="Bio" type="textarea" />
+              <q-input
+                outlined
+                v-model="userStore.description"
+                label="Bio"
+                type="textarea"
+              />
               <q-btn label="Submit" type="submit" color="green" />
             </q-form>
 
@@ -101,6 +106,7 @@
 
 <script>
 import { defineComponent, ref } from 'vue';
+import { useUserStore } from 'stores/UserStore.js';
 
 export default defineComponent({
   name: 'settingsDialog',
@@ -108,13 +114,18 @@ export default defineComponent({
     return {
       tab: ref('mails'),
       showBanner: ref(false),
+      userStore: useUserStore(),
+      new_username: '',
     };
   },
   methods: {
     saveChangesToProfile() {
-      console.log('hello');
       this.showBanner = true;
+      this.userStore.saveUsername(this.new_username);
     },
+  },
+  mounted() {
+    this.new_username = this.userStore.username;
   },
 });
 </script>
@@ -125,8 +136,5 @@ export default defineComponent({
   bottom: 0;
   right: 0;
   width: 100%;
-
-  > .q-banner__content {
-  }
 }
 </style>

@@ -31,24 +31,6 @@ export default defineComponent({
       profile: useUserStore(),
     };
   },
-  methods: {
-    async testingDoThing() {
-      try {
-        const id = await db.friends.add({
-          name: this.testing,
-        });
-        this.status = `Friend ${this.testing} added. Got id ${id}`;
-
-        this.testing = '';
-      } catch (error) {
-        this.status = `failed to add ${this.testing}: ${error}`;
-      }
-    },
-  },
-  async mounted() {
-    await db.user.put({ key: 'username', value: 'HelloWorldIm' });
-    await db.user.update('username', { value: 'Bar' });
-  },
 });
 </script>
 
