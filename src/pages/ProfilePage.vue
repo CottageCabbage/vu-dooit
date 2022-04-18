@@ -1,25 +1,22 @@
 <template>
   <div class="flexColumnContainer" id="profileContainer">
     <div id="profileBanner">
-      <q-btn
-        icon="account_circle"
-        flat
-        id="profilePicture"
-        @click="profile.changeProfilePicture"
-      />
+      <q-icon name="account_circle" id="profilePicture" />
     </div>
     <div id="profileInfo">
       <p id="username">{{ profile.username }}</p>
-      <div id="desc">{{ profile.description }}</div>
+      <div id="bio">{{ profile.bio }}</div>
       <div style="margin-top: 50px">
         Information about projects and tasks should be shown here. <br />
         Make the username and description be editable. <br />
         Kinda harder, but make profile picture a thing later on
+
+        <br />
       </div>
     </div>
   </div>
 </template>
-<script lang="ts">
+<script>
 import { defineComponent } from 'vue';
 import { useUserStore } from 'stores/UserStore.js';
 
@@ -45,7 +42,9 @@ export default defineComponent({
     align-items: flex-end;
 
     #profilePicture {
-      transform: scale(2.5);
+      transform: scale(1.2);
+      font-size: 4.5rem;
+      margin-bottom: -10px;
 
       &:hover {
         background: transparent;
@@ -64,6 +63,9 @@ export default defineComponent({
       text-align: center;
       margin: 0;
       font-size: 2.2rem;
+    }
+    #bio {
+      font-size: 1rem;
     }
   }
 }

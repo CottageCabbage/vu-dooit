@@ -5,35 +5,24 @@ export const useProjectStore = defineStore('projects', {
     return {
       projects: [
         {
-          title: 'Inbox',
-          id: 'inbox',
-          description: 'Hello world!',
-          tasks: [
-            {
-              title: 'This is a task',
-              done: false,
-              priority: '1',
-            },
-            {
-              title: 'This is also a task, but it is done',
-              done: true,
-              priority: '2',
-            },
-          ],
-        },
-        {
-          title: 'Home',
-          id: '123',
-          description: 'Home!',
-          tasks: [
-            { title: 'This is a task', done: false },
-            { title: 'This is also a task, but it is done', done: true },
-          ],
+          title: 'asd',
+          id: 1,
+          desc: 'asd',
+          tasks: [],
         },
       ],
     };
   },
   actions: {
+    createDefaultInbox() {
+      const inboxProject = {
+        title: 'Inbox',
+        id: 'inbox',
+        desc: 'Something something. Hello world!',
+        tasks: [],
+      };
+      this.projects.push(inboxProject);
+    },
     createTask(projectID, title, priority) {
       const newTask = {
         title: title,

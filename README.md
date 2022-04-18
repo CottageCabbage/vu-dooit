@@ -2,9 +2,10 @@
 
 ## Persistence:
 
+Testing [DexieJS](https://github.com/dexie/Dexie.js) rn. If I can't make it work, there are others:
+
 - https://github.com/pouchdb/pouchdb
 - https://github.com/localForage/localForage
-- https://github.com/dexie/Dexie.js
 - https://github.com/erikolson186/zangodb
 - https://github.com/dannyconnell/localbase
 - https://github.com/google/lovefield
