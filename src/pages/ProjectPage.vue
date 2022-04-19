@@ -1,20 +1,22 @@
 <template>
   <div class="flexColumnContainer" id="projectPage">
-    <section class="projectDetails">
-      <h2>{{ data.projects[$route.params.id].title }}</h2>
-      <p>{{ data.projects[$route.params.id].description }}</p>
-    </section>
+    <div v-if="data.projectList[$route.params.id] !== undefined">
+      <section class="projectDetails">
+        <h2>{{ data.projects[$route.params.id].title }}</h2>
+        <p>{{ data.projects[$route.params.id].desc }}</p>
+      </section>
 
-    <div class="taskList">
-      <div
-        class="task"
-        v-for="(task, index) in data.projects[$route.params.id].tasks"
-        :key="index"
-        :class="assingTaskPriority(task.priority)"
-      >
-        <q-checkbox :label="task.title" v-model="task.done" />
-        <q-space />
-        <q-btn dense flat icon="more_vert" class="more_btn" />
+      <div class="taskList">
+        <div
+          class="task"
+          v-for="(task, index) in data.projects[$route.params.id].tasks"
+          :key="index"
+          :class="assingTaskPriority(task.priority)"
+        >
+          <q-checkbox :label="task.title" v-model="task.done" />
+          <q-space />
+          <q-btn dense flat icon="more_vert" class="more_btn" />
+        </div>
       </div>
     </div>
 

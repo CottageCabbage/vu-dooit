@@ -31,6 +31,18 @@
     <div class="flexRowContainer">
       <aside>
         <div id="narrowSidebar" class="flexColumnContainer">
+          <router-link to="/">
+            <q-btn dense flat icon="home">
+              <q-tooltip
+                anchor="top right"
+                self="bottom middle"
+                :offset="[0, 10]"
+              >
+                <strong>Home</strong>
+              </q-tooltip>
+            </q-btn>
+          </router-link>
+
           <router-link to="/profile">
             <q-btn dense flat icon="account_circle">
               <q-tooltip
@@ -74,9 +86,6 @@
             v-for="(project, index) in data.projects"
             :key="project.id"
           >
-            <!-- <router-link :to="'/project/' + project.id">{{
-              project.title
-            }}</router-link> -->
             <router-link :to="'/project/' + index">{{
               project.title
             }}</router-link>
@@ -126,9 +135,6 @@ export default defineComponent({
       data: useProjectStore(),
     };
   },
-  mounted() {
-    this.data.createDefaultInbox();
-  },
 });
 </script>
 
@@ -169,7 +175,7 @@ aside {
     padding: 6px 3px 6px 3px;
     background: #e6e6e6;
 
-    .router-link-active,
+    .router-link-exact-active,
     .rt-link-active {
       border-radius: 50%;
       background: #5856;

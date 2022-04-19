@@ -1,28 +1,41 @@
 import { defineStore } from 'pinia';
+import { db } from '../db';
 
 export const useProjectStore = defineStore('projects', {
   state: () => {
     return {
-      projects: [
-        {
-          title: 'asd',
-          id: 1,
-          desc: 'asd',
-          tasks: [],
-        },
-      ],
+      projectList: [],
     };
   },
   actions: {
-    createDefaultInbox() {
-      const inboxProject = {
-        title: 'Inbox',
-        id: 'inbox',
-        desc: 'Something something. Hello world!',
-        tasks: [],
-      };
-      this.projects.push(inboxProject);
+    async getData() {
+      //
+      let data = await db.projects.get({ archived: false });
+      if (data !== undefined) {
+        this.projectList = data;
+      } else {
+        db.projects.put({
+          id: 'inbox',
+          title: 'Inbox',
+          desc: 'Hello world!',
+          archived: false,
+          tasks: [
+            {
+              title: 'Testing',
+              done: false,
+              priority: '1',
+            },
+            {
+              title: 'Another task',
+              done: false,
+              priority: '2',
+            },
+          ],
+        });
+        this.getData();
+      }
     },
+    // LINELINELINELINELINELINE
     createTask(projectID, title, priority) {
       const newTask = {
         title: title,
