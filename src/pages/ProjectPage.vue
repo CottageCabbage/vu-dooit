@@ -2,22 +2,21 @@
   <div class="flexColumnContainer" id="projectPage">
     <div v-if="data.projectList[$route.params.id] !== undefined">
       <section class="projectDetails">
-        <h2>{{ data.projects[$route.params.id].title }}</h2>
-        <p>{{ data.projects[$route.params.id].desc }}</p>
+        <h2>{{ data.projectList[$route.params.id].title }}</h2>
+        <p>{{ data.projectList[$route.params.id].desc }}</p>
       </section>
 
-      <div class="taskList">
+      <section class="taskList">
         <div
           class="task"
-          v-for="(task, index) in data.projects[$route.params.id].tasks"
-          :key="index"
-          :class="assingTaskPriority(task.priority)"
+          v-for="task in data.projectList[$route.params.id].tasks"
+          :key="task.id"
         >
-          <q-checkbox :label="task.title" v-model="task.done" />
+          <q-checkbox v-model="task.done" :label="task.title" />
           <q-space />
           <q-btn dense flat icon="more_vert" class="more_btn" />
         </div>
-      </div>
+      </section>
     </div>
 
     <div class="bottom-right column items-center">
@@ -28,7 +27,7 @@
     </div>
 
     <q-dialog v-model="NewTaskDialogIsOpen">
-      <NewTaskDialog />
+      <NewTaskDialog :data="data" />
     </q-dialog>
   </div>
 </template>

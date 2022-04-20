@@ -9,44 +9,40 @@ export const useProjectStore = defineStore('projects', {
   },
   actions: {
     async getData() {
-      //
-      let data = await db.projects.get({ archived: false });
-      if (data !== undefined) {
+      let data = await db.projects.toArray();
+      if (data.length > 0) {
         this.projectList = data;
-      } else {
+      } else if (data.length <= 0) {
         db.projects.put({
           id: 'inbox',
           title: 'Inbox',
-          desc: 'Hello world!',
+          desc: 'Hello world',
           archived: false,
           tasks: [
-            {
-              title: 'Testing',
-              done: false,
-              priority: '1',
-            },
-            {
-              title: 'Another task',
-              done: false,
-              priority: '2',
-            },
+            { title: 'I am a task.', id: '2', priority: '2', done: false },
           ],
         });
         this.getData();
       }
     },
     // LINELINELINELINELINELINE
-    createTask(projectID, title, priority) {
+    async createTask(projectINDEX, projectID, title, priority) {
       const newTask = {
         title: title,
         done: false,
         priority: priority,
+        id: 222,
       };
-      this.projects[projectID].tasks.push(newTask);
+      let tasksArray = await db.projects.get({ id: projectID });
+      tasksArray = tasksArray.tasks;
+      tasksArray.push(newTask);
+
+      db.projects.update({ id: projectID }, { tasks: tasksArray });
+      this.projectList[projectINDEX].tasks.push(newTask);
     },
-    toggleTaskDone(projectID, taskID) {
-      this.projects[projectID].tasks[taskID].done =
-        !this.projects[projectID].tasks[taskID].done;
+    toggleTaskDone(projectINDEX, taskINDEX) {
+      this.projects[projectINDEX].tasks[taskINDEX].done =
+        !this.projects[projectINDEX].tasks[taskINDEX].done;
     },
   },
 });

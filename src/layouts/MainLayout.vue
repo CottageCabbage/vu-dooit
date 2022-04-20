@@ -83,7 +83,7 @@
         >
           <div
             class="sidebar-linkToProject"
-            v-for="(project, index) in data.projects"
+            v-for="(project, index) in data.projectList"
             :key="project.id"
           >
             <router-link :to="'/project/' + index">{{
