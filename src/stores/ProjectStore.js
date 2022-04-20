@@ -1,39 +1,48 @@
 import { defineStore } from 'pinia';
+import { db } from '../db';
 
 export const useProjectStore = defineStore('projects', {
   state: () => {
     return {
-      projects: [
-        {
-          title: 'asd',
-          id: 1,
-          desc: 'asd',
-          tasks: [],
-        },
-      ],
+      projectList: [],
     };
   },
   actions: {
-    createDefaultInbox() {
-      const inboxProject = {
-        title: 'Inbox',
-        id: 'inbox',
-        desc: 'Something something. Hello world!',
-        tasks: [],
-      };
-      this.projects.push(inboxProject);
+    async getData() {
+      let data = await db.projects.toArray();
+      if (data.length > 0) {
+        this.projectList = data;
+      } else if (data.length <= 0) {
+        db.projects.put({
+          id: 'inbox',
+          title: 'Inbox',
+          desc: 'Hello world',
+          archived: false,
+          tasks: [
+            { title: 'I am a task.', id: '2', priority: '2', done: false },
+          ],
+        });
+        this.getData();
+      }
     },
-    createTask(projectID, title, priority) {
+    // LINELINELINELINELINELINE
+    async createTask(projectINDEX, projectID, title, priority) {
       const newTask = {
         title: title,
         done: false,
         priority: priority,
+        id: 222,
       };
-      this.projects[projectID].tasks.push(newTask);
+      let tasksArray = await db.projects.get({ id: projectID });
+      tasksArray = tasksArray.tasks;
+      tasksArray.push(newTask);
+
+      db.projects.update({ id: projectID }, { tasks: tasksArray });
+      this.projectList[projectINDEX].tasks.push(newTask);
     },
-    toggleTaskDone(projectID, taskID) {
-      this.projects[projectID].tasks[taskID].done =
-        !this.projects[projectID].tasks[taskID].done;
+    toggleTaskDone(projectINDEX, taskINDEX) {
+      this.projects[projectINDEX].tasks[taskINDEX].done =
+        !this.projects[projectINDEX].tasks[taskINDEX].done;
     },
   },
 });

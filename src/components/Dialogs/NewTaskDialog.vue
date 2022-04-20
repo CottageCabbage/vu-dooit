@@ -6,6 +6,7 @@
     class="bg-grey-3"
   >
     <div id="NewTaskDialogForm">
+      {{ data.projectList[$route.params.id].id }}
       <q-input outlined v-model="newTask_title" label="Task Title:" />
       <q-select
         outlined
@@ -42,6 +43,7 @@ export default defineComponent({
 
       this.data.createTask(
         projectPath,
+        this.data.projectList[this.$route.params.id].id,
         this.newTask_title,
         this.newTask_priority
       );
