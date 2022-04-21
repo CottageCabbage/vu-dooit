@@ -73,13 +73,17 @@
             :icon="sidebarOpen ? 'chevron_left' : 'chevron_right'"
             @click="toggleSidebar"
             style="margin-top: auto"
-            v-if="this.$route.name !== 'Profile'"
+            v-if="this.$route.name !== 'Profile' && this.$route.name !== 'Home'"
           />
         </div>
 
         <div
           id="wideSidebar"
-          v-if="sidebarOpen && this.$route.name !== 'Profile'"
+          v-if="
+            sidebarOpen &&
+            this.$route.name !== 'Profile' &&
+            this.$route.name !== 'Home'
+          "
         >
           <div
             class="sidebar-linkToProject"
@@ -91,7 +95,23 @@
             }}</router-link>
 
             <q-space />
-            <q-btn dense flat icon="more_vert" />
+            <q-btn-dropdown dense flat dropdown-icon="more_vert">
+              <q-list>
+                <q-item
+                  clickable
+                  :disable="project.id === 'inbox'"
+                  v-close-popup
+                  @click="deleteTask(index)"
+                >
+                  <q-item-section avatar>
+                    <q-avatar icon="delete" color="grey-3" text-color="red-5" />
+                  </q-item-section>
+                  <q-item-section>
+                    <q-item-label>Delete Project</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </q-list>
+            </q-btn-dropdown>
           </div>
         </div>
       </aside>

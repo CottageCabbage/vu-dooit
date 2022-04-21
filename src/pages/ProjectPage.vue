@@ -12,7 +12,11 @@
           v-for="(task, index) in data.projectList[$route.params.id].tasks"
           :key="task.id"
         >
-          <q-checkbox v-model="task.done" :label="task.title" />
+          <q-checkbox
+            v-model="task.done"
+            :label="task.title"
+            @click="toggleTaskDone(index)"
+          />
           <q-space />
           <q-btn-dropdown dense flat dropdown-icon="more_vert">
             <q-list>
@@ -81,6 +85,17 @@ export default defineComponent({
       projectINDEX = projectINDEX.slice(-1);
 
       this.data.deleteTask(
+        projectINDEX,
+        this.data.projectList[this.$route.params.id].id,
+        taskINDEX
+      );
+    },
+    toggleTaskDone(taskINDEX) {
+      let projectINDEX = this.$route.path;
+      projectINDEX = projectINDEX.split('/');
+      projectINDEX = projectINDEX.slice(-1);
+
+      this.data.toggleTaskDone(
         projectINDEX,
         this.data.projectList[this.$route.params.id].id,
         taskINDEX
