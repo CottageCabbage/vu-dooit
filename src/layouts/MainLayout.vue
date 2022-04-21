@@ -113,6 +113,18 @@
               </q-list>
             </q-btn-dropdown>
           </div>
+
+          <div id="projectSidebarTools">
+            <q-btn flat icon="create_new_folder">
+              <q-tooltip
+                anchor="top middle"
+                self="bottom middle"
+                :offset="[10, 10]"
+              >
+                Create New Project
+              </q-tooltip>
+            </q-btn>
+          </div>
         </div>
       </aside>
 
@@ -202,6 +214,7 @@ aside {
     }
   }
   #wideSidebar {
+    position: relative;
     background: #f9f9f9;
     width: 250px;
     padding: 10px;
@@ -232,6 +245,17 @@ aside {
         opacity: 0.5;
         transform: scale(0.8);
       }
+    }
+
+    #projectSidebarTools {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      background: $grey-3;
     }
   }
 }

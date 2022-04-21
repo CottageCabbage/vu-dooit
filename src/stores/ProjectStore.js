@@ -25,7 +25,7 @@ export const useProjectStore = defineStore('projects', {
         this.getData();
       }
     },
-    // TASKS
+    // TASKS: Create, Delete, ToggleDone
     async createTask(projectINDEX, projectID, title, priority) {
       const newTask = {
         title: title,
@@ -54,7 +54,6 @@ export const useProjectStore = defineStore('projects', {
       tasksArray[taskINDEX].done = !tasksArray[taskINDEX].done;
 
       db.projects.update({ id: projectID }, { tasks: tasksArray });
-      // this.projectList[projectINDEX].tasks[taskINDEX].done
     },
   },
 });
