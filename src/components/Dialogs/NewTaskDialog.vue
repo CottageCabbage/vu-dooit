@@ -37,12 +37,12 @@ export default defineComponent({
   },
   methods: {
     createTask() {
-      let projectPath = this.$route.path;
-      projectPath = projectPath.split('/');
-      projectPath = projectPath.slice(-1);
+      let projectINDEX = this.$route.path;
+      projectINDEX = projectINDEX.split('/');
+      projectINDEX = projectINDEX.slice(-1);
 
       this.data.createTask(
-        projectPath,
+        projectINDEX,
         this.data.projectList[this.$route.params.id].id,
         this.newTask_title,
         this.newTask_priority

@@ -25,7 +25,7 @@ export const useProjectStore = defineStore('projects', {
         this.getData();
       }
     },
-    // LINELINELINELINELINELINE
+    // TASKS
     async createTask(projectINDEX, projectID, title, priority) {
       const newTask = {
         title: title,
@@ -40,6 +40,15 @@ export const useProjectStore = defineStore('projects', {
       db.projects.update({ id: projectID }, { tasks: tasksArray });
       this.projectList[projectINDEX].tasks.push(newTask);
     },
+    async deleteTask(projectINDEX, projectID, taskINDEX) {
+      let tasksArray = await db.projects.get({ id: projectID });
+      tasksArray = tasksArray.tasks;
+      tasksArray.splice(taskINDEX, 1);
+
+      db.projects.update({ id: projectID }, { tasks: tasksArray });
+      this.projectList[projectINDEX].tasks.splice(taskINDEX, 1);
+    },
+    // NOT PERSISTENT. FIX LATER
     toggleTaskDone(projectINDEX, taskINDEX) {
       this.projects[projectINDEX].tasks[taskINDEX].done =
         !this.projects[projectINDEX].tasks[taskINDEX].done;

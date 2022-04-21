@@ -9,12 +9,23 @@
       <section class="taskList">
         <div
           class="task"
-          v-for="task in data.projectList[$route.params.id].tasks"
+          v-for="(task, index) in data.projectList[$route.params.id].tasks"
           :key="task.id"
         >
           <q-checkbox v-model="task.done" :label="task.title" />
           <q-space />
-          <q-btn dense flat icon="more_vert" class="more_btn" />
+          <q-btn-dropdown dense flat dropdown-icon="more_vert">
+            <q-list>
+              <q-item clickable v-close-popup @click="deleteTask(index)">
+                <q-item-section avatar>
+                  <q-avatar icon="delete" color="grey-3" text-color="red-5" />
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label>Delete Task</q-item-label>
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-btn-dropdown>
         </div>
       </section>
     </div>
@@ -63,6 +74,17 @@ export default defineComponent({
           break;
       }
       return priorityClass;
+    },
+    deleteTask(taskINDEX) {
+      let projectINDEX = this.$route.path;
+      projectINDEX = projectINDEX.split('/');
+      projectINDEX = projectINDEX.slice(-1);
+
+      this.data.deleteTask(
+        projectINDEX,
+        this.data.projectList[this.$route.params.id].id,
+        taskINDEX
+      );
     },
   },
 });
