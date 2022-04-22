@@ -25,6 +25,9 @@ export const useProjectStore = defineStore('projects', {
         this.getData();
       }
     },
+    async createProject(da) {
+      this.projectList.push(da);
+    },
     // TASKS: Create, Delete, ToggleDone
     async createTask(projectINDEX, projectID, title, priority) {
       const newTask = {

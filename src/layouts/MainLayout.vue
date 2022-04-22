@@ -110,12 +110,28 @@
                     <q-item-label>Delete Project</q-item-label>
                   </q-item-section>
                 </q-item>
+                <q-item
+                  clickable
+                  :disable="project.id === 'inbox'"
+                  v-close-popup
+                >
+                  <q-item-section avatar>
+                    <q-avatar icon="edit" color="grey-3" text-color="black" />
+                  </q-item-section>
+                  <q-item-section>
+                    <q-item-label>Rename Project</q-item-label>
+                  </q-item-section>
+                </q-item>
               </q-list>
             </q-btn-dropdown>
           </div>
 
           <div id="projectSidebarTools">
-            <q-btn flat icon="create_new_folder">
+            <q-btn
+              flat
+              icon="create_new_folder"
+              @click="newProjectDialogOpen = true"
+            >
               <q-tooltip
                 anchor="top middle"
                 self="bottom middle"
@@ -133,15 +149,21 @@
       </main>
     </div>
 
+    <!-- DIALOGS -->
     <q-dialog v-model="settingsDialogOpen">
-      <settingsDialog />
+      <SettingsDialog />
+    </q-dialog>
+
+    <q-dialog v-model="newProjectDialogOpen">
+      <NewProjectDialog />
     </q-dialog>
   </div>
 </template>
 
 <script>
 import { defineComponent, ref } from 'vue';
-import settingsDialog from 'src/components/Dialogs/settingsDialog.vue';
+import SettingsDialog from 'src/components/Dialogs/settingsDialog.vue';
+import NewProjectDialog from 'src/components/Dialogs/NewProjectDialog.vue';
 import { useProjectStore } from 'src/stores/ProjectStore';
 
 export default defineComponent({
@@ -149,18 +171,21 @@ export default defineComponent({
     const sidebarOpen = ref(true);
     const nightmode = ref(false);
     const settingsDialogOpen = ref(false);
+    const newProjectDialogOpen = ref(false);
 
     return {
       sidebarOpen,
       nightmode,
       settingsDialogOpen,
+      newProjectDialogOpen,
       toggleSidebar() {
         sidebarOpen.value = !sidebarOpen.value;
       },
     };
   },
   components: {
-    settingsDialog,
+    SettingsDialog,
+    NewProjectDialog,
   },
   data() {
     return {
