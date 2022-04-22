@@ -101,7 +101,7 @@
                   clickable
                   :disable="project.id === 'inbox'"
                   v-close-popup
-                  @click="deleteTask(index)"
+                  @click="data.deleteProject(index, project.id)"
                 >
                   <q-item-section avatar>
                     <q-avatar icon="delete" color="grey-3" text-color="red-5" />

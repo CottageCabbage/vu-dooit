@@ -31,6 +31,10 @@ export const useProjectStore = defineStore('projects', {
       // projectArray.push(newProjectData)
       this.projectList.push(newProjectData);
     },
+    async deleteProject(projectINDEX, projectID) {
+      db.projects.delete(projectID);
+      this.projectList.splice(projectINDEX, 1);
+    },
     // TASKS: Create, Delete, ToggleDone
     async createTask(projectINDEX, projectID, title, priority) {
       const newTask = {
