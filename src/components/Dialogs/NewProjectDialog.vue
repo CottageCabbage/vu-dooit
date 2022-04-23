@@ -3,11 +3,11 @@
     view="lhh LpR lff"
     container
     style="height: 250px"
-    class="bg-grey-3"
+    :class="nightmode ? 'bg-grey-9' : 'bg-grey-3'"
   >
     <form @submit.prevent="createNewProject()">
       <q-btn icon="insert_emoticon" flat text-color="grey-8" />
-      <q-input filled v-model="newProjectTitle" />
+      <q-input filled v-model="newProjectTitle" :dark="nightmode" />
       <q-btn type="submit" label="Create New Project" color="green-5" />
     </form>
   </q-layout>
@@ -20,6 +20,7 @@ import { nanoid } from 'nanoid';
 
 export default defineComponent({
   name: 'NewProjectDialog',
+  props: ['nightmode'],
   setup() {
     return {
       data: useProjectStore(),

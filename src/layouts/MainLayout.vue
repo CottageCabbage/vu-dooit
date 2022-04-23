@@ -1,5 +1,5 @@
-<template :class="{ body__dark: nightmode }">
-  <div class="flexColumnContainer">
+<template>
+  <div class="flexColumnContainer" :class="{ body__dark: nightmode }">
     <header class="flexRowContainer">
       <span id="logo">VUDOOIT</span>
 
@@ -155,7 +155,7 @@
     </q-dialog>
 
     <q-dialog v-model="newProjectDialogOpen">
-      <NewProjectDialog />
+      <NewProjectDialog :nightmode="nightmode" />
     </q-dialog>
   </div>
 </template>
