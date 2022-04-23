@@ -1,4 +1,4 @@
-<template>
+<template :class="{ body__dark: nightmode }">
   <div class="flexColumnContainer">
     <header class="flexRowContainer">
       <span id="logo">VUDOOIT</span>
@@ -162,9 +162,14 @@
 
 <script>
 import { defineComponent, ref } from 'vue';
+// Import Dark-mode theme
+import 'src/css/themes/dark.scss';
+// DIALOGS
 import SettingsDialog from 'src/components/Dialogs/settingsDialog.vue';
 import NewProjectDialog from 'src/components/Dialogs/NewProjectDialog.vue';
+// STORES
 import { useProjectStore } from 'src/stores/ProjectStore';
+import { useUserStore } from 'src/stores/UserStore';
 
 export default defineComponent({
   setup() {
@@ -190,7 +195,19 @@ export default defineComponent({
   data() {
     return {
       data: useProjectStore(),
+      user_data: useUserStore(),
     };
+  },
+  methods: {
+    toggleNightmode() {
+      this.user_data.toggleNightmode(this.nightmode);
+    },
+  },
+  watch: {
+    nightmode: {
+      handler: 'toggleNightmode',
+      immediate: true,
+    },
   },
 });
 </script>

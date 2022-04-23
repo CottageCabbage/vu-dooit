@@ -16,6 +16,7 @@
 <script>
 import { defineComponent, ref } from 'vue';
 import { useProjectStore } from 'stores/ProjectStore.js';
+import { nanoid } from 'nanoid';
 
 export default defineComponent({
   name: 'NewProjectDialog',
@@ -28,7 +29,7 @@ export default defineComponent({
   methods: {
     createNewProject() {
       const newProject = {
-        id: 123, //make random
+        id: nanoid(7),
         title: this.newProjectTitle,
         desc: 'Insert Desc',
         tasks: [],
