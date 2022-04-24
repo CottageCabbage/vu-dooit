@@ -157,6 +157,7 @@
   </div>
 </template>
 
+<!--
 <script>
 import { defineComponent, ref } from 'vue';
 // SCSS
@@ -214,4 +215,49 @@ export default defineComponent({
     this.inbox = this.data.getInbox();
   },
 });
+</script>
+-->
+
+<script setup>
+// IMPORTS
+import { ref, onMounted, watch } from 'vue';
+// SCSS
+import 'src/css/layout.scss';
+// Import themes
+import 'src/css/themes/dark.scss';
+import 'src/css/themes/light.scss';
+// DIALOGS
+import SettingsDialog from 'src/components/Dialogs/settingsDialog.vue';
+import NewProjectDialog from 'src/components/Dialogs/NewProjectDialog.vue';
+// STORES
+import { useProjectStore } from 'src/stores/ProjectStore';
+import { useUserStore } from 'src/stores/UserStore';
+const data = useProjectStore();
+const user_data = useUserStore();
+
+const sidebarOpen = ref(true);
+const nightmode = ref(false);
+const settingsDialogOpen = ref(false);
+const newProjectDialogOpen = ref(false);
+
+let inbox = '';
+
+function toggleSidebar() {
+  sidebarOpen.value = !sidebarOpen.value;
+}
+function toggleNightmode() {
+  user_data.toggleNightmode(nightmode.value);
+}
+
+onMounted(() => {
+  inbox = data.getInbox();
+});
+
+watch(
+  'nightmode.value',
+  () => {
+    toggleNightmode();
+  },
+  { immediate: true }
+);
 </script>
