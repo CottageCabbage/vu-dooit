@@ -1,0 +1,27 @@
+.body__dark {
+  background: #454;
+
+  > div > aside {
+    #narrowSidebar {
+      background: #222;
+      color: #ddd;
+    }
+    #wideSidebar {
+      background-color: #343;
+      color: #ddd;
+
+      .router-link-active {
+        color: #9f9 !important;
+      }
+
+      #projectSidebarTools {
+        background: #333;
+      }
+    }
+  }
+
+  #newProjectDialog {
+    background-color: black !important;
+    font-size: 4rem;
+  }
+}

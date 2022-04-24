@@ -6,12 +6,17 @@ export const useUserStore = defineStore('user', {
     return {
       username: '',
       bio: '',
+      nightmode: '',
     };
   },
   actions: {
     async getUserData() {
       this.getUsername();
       this.getBiography();
+    },
+    toggleNightmode(nightmode) {
+      console.log('nightmode:', nightmode);
+      this.nightmode = nightmode;
     },
     // * PROFILE DATA
     // USERNAME

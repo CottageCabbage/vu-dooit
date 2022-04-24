@@ -1,5 +1,5 @@
 <template>
-  <div class="flexColumnContainer">
+  <div class="flexColumnContainer" :class="{ body__dark: nightmode }">
     <header class="flexRowContainer">
       <span id="logo">VUDOOIT</span>
 
@@ -73,13 +73,17 @@
             :icon="sidebarOpen ? 'chevron_left' : 'chevron_right'"
             @click="toggleSidebar"
             style="margin-top: auto"
-            v-if="this.$route.name !== 'Profile'"
+            v-if="this.$route.name !== 'Profile' && this.$route.name !== 'Home'"
           />
         </div>
 
         <div
           id="wideSidebar"
-          v-if="sidebarOpen && this.$route.name !== 'Profile'"
+          v-if="
+            sidebarOpen &&
+            this.$route.name !== 'Profile' &&
+            this.$route.name !== 'Home'
+          "
         >
           <div
             class="sidebar-linkToProject"
@@ -91,7 +95,51 @@
             }}</router-link>
 
             <q-space />
-            <q-btn dense flat icon="more_vert" />
+            <q-btn-dropdown dense flat dropdown-icon="more_vert">
+              <q-list>
+                <q-item
+                  clickable
+                  :disable="project.id === 'inbox'"
+                  v-close-popup
+                  @click="data.deleteProject(index, project.id)"
+                >
+                  <q-item-section avatar>
+                    <q-avatar icon="delete" color="grey-3" text-color="red-5" />
+                  </q-item-section>
+                  <q-item-section>
+                    <q-item-label>Delete Project</q-item-label>
+                  </q-item-section>
+                </q-item>
+                <q-item
+                  clickable
+                  :disable="project.id === 'inbox'"
+                  v-close-popup
+                >
+                  <q-item-section avatar>
+                    <q-avatar icon="edit" color="grey-3" text-color="black" />
+                  </q-item-section>
+                  <q-item-section>
+                    <q-item-label>Rename Project</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </q-list>
+            </q-btn-dropdown>
+          </div>
+
+          <div id="projectSidebarTools">
+            <q-btn
+              flat
+              icon="create_new_folder"
+              @click="newProjectDialogOpen = true"
+            >
+              <q-tooltip
+                anchor="top middle"
+                self="bottom middle"
+                :offset="[10, 10]"
+              >
+                Create New Project
+              </q-tooltip>
+            </q-btn>
           </div>
         </div>
       </aside>
@@ -101,39 +149,65 @@
       </main>
     </div>
 
+    <!-- DIALOGS -->
     <q-dialog v-model="settingsDialogOpen">
-      <settingsDialog />
+      <SettingsDialog />
+    </q-dialog>
+
+    <q-dialog v-model="newProjectDialogOpen">
+      <NewProjectDialog :nightmode="nightmode" />
     </q-dialog>
   </div>
 </template>
 
 <script>
 import { defineComponent, ref } from 'vue';
-import settingsDialog from 'src/components/Dialogs/settingsDialog.vue';
+// Import Dark-mode theme
+import 'src/css/themes/dark.scss';
+// DIALOGS
+import SettingsDialog from 'src/components/Dialogs/settingsDialog.vue';
+import NewProjectDialog from 'src/components/Dialogs/NewProjectDialog.vue';
+// STORES
 import { useProjectStore } from 'src/stores/ProjectStore';
+import { useUserStore } from 'src/stores/UserStore';
 
 export default defineComponent({
   setup() {
     const sidebarOpen = ref(true);
     const nightmode = ref(false);
     const settingsDialogOpen = ref(false);
+    const newProjectDialogOpen = ref(false);
 
     return {
       sidebarOpen,
       nightmode,
       settingsDialogOpen,
+      newProjectDialogOpen,
       toggleSidebar() {
         sidebarOpen.value = !sidebarOpen.value;
       },
     };
   },
   components: {
-    settingsDialog,
+    SettingsDialog,
+    NewProjectDialog,
   },
   data() {
     return {
       data: useProjectStore(),
+      user_data: useUserStore(),
     };
+  },
+  methods: {
+    toggleNightmode() {
+      this.user_data.toggleNightmode(this.nightmode);
+    },
+  },
+  watch: {
+    nightmode: {
+      handler: 'toggleNightmode',
+      immediate: true,
+    },
   },
 });
 </script>
@@ -182,6 +256,7 @@ aside {
     }
   }
   #wideSidebar {
+    position: relative;
     background: #f9f9f9;
     width: 250px;
     padding: 10px;
@@ -212,6 +287,17 @@ aside {
         opacity: 0.5;
         transform: scale(0.8);
       }
+    }
+
+    #projectSidebarTools {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      background: $grey-3;
     }
   }
 }

@@ -25,7 +25,17 @@ export const useProjectStore = defineStore('projects', {
         this.getData();
       }
     },
-    // LINELINELINELINELINELINE
+    async createProject(newProjectData) {
+      db.projects.put(newProjectData);
+      // let projectArray = await db.projects.toArray();
+      // projectArray.push(newProjectData)
+      this.projectList.push(newProjectData);
+    },
+    async deleteProject(projectINDEX, projectID) {
+      db.projects.delete(projectID);
+      this.projectList.splice(projectINDEX, 1);
+    },
+    // TASKS: Create, Delete, ToggleDone
     async createTask(projectINDEX, projectID, title, priority) {
       const newTask = {
         title: title,
@@ -40,9 +50,20 @@ export const useProjectStore = defineStore('projects', {
       db.projects.update({ id: projectID }, { tasks: tasksArray });
       this.projectList[projectINDEX].tasks.push(newTask);
     },
-    toggleTaskDone(projectINDEX, taskINDEX) {
-      this.projects[projectINDEX].tasks[taskINDEX].done =
-        !this.projects[projectINDEX].tasks[taskINDEX].done;
+    async deleteTask(projectINDEX, projectID, taskINDEX) {
+      let tasksArray = await db.projects.get({ id: projectID });
+      tasksArray = tasksArray.tasks;
+      tasksArray.splice(taskINDEX, 1);
+
+      db.projects.update({ id: projectID }, { tasks: tasksArray });
+      this.projectList[projectINDEX].tasks.splice(taskINDEX, 1);
+    },
+    async toggleTaskDone(projectINDEX, projectID, taskINDEX) {
+      let tasksArray = await db.projects.get({ id: projectID });
+      tasksArray = tasksArray.tasks;
+      tasksArray[taskINDEX].done = !tasksArray[taskINDEX].done;
+
+      db.projects.update({ id: projectID }, { tasks: tasksArray });
     },
   },
 });
