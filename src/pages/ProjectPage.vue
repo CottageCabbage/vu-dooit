@@ -1,12 +1,12 @@
 <template>
-  <div class="flexColumnContainer" id="projectPage">
+  <div class="flexColumnContainer" id="project-page">
     <div v-if="data.projectList[$route.params.id] !== undefined">
       <section class="projectDetails">
         <h2>{{ data.projectList[$route.params.id].title }}</h2>
         <p>{{ data.projectList[$route.params.id].desc }}</p>
       </section>
 
-      <section class="taskList">
+      <section class="task-list">
         <div
           class="task"
           v-for="(task, index) in data.projectList[$route.params.id].tasks"
@@ -106,7 +106,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-#projectPage {
+#project-page {
   .projectDetails {
     padding: 10px;
     background: #6a6;
@@ -131,7 +131,7 @@ export default defineComponent({
     }
   }
 
-  .taskList {
+  .task-list {
     padding: 10px;
     font-family: Ubuntu;
     font-size: 1rem;

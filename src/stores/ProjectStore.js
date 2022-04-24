@@ -25,6 +25,11 @@ export const useProjectStore = defineStore('projects', {
         this.getData();
       }
     },
+    getInbox() {
+      let inbox = this.projectList.filter((project) => project.id === 'inbox');
+      return inbox[0];
+    },
+    // PROJECTS: Create, Delete
     async createProject(newProjectData) {
       db.projects.put(newProjectData);
       // let projectArray = await db.projects.toArray();
