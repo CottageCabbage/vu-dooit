@@ -43,9 +43,19 @@
       }
       #wide-sidebar {
         min-width: 150px;
-        padding-top: 5px;
+        padding: 5px 5px 0 5px;
 
         .project-list {
+          .project-list-header {
+            align-items: center;
+
+            font-size: 1.1rem;
+            font-weight: bold;
+            .q-btn {
+              font-size: 0.7rem;
+            }
+          }
+
           .project-link {
             align-items: center;
             font-size: 1rem;

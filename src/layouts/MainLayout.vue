@@ -66,12 +66,26 @@
             :icon="sidebarOpen ? 'chevron_left' : 'chevron_right'"
             @click="toggleSidebar"
             style="margin-top: auto"
-            v-if="this.$route.name !== 'Profile' && this.$route.name !== 'Home'"
           />
         </div>
 
         <div id="wide-sidebar" class="flex-col" v-if="sidebarOpen">
+          {{ inbox.title }}
           <div class="project-list">
+            <div class="project-list-header flex-row">
+              <span>Projects</span>
+              <q-space />
+              <q-btn dense flat icon="add" @click="newProjectDialogOpen = true">
+                <q-tooltip
+                  anchor="top middle"
+                  self="bottom middle"
+                  :offset="[10, 10]"
+                >
+                  Create New Project
+                </q-tooltip>
+              </q-btn>
+            </div>
+
             <div
               class="flex-row project-link"
               v-for="(project, index) in data.projectList"
@@ -116,22 +130,6 @@
                 </q-list>
               </q-btn-dropdown>
             </div>
-          </div>
-
-          <div id="projectSidebarTools">
-            <q-btn
-              flat
-              icon="create_new_folder"
-              @click="newProjectDialogOpen = true"
-            >
-              <q-tooltip
-                anchor="top middle"
-                self="bottom middle"
-                :offset="[10, 10]"
-              >
-                Create New Project
-              </q-tooltip>
-            </q-btn>
           </div>
         </div>
       </aside>
@@ -191,6 +189,7 @@ export default defineComponent({
     return {
       data: useProjectStore(),
       user_data: useUserStore(),
+      inbox: '',
     };
   },
   methods: {
@@ -203,6 +202,9 @@ export default defineComponent({
       handler: 'toggleNightmode',
       immediate: true,
     },
+  },
+  mounted() {
+    this.inbox = this.data.getInbox();
   },
 });
 </script>
