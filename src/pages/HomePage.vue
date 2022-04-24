@@ -1,5 +1,9 @@
 <template>
-  <div class="flexColumnContainer"></div>
+  <div class="flexColumnContainer">
+    I don't really know what to put here tbh. Maybe just delete it? Would have
+    to do something to push route to profile/projects or something then. Can do
+    that at mounted. That's a boring solution tho.
+  </div>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
