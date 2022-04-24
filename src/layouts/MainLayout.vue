@@ -4,38 +4,19 @@
     class="flex-col fit"
     :class="{ body__dark: nightmode, body__light: !nightmode }"
   >
-    <header class="flex-row">
+    <header class="flex-row shadow-2">
       <q-space />
       <div class="app-info flex-row non-selectable">
         <q-icon name="done_all" />
         <span>Vu-dooit v1.0.0-beta</span>
       </div>
       <q-space />
-      <q-btn-dropdown flat dense>
-        <div
-          style="
-            padding: 5px;
-            width: 150px;
-            display: flex;
-            flex-direction: column;
-          "
-        >
-          <q-toggle label="Dark Mode" v-model="nightmode" icon="dark_mode" />
-          <q-btn
-            dense
-            flat
-            icon="settings"
-            style="font-weight: normal; text-transform: none"
-            label="Settings"
-            @click="settingsDialogOpen = true"
-          />
-        </div>
-      </q-btn-dropdown>
+      <q-toggle v-model="nightmode" icon="dark_mode" color="green-10" />
     </header>
 
-    <div class="flex-row">
+    <div id="page-container" class="flex-row">
       <aside class="flex-row">
-        <div id="narrowSidebar" class="flexColumnContainer">
+        <div id="narrow-sidebar" class="flex-col">
           <router-link to="/">
             <q-btn dense flat icon="home">
               <q-tooltip
@@ -75,6 +56,13 @@
           <q-btn
             dense
             flat
+            icon="settings"
+            style="font-weight: normal; text-transform: none"
+            @click="settingsDialogOpen = true"
+          />
+          <q-btn
+            dense
+            flat
             :icon="sidebarOpen ? 'chevron_left' : 'chevron_right'"
             @click="toggleSidebar"
             style="margin-top: auto"
@@ -82,53 +70,52 @@
           />
         </div>
 
-        <div
-          id="wideSidebar"
-          v-if="
-            sidebarOpen &&
-            this.$route.name !== 'Profile' &&
-            this.$route.name !== 'Home'
-          "
-        >
-          <div
-            class="sidebar-linkToProject"
-            v-for="(project, index) in data.projectList"
-            :key="project.id"
-          >
-            <router-link :to="'/project/' + index">{{
-              project.title
-            }}</router-link>
+        <div id="wide-sidebar" class="flex-col" v-if="sidebarOpen">
+          <div class="project-list">
+            <div
+              class="flex-row project-link"
+              v-for="(project, index) in data.projectList"
+              :key="project.id"
+            >
+              <router-link :to="'/project/' + index">{{
+                project.title
+              }}</router-link>
 
-            <q-space />
-            <q-btn-dropdown dense flat dropdown-icon="more_vert">
-              <q-list>
-                <q-item
-                  clickable
-                  :disable="project.id === 'inbox'"
-                  v-close-popup
-                  @click="data.deleteProject(index, project.id)"
-                >
-                  <q-item-section avatar>
-                    <q-avatar icon="delete" color="grey-3" text-color="red-5" />
-                  </q-item-section>
-                  <q-item-section>
-                    <q-item-label>Delete Project</q-item-label>
-                  </q-item-section>
-                </q-item>
-                <q-item
-                  clickable
-                  :disable="project.id === 'inbox'"
-                  v-close-popup
-                >
-                  <q-item-section avatar>
-                    <q-avatar icon="edit" color="grey-3" text-color="black" />
-                  </q-item-section>
-                  <q-item-section>
-                    <q-item-label>Rename Project</q-item-label>
-                  </q-item-section>
-                </q-item>
-              </q-list>
-            </q-btn-dropdown>
+              <q-space />
+              <q-btn-dropdown dense flat dropdown-icon="more_vert">
+                <q-list>
+                  <q-item
+                    clickable
+                    :disable="project.id === 'inbox'"
+                    v-close-popup
+                    @click="data.deleteProject(index, project.id)"
+                  >
+                    <q-item-section avatar>
+                      <q-avatar
+                        icon="delete"
+                        color="grey-3"
+                        text-color="red-5"
+                      />
+                    </q-item-section>
+                    <q-item-section>
+                      <q-item-label>Delete Project</q-item-label>
+                    </q-item-section>
+                  </q-item>
+                  <q-item
+                    clickable
+                    :disable="project.id === 'inbox'"
+                    v-close-popup
+                  >
+                    <q-item-section avatar>
+                      <q-avatar icon="edit" color="grey-3" text-color="black" />
+                    </q-item-section>
+                    <q-item-section>
+                      <q-item-label>Rename Project</q-item-label>
+                    </q-item-section>
+                  </q-item>
+                </q-list>
+              </q-btn-dropdown>
+            </div>
           </div>
 
           <div id="projectSidebarTools">

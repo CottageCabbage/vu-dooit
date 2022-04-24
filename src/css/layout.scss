@@ -1,11 +1,13 @@
 #layout-container {
   position: relative;
   overflow-x: hidden;
+  height: 100%;
 
   header {
     position: sticky !important;
     top: 0px;
     left: 0px;
+    z-index: 999;
     align-items: center;
     background: $green-5;
 
@@ -21,91 +23,43 @@
       }
     }
   }
+
+  #page-container {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 100%;
+
+    aside {
+      position: sticky !important;
+      top: 0px;
+      left: 0px;
+      z-index: 998;
+      height: calc(100% - 40px) !important;
+
+      #narrow-sidebar {
+        min-width: min-content;
+        padding-top: 5px;
+      }
+      #wide-sidebar {
+        min-width: 150px;
+        padding-top: 5px;
+
+        .project-list {
+          .project-link {
+            align-items: center;
+            font-size: 1rem;
+            padding-left: 5px;
+          }
+        }
+      }
+    }
+
+    main {
+      width: 100%;
+    }
+  }
 }
-
-// header {
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-
-//   width: 100vw;
-//   height: 35px;
-
-//   align-items: center;
-//   padding: 0 5px 0 30px;
-//   background: #56b67a;
-
-// }
-
-// aside {
-//   // position: sticky;
-//   // top: 40px;
-//   // left: 0;
-//   width: min-content;
-//   height: calc(100vh - 35px);
-//   // z-index: 9;
-//   display: flex;
-//   flex-direction: row;
-
-//   border-right: 2px solid #9999;
-
-//   #narrowSidebar {
-//     width: min-content;
-//     padding: 6px 3px 6px 3px;
-//     background: #e6e6e6;
-
-//     .router-link-exact-active,
-//     .rt-link-active {
-//       border-radius: 50%;
-//       background: #5856;
-//     }
-//   }
-//   #wideSidebar {
-//     position: relative;
-//     background: #f9f9f9;
-//     width: 250px;
-//     padding: 10px;
-
-//     .sidebar-linkToProject {
-//       display: flex;
-//       align-items: center;
-//       font-size: 1.05rem;
-//       border-bottom: 1px solid #99999999;
-//       padding-left: 10px;
-
-//       a:hover:not(.router-link-active) {
-//         color: #76d69a;
-//         text-decoration: underline;
-//       }
-
-//       .router-link-active {
-//         color: #56b67a;
-//       }
-
-//       & + .sidebar-linkToProject {
-//         margin-top: 5px;
-//       }
-//       .projectIcon {
-//         margin-right: 5px;
-//       }
-//       button {
-//         opacity: 0.5;
-//         transform: scale(0.8);
-//       }
-//     }
-
-//     #projectSidebarTools {
-//       position: absolute;
-//       bottom: 0;
-//       left: 0;
-//       width: 100%;
-//       height: 35px;
-//       display: flex;
-//       align-items: center;
-//       background: $grey-3;
-//     }
-//   }
-// }
 
 // main {
 //   width: 100%;
