@@ -40,12 +40,28 @@
       #narrow-sidebar {
         min-width: min-content;
         padding-top: 5px;
+        z-index: 998;
       }
       #wide-sidebar {
-        min-width: 150px;
-        padding: 5px 5px 0 5px;
+        overflow-x: hidden;
+        transition: 0.5s;
 
         .project-list {
+          margin: 5px;
+
+          .inbox {
+            align-items: center;
+            gap: 5px;
+            font-size: 1rem;
+            margin: 5px 5px 10px 5px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+
+            .q-icon {
+              font-size: 1.2rem;
+            }
+          }
+
           .project-list-header {
             align-items: center;
 
@@ -71,7 +87,3 @@
     }
   }
 }
-
-// main {
-//   width: 100%;
-// }

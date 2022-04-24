@@ -69,9 +69,16 @@
           />
         </div>
 
-        <div id="wide-sidebar" class="flex-col" v-if="sidebarOpen">
-          {{ inbox.title }}
-          <div class="project-list">
+        <div
+          id="wide-sidebar"
+          class="flex-col"
+          :style="sidebarOpen ? 'width: 0;' : 'width: 200px'"
+        >
+          <div class="project-list non-selectable">
+            <div class="inbox flex-row">
+              <q-icon name="inbox" />
+              <span>{{ inbox.title }}</span>
+            </div>
             <div class="project-list-header flex-row">
               <span>Projects</span>
               <q-space />
