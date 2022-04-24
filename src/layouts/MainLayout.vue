@@ -15,7 +15,7 @@
     </header>
 
     <div id="page-container" class="flex-row">
-      <aside class="flex-row">
+      <aside class="flex-row shadow-5">
         <div id="narrow-sidebar" class="flex-col">
           <router-link to="/">
             <q-btn dense flat icon="home">

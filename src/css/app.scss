@@ -6,6 +6,10 @@ body,
   height: 100%;
 }
 
+body {
+  overflow: hidden !important;
+}
+
 .flex-row {
   display: flex;
   flex-direction: row;
