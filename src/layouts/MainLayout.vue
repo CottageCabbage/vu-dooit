@@ -1,7 +1,7 @@
 <template>
   <div
     id="layout-container"
-    class="flex-col fit"
+    class="flex-col"
     :class="{ body__dark: nightmode, body__light: !nightmode }"
   >
     <header class="flex-row shadow-2">
@@ -53,6 +53,8 @@
             </q-btn>
           </router-link>
 
+          <q-space />
+
           <q-btn
             dense
             flat
@@ -60,12 +62,12 @@
             style="font-weight: normal; text-transform: none"
             @click="settingsDialogOpen = true"
           />
+
           <q-btn
             dense
             flat
-            :icon="sidebarOpen ? 'chevron_left' : 'chevron_right'"
+            :icon="sidebarOpen ? 'chevron_right' : 'chevron_left'"
             @click="toggleSidebar"
-            style="margin-top: auto"
           />
         </div>
 
@@ -157,102 +159,41 @@
   </div>
 </template>
 
-<!--
-<script>
-import { defineComponent, ref } from 'vue';
-// SCSS
-import 'src/css/layout.scss';
-// Import themes
-import 'src/css/themes/dark.scss';
-import 'src/css/themes/light.scss';
-// DIALOGS
-import SettingsDialog from 'src/components/Dialogs/settingsDialog.vue';
-import NewProjectDialog from 'src/components/Dialogs/NewProjectDialog.vue';
-// STORES
-import { useProjectStore } from 'src/stores/ProjectStore';
-import { useUserStore } from 'src/stores/UserStore';
-
-export default defineComponent({
-  setup() {
-    const sidebarOpen = ref(true);
-    const nightmode = ref(false);
-    const settingsDialogOpen = ref(false);
-    const newProjectDialogOpen = ref(false);
-
-    return {
-      sidebarOpen,
-      nightmode,
-      settingsDialogOpen,
-      newProjectDialogOpen,
-      toggleSidebar() {
-        sidebarOpen.value = !sidebarOpen.value;
-      },
-    };
-  },
-  components: {
-    SettingsDialog,
-    NewProjectDialog,
-  },
-  data() {
-    return {
-      data: useProjectStore(),
-      user_data: useUserStore(),
-      inbox: '',
-    };
-  },
-  methods: {
-    toggleNightmode() {
-      this.user_data.toggleNightmode(this.nightmode);
-    },
-  },
-  watch: {
-    nightmode: {
-      handler: 'toggleNightmode',
-      immediate: true,
-    },
-  },
-  mounted() {
-    this.inbox = this.data.getInbox();
-  },
-});
-</script>
--->
-
 <script setup>
-// IMPORTS
 import { ref, onMounted, watch } from 'vue';
-// SCSS
+// Styling
 import 'src/css/layout.scss';
-// Import themes
 import 'src/css/themes/dark.scss';
 import 'src/css/themes/light.scss';
-// DIALOGS
+// Dialogs
 import SettingsDialog from 'src/components/Dialogs/settingsDialog.vue';
 import NewProjectDialog from 'src/components/Dialogs/NewProjectDialog.vue';
-// STORES
+// Stores
 import { useProjectStore } from 'src/stores/ProjectStore';
 import { useUserStore } from 'src/stores/UserStore';
+
+// ============================= //
+
+// STORES
 const data = useProjectStore();
 const user_data = useUserStore();
 
-const sidebarOpen = ref(true);
-const nightmode = ref(false);
-const settingsDialogOpen = ref(false);
+// DIALOGS
 const newProjectDialogOpen = ref(false);
+const settingsDialogOpen = ref(false);
 
-let inbox = '';
-
+// TOGGLES
+// Sidebar
+const sidebarOpen = ref(true);
 function toggleSidebar() {
   sidebarOpen.value = !sidebarOpen.value;
 }
+
+// Nightmode
+const nightmode = ref(false);
 function toggleNightmode() {
   user_data.toggleNightmode(nightmode.value);
 }
-
-onMounted(() => {
-  inbox = data.getInbox();
-});
-
 watch(
   'nightmode.value',
   () => {
@@ -260,4 +201,10 @@ watch(
   },
   { immediate: true }
 );
+
+// DATA
+const inbox = ref('');
+onMounted(() => {
+  inbox.value = data.getInbox();
+});
 </script>

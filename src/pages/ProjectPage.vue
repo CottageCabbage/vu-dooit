@@ -47,62 +47,53 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, ref } from 'vue';
+<script setup>
+import { ref } from 'vue';
+import { useRoute } from 'vue-router';
 import NewTaskDialog from 'src/components/Dialogs/NewTaskDialog.vue';
-
 import { useProjectStore } from 'stores/ProjectStore.js';
 
-export default defineComponent({
-  setup() {
-    const NewTaskDialogIsOpen = ref(false);
+const route = useRoute();
+const data = useProjectStore();
+const NewTaskDialogIsOpen = ref(false);
 
-    return {
-      data: useProjectStore(),
-      NewTaskDialogIsOpen,
-    };
-  },
-  components: {
-    NewTaskDialog,
-  },
-  methods: {
-    assingTaskPriority(priority) {
-      let priorityClass = '';
-      switch (priority) {
-        case null:
-        case '1':
-          priorityClass = 'priority-1';
-          break;
-        case '2':
-          priorityClass = 'priority-2';
-          break;
-      }
-      return priorityClass;
-    },
-    deleteTask(taskINDEX) {
-      let projectINDEX = this.$route.path;
-      projectINDEX = projectINDEX.split('/');
-      projectINDEX = projectINDEX.slice(-1);
+function assingTaskPriority(priority) {
+  let priorityClass = '';
+  switch (priority) {
+    case null:
+    case '1':
+      priorityClass = 'priority-1';
+      break;
+    case '2':
+      priorityClass = 'priority-2';
+      break;
+  }
+  return priorityClass;
+}
 
-      this.data.deleteTask(
-        projectINDEX,
-        this.data.projectList[this.$route.params.id].id,
-        taskINDEX
-      );
-    },
-    toggleTaskDone(taskINDEX) {
-      let projectINDEX = this.$route.path;
-      projectINDEX = projectINDEX.split('/');
-      projectINDEX = projectINDEX.slice(-1);
+function deleteTask(taskINDEX) {
+  let projectINDEX = route.path;
+  projectINDEX = projectINDEX.split('/');
+  projectINDEX = projectINDEX.slice(-1);
 
-      this.data.toggleTaskDone(
-        projectINDEX,
-        this.data.projectList[this.$route.params.id].id,
-        taskINDEX
-      );
-    },
-  },
-});
+  this.data.deleteTask(
+    projectINDEX,
+    data.projectList[route.params.id].id,
+    taskINDEX
+  );
+}
+
+function toggleTaskDone(taskINDEX) {
+  let projectINDEX = route.path;
+  projectINDEX = projectINDEX.split('/');
+  projectINDEX = projectINDEX.slice(-1);
+
+  this.data.toggleTaskDone(
+    projectINDEX,
+    data.projectList[route.params.id].id,
+    taskINDEX
+  );
+}
 </script>
 
 <style lang="scss">
