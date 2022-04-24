@@ -1,11 +1,10 @@
 .body__light {
+  background: #eee;
+
   #page-container {
     aside {
       #narrow-sidebar {
         background: #e6e6e6;
-        .router-link-exact-active {
-          //
-        }
       }
       #wide-sidebar {
         background: #f9f9f9;

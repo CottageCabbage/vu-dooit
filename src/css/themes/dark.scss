@@ -1,27 +1,30 @@
 .body__dark {
-  background: #454;
+  background: #464;
 
-  > div > aside {
-    #narrowSidebar {
-      background: #222;
-      color: #ddd;
-    }
-    #wideSidebar {
-      background-color: #343;
-      color: #ddd;
-
-      .router-link-active {
-        color: #9f9 !important;
+  #page-container {
+    aside {
+      #narrow-sidebar {
+        background: #343;
+        color: #ddd;
       }
-
-      #projectSidebarTools {
-        background: #333;
+      #wide-sidebar {
+        background: #464;
+        color: #ccc;
       }
     }
-  }
 
-  #newProjectDialog {
-    background-color: black !important;
-    font-size: 4rem;
+    main {
+      #project-page {
+        .task-list {
+          .task {
+            background: transparent;
+            color: #eee;
+          }
+        }
+      }
+      #profile-page {
+        color: #eee;
+      }
+    }
   }
 }

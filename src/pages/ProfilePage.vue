@@ -1,5 +1,5 @@
 <template>
-  <div class="flexColumnContainer" id="profileContainer">
+  <div class="flexColumnContainer" id="profile-page">
     <div id="profileBanner">
       <q-icon name="account_circle" id="profilePicture" />
     </div>
@@ -30,7 +30,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-#profileContainer {
+#profile-page {
   width: 100%;
 
   #profileBanner {

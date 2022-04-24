@@ -64,9 +64,11 @@
 
           .project-list-header {
             align-items: center;
-
             font-size: 1.1rem;
             font-weight: bold;
+            padding-bottom: 3px;
+            border-bottom: 1px solid #9b99;
+
             .q-btn {
               font-size: 0.7rem;
             }
