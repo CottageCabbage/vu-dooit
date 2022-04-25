@@ -1,17 +1,25 @@
+import { useObservable } from '@vueuse/rxjs';
+import { liveQuery } from 'dexie';
 import { defineStore } from 'pinia';
 import { db } from '../db';
+
+// import { liveQuery } from "dexie";
+// import { useObservable } from "@vueuse/rxjs";
+// friends: useObservable(
+//   liveQuery(() => db.friends.toArray())
+// ),
 
 export const useProjectStore = defineStore('projects', {
   state: () => {
     return {
-      projectList: [],
+      project_data: useObservable(liveQuery(() => db.projects.toArray())),
     };
   },
   actions: {
     async getData() {
       let data = await db.projects.toArray();
       if (data.length > 0) {
-        this.projectList = data;
+        this.project_data = data;
       } else if (data.length <= 0) {
         db.projects.put({
           id: 'inbox',
@@ -25,16 +33,9 @@ export const useProjectStore = defineStore('projects', {
         this.getData();
       }
     },
-    getInbox() {
-      let inbox = this.projectList.filter((project) => project.id === 'inbox');
-      return inbox[0];
-    },
     // PROJECTS: Create, Delete
     async createProject(newProjectData) {
       db.projects.put(newProjectData);
-      // let projectArray = await db.projects.toArray();
-      // projectArray.push(newProjectData)
-      this.projectList.push(newProjectData);
     },
     async deleteProject(projectINDEX, projectID) {
       db.projects.delete(projectID);

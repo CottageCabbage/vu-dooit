@@ -77,10 +77,14 @@
           :style="sidebarOpen ? 'width: 0;' : 'width: 200px'"
         >
           <div class="project-list non-selectable">
-            <div class="inbox flex-row">
-              <q-icon name="inbox" />
-              <span>{{ inbox.title }}</span>
+            <!-- Link to Inbox -->
+            <div class="inbox">
+              <router-link :to="'/project/inbox'" class="flex-row">
+                <q-icon name="inbox" />
+                Inbox
+              </router-link>
             </div>
+
             <div class="project-list-header flex-row">
               <span>Projects</span>
               <q-space />
@@ -97,12 +101,12 @@
 
             <div
               class="flex-row project-link"
-              v-for="(project, index) in data.projectList"
+              v-for="(project, index) in getUnarchivedNonInbox()"
               :key="project.id"
             >
-              <router-link :to="'/project/' + index">{{
-                project.title
-              }}</router-link>
+              <router-link :to="'/project/' + project.id">
+                {{ project.title }}
+              </router-link>
 
               <q-space />
               <q-btn-dropdown dense flat dropdown-icon="more_vert">
@@ -148,11 +152,10 @@
       </main>
     </div>
 
-    <!-- DIALOGS -->
+    <!-- Dialogs -->
     <q-dialog v-model="settingsDialogOpen">
       <SettingsDialog />
     </q-dialog>
-
     <q-dialog v-model="newProjectDialogOpen">
       <NewProjectDialog :nightmode="nightmode" />
     </q-dialog>
@@ -163,6 +166,7 @@
 import { ref, onMounted, watch } from 'vue';
 // Styling
 import 'src/css/layout.scss';
+import 'src/css/pages.scss';
 import 'src/css/themes/dark.scss';
 import 'src/css/themes/light.scss';
 // Dialogs
@@ -195,7 +199,7 @@ function toggleNightmode() {
   user_data.toggleNightmode(nightmode.value);
 }
 watch(
-  'nightmode.value',
+  nightmode,
   () => {
     toggleNightmode();
   },
@@ -203,8 +207,11 @@ watch(
 );
 
 // DATA
-const inbox = ref('');
 onMounted(() => {
-  inbox.value = data.getInbox();
+  console.log(data.project_data);
 });
+
+function getUnarchivedNonInbox() {
+  return data.project_data.filter((project) => project.id !== 'inbox');
+}
 </script>

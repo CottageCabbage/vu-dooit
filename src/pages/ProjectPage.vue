@@ -1,29 +1,22 @@
 <template>
-  <div class="flexColumnContainer" id="project-page">
-    <div v-if="data.projectList[$route.params.id] !== undefined">
-      <section class="projectDetails">
-        <h2>{{ data.projectList[$route.params.id].title }}</h2>
-        <p>{{ data.projectList[$route.params.id].desc }}</p>
+  <div class="flex-col" id="project-page">
+    <div v-if="project !== undefined" class="flex-col">
+      <section class="project-details non-selectable">
+        <h2 class="project-title">{{ project.title }}</h2>
+        <p class="project-desc">{{ project.desc }}</p>
       </section>
 
-      <section class="task-list">
-        <div
-          class="task"
-          v-for="(task, index) in data.projectList[$route.params.id].tasks"
-          :key="task.id"
-        >
+      <section class="task-list flex-col">
+        <div class="task flex-row" v-for="task in project.tasks" :key="task.id">
           <q-checkbox
             v-model="task.done"
             :label="task.title"
-            @click="toggleTaskDone(index)"
+            :class="assignTaskPriority(task.priority)"
           />
           <q-space />
           <q-btn-dropdown dense flat dropdown-icon="more_vert">
             <q-list>
-              <q-item clickable v-close-popup @click="deleteTask(index)">
-                <q-item-section avatar>
-                  <q-avatar icon="delete" color="grey-3" text-color="red-5" />
-                </q-item-section>
+              <q-item clickable v-close-popup>
                 <q-item-section>
                   <q-item-label>Delete Task</q-item-label>
                 </q-item-section>
@@ -32,18 +25,27 @@
           </q-btn-dropdown>
         </div>
       </section>
+
+      <div class="fixed-bottom-right" style="bottom: 25px; right: 25px">
+        <q-fab direction="left" icon="add" color="green-5">
+          <q-fab-action
+            label="Create Task"
+            color="green-8"
+            @click="NewTaskDialogIsOpen = true"
+          />
+          <q-fab-action label="Create Section" color="green-8" />
+        </q-fab>
+      </div>
+
+      <q-dialog v-model="NewTaskDialogIsOpen">
+        <NewTaskDialog :data="data" />
+      </q-dialog>
     </div>
 
-    <div class="bottom-right column items-center">
-      <q-fab direction="left" icon="add" color="green">
-        <q-fab-action label="Create Task" @click="NewTaskDialogIsOpen = true" />
-        <q-fab-action label="Create Section" />
-      </q-fab>
+    <div v-else>
+      It seems like this project does not exist. It may be that you have entered
+      the wrong URL, or it has been deleted.
     </div>
-
-    <q-dialog v-model="NewTaskDialogIsOpen">
-      <NewTaskDialog :data="data" />
-    </q-dialog>
   </div>
 </template>
 
@@ -57,7 +59,11 @@ const route = useRoute();
 const data = useProjectStore();
 const NewTaskDialogIsOpen = ref(false);
 
-function assingTaskPriority(priority) {
+const project = data.project_data.filter(
+  (project) => project.id === route.params.id
+)[0];
+
+function assignTaskPriority(priority) {
   let priorityClass = '';
   switch (priority) {
     case null:
@@ -97,58 +103,6 @@ function toggleTaskDone(taskINDEX) {
 </script>
 
 <style lang="scss">
-#project-page {
-  .projectDetails {
-    padding: 10px;
-    background: #6a6;
-    color: #ded;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    user-select: none;
-
-    h2 {
-      min-width: 15%;
-      margin: 0 0 15px 0;
-      display: inline-block;
-      border-bottom: 2px solid #8c8;
-      font-size: 2.5rem;
-      font-weight: bold;
-      text-align: center;
-    }
-    p {
-      font-size: 1rem;
-      text-align: center;
-    }
-  }
-
-  .task-list {
-    padding: 10px;
-    font-family: Ubuntu;
-    font-size: 1rem;
-
-    .task {
-      display: flex;
-      align-items: center;
-      background: #f9f9f9;
-
-      .more_btn {
-        transform: scale(0.7);
-      }
-
-      margin-bottom: 5px;
-      border-bottom: 1px solid #9999;
-    }
-  }
-
-  .bottom-right {
-    position: absolute;
-    bottom: 25px;
-    right: 25px;
-  }
-}
-
-// TASK PRIORITY CLASSES
 .priority-1 {
   .q-checkbox__inner:not(.q-checkbox__inner--truthy) {
     .q-checkbox__bg {
