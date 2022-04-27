@@ -16,6 +16,7 @@
             v-model="task.done"
             :label="task.title"
             :class="assignTaskPriority(task.priority)"
+            @click="toggleTaskDone(index)"
           />
           <q-space />
           <q-btn-dropdown dense flat dropdown-icon="more_vert">
@@ -90,6 +91,10 @@ function assignTaskPriority(priority) {
 
 function deleteTask(taskINDEX) {
   data.deleteTask(route.params.id, taskINDEX);
+}
+
+function toggleTaskDone(taskINDEX) {
+  data.toggleTaskDone(route.params.id, taskINDEX);
 }
 
 // function toggleTaskDone(taskINDEX) {
