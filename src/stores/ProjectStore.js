@@ -56,13 +56,12 @@ export const useProjectStore = defineStore('projects', {
 
       db.projects.update({ id: projectID }, { tasks: tasksArray });
     },
-    async deleteTask(projectINDEX, projectID, taskINDEX) {
+    async deleteTask(projectID, taskINDEX) {
       let tasksArray = await db.projects.get({ id: projectID });
       tasksArray = tasksArray.tasks;
       tasksArray.splice(taskINDEX, 1);
 
       db.projects.update({ id: projectID }, { tasks: tasksArray });
-      this.projectList[projectINDEX].tasks.splice(taskINDEX, 1);
     },
     async toggleTaskDone(projectINDEX, projectID, taskINDEX) {
       let tasksArray = await db.projects.get({ id: projectID });

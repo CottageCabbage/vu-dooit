@@ -7,7 +7,11 @@
       </section>
 
       <section class="task-list flex-col">
-        <div class="task flex-row" v-for="task in project.tasks" :key="task.id">
+        <div
+          class="task flex-row"
+          v-for="(task, index) in project.tasks"
+          :key="task.id"
+        >
           <q-checkbox
             v-model="task.done"
             :label="task.title"
@@ -16,9 +20,12 @@
           <q-space />
           <q-btn-dropdown dense flat dropdown-icon="more_vert">
             <q-list>
-              <q-item clickable v-close-popup>
+              <q-item clickable v-close-popup @click="deleteTask(index)">
                 <q-item-section>
-                  <q-item-label>Delete Task</q-item-label>
+                  <q-item-label class="text-red-8 flex-row list-label">
+                    <q-icon name="delete" />
+                    Delete Task
+                  </q-item-label>
                 </q-item-section>
               </q-item>
             </q-list>
@@ -50,7 +57,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import NewTaskDialog from 'src/components/Dialogs/NewTaskDialog.vue';
 import { useProjectStore } from 'stores/ProjectStore.js';
@@ -82,28 +89,20 @@ function assignTaskPriority(priority) {
 }
 
 function deleteTask(taskINDEX) {
-  let projectINDEX = route.path;
-  projectINDEX = projectINDEX.split('/');
-  projectINDEX = projectINDEX.slice(-1);
-
-  this.data.deleteTask(
-    projectINDEX,
-    data.projectList[route.params.id].id,
-    taskINDEX
-  );
+  data.deleteTask(route.params.id, taskINDEX);
 }
 
-function toggleTaskDone(taskINDEX) {
-  let projectINDEX = route.path;
-  projectINDEX = projectINDEX.split('/');
-  projectINDEX = projectINDEX.slice(-1);
+// function toggleTaskDone(taskINDEX) {
+//   let projectINDEX = route.path;
+//   projectINDEX = projectINDEX.split('/');
+//   projectINDEX = projectINDEX.slice(-1);
 
-  this.data.toggleTaskDone(
-    projectINDEX,
-    data.projectList[route.params.id].id,
-    taskINDEX
-  );
-}
+//   this.data.toggleTaskDone(
+//     projectINDEX,
+//     data.projectList[route.params.id].id,
+//     taskINDEX
+//   );
+// }
 </script>
 
 <style lang="scss">
@@ -120,5 +119,11 @@ function toggleTaskDone(taskINDEX) {
       border: 2px solid $negative;
     }
   }
+}
+
+.list-label {
+  font-size: 16px;
+  align-items: center;
+  gap: 5px;
 }
 </style>
