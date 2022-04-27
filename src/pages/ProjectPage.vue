@@ -50,7 +50,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import NewTaskDialog from 'src/components/Dialogs/NewTaskDialog.vue';
 import { useProjectStore } from 'stores/ProjectStore.js';
@@ -59,9 +59,13 @@ const route = useRoute();
 const data = useProjectStore();
 const NewTaskDialogIsOpen = ref(false);
 
-const project = data.project_data.filter(
-  (project) => project.id === route.params.id
-)[0];
+import { useObservable } from '@vueuse/rxjs';
+import { liveQuery } from 'dexie';
+import { db } from '../db';
+
+const project = useObservable(
+  liveQuery(() => db.projects.get({ id: route.params.id }))
+);
 
 function assignTaskPriority(priority) {
   let priorityClass = '';

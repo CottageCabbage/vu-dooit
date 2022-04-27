@@ -6,7 +6,7 @@
     id="new-task-dialog"
     class="bg-grey-3"
   >
-    <form @submit.prevent="" class="flex-col">
+    <form @submit.prevent="createTask()" class="flex-col">
       <input
         id="newtask_title"
         type="text"
@@ -21,6 +21,7 @@
         placeholder="Description"
       ></textarea>
       <fieldset class="flex-row">
+        <q-select />
         <q-btn flat dense icon="sell" />
         <q-space />
         <q-btn flat dense icon="flag" />
@@ -48,11 +49,17 @@
 
 <script setup>
 import { ref } from 'vue';
-// import { useProjectStore } from 'stores/ProjectStore.js';
+import { useRoute } from 'vue-router';
+import { useProjectStore } from 'stores/ProjectStore.js';
 
-// const data = useProjectStore();
+const data = useProjectStore();
 const newtask_title = ref('');
 const newtask_desc = ref('');
+const route = useRoute();
+
+function createTask() {
+  data.createTask(route.params.id, newtask_title.value);
+}
 
 // createTask() {
 //   let projectINDEX = this.$route.path;
