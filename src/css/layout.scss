@@ -44,7 +44,9 @@
       }
       #wide-sidebar {
         overflow-x: hidden;
-        transition: background 0s, width 0.5s;
+        resize: horizontal;
+        max-width: 300px;
+        transition: background 0s, width 0.2s;
 
         .project-list {
           margin: 5px;
