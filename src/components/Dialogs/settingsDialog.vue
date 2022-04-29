@@ -3,11 +3,19 @@
     view="lhh LpR lff"
     container
     style="height: 525px; width: 800px !important; max-width: none"
-    class="bg-grey-3"
+    :class="nightmode ? 'bg-grey-9' : 'bg-grey-3'"
   >
     <q-splitter v-model="splitterModel" style="height: 525px" disable>
       <template v-slot:before>
-        <q-tabs v-model="tab" vertical class="bg-grey-4 text-light-green-10">
+        <q-tabs
+          v-model="tab"
+          vertical
+          :class="
+            nightmode
+              ? 'bg-grey-10 text-light-green-4'
+              : 'bg-grey-4 text-light-green-10'
+          "
+        >
           <q-tab name="profile" icon="manage_accounts" label="Profile" />
           <q-tab name="alarms" icon="palette" label="Appearance" />
           <q-tab name="movies" icon="movie" label="Movies" />
@@ -21,10 +29,15 @@
           vertical
           transition-prev="jump-up"
           transition-next="jump-up"
-          class="bg-grey-3"
+          :class="nightmode ? 'bg-grey-9' : 'bg-grey-3'"
         >
           <q-tab-panel name="profile">
-            <div class="text-h5 text-center q-mb-md">Profile Settings</div>
+            <div
+              class="text-h5 text-center q-mb-md"
+              :class="nightmode ? 'text-grey-4' : ''"
+            >
+              Profile Settings
+            </div>
             <q-form
               @submit.prevent="saveChangesToProfile"
               class="flexColumnContainer"
@@ -35,8 +48,15 @@
                 v-model="new_username"
                 label="Username"
                 maxlength="15"
+                :dark="nightmode"
               />
-              <q-input outlined v-model="new_bio" label="Bio" type="textarea" />
+              <q-input
+                outlined
+                v-model="new_bio"
+                label="Bio"
+                type="textarea"
+                :dark="nightmode"
+              />
               <q-btn label="Submit" type="submit" color="green" />
             </q-form>
 
@@ -103,15 +123,20 @@
 import { defineComponent, ref } from 'vue';
 import { useUserStore } from 'stores/UserStore.js';
 
+// const props = defineProps({
+//   nightmode: Boolean,
+// });
+
 export default defineComponent({
   name: 'settingsDialog',
+  props: ['nightmode'],
   setup() {
     return {
       tab: ref('mails'),
       showBanner: ref(false),
       userStore: useUserStore(),
-      new_username: '',
-      new_bio: '',
+      new_username: ref(''),
+      new_bio: ref(''),
     };
   },
   methods: {

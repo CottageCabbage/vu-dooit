@@ -41,7 +41,7 @@
             </q-btn>
           </router-link>
 
-          <router-link to="/project/0">
+          <router-link to="/project/inbox">
             <q-btn dense flat icon="task_alt">
               <q-tooltip
                 anchor="top right"
@@ -148,13 +148,13 @@
       </aside>
 
       <main>
-        <router-view :key="$route.fullPath" />
+        <router-view :key="$route.fullPath" :nightmode="nightmode" />
       </main>
     </div>
 
     <!-- Dialogs -->
     <q-dialog v-model="settingsDialogOpen">
-      <SettingsDialog />
+      <SettingsDialog :nightmode="nightmode" />
     </q-dialog>
     <q-dialog v-model="newProjectDialogOpen">
       <NewProjectDialog :nightmode="nightmode" />

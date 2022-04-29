@@ -46,7 +46,7 @@
       </div>
 
       <q-dialog v-model="NewTaskDialogIsOpen">
-        <NewTaskDialog :data="data" />
+        <NewTaskDialog :data="data" :nightmode="props.nightmode" />
       </q-dialog>
     </div>
 
@@ -66,6 +66,10 @@ import { useProjectStore } from 'stores/ProjectStore.js';
 const route = useRoute();
 const data = useProjectStore();
 const NewTaskDialogIsOpen = ref(false);
+
+const props = defineProps({
+  nightmode: Boolean,
+});
 
 import { useObservable } from '@vueuse/rxjs';
 import { liveQuery } from 'dexie';

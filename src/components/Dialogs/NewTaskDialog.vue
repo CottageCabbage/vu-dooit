@@ -4,7 +4,8 @@
     container
     style="height: 250px"
     id="new-task-dialog"
-    class="bg-grey-3"
+    :class="props.nightmode ? 'bg-grey-9 dark' : 'bg-grey-3'"
+    class="shadow-9"
   >
     <form @submit.prevent="createTask()" class="flex-col">
       <input
@@ -51,6 +52,10 @@
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useProjectStore } from 'stores/ProjectStore.js';
+
+const props = defineProps({
+  nightmode: Boolean,
+});
 
 const data = useProjectStore();
 const newtask_title = ref('');
@@ -116,6 +121,18 @@ function createTask() {
     }
   }
 
+  &.dark {
+    form {
+      #newtask_title {
+        color: #eee;
+      }
+      #newtask_desc {
+        background: #ddd2;
+        color: #e9e9e9;
+      }
+    }
+  }
+
   #expand-btn {
     background: #ccc;
     border-radius: 50%;
@@ -137,9 +154,5 @@ function createTask() {
       }
     }
   }
-}
-
-#NewTaskDialogForm {
-  padding: 10px;
 }
 </style>
