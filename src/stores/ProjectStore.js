@@ -1,17 +1,25 @@
+import { useObservable } from '@vueuse/rxjs';
+import { liveQuery } from 'dexie';
 import { defineStore } from 'pinia';
 import { db } from '../db';
+
+// import { liveQuery } from "dexie";
+// import { useObservable } from "@vueuse/rxjs";
+// friends: useObservable(
+//   liveQuery(() => db.friends.toArray())
+// ),
 
 export const useProjectStore = defineStore('projects', {
   state: () => {
     return {
-      projectList: [],
+      project_data: useObservable(liveQuery(() => db.projects.toArray())),
     };
   },
   actions: {
     async getData() {
       let data = await db.projects.toArray();
       if (data.length > 0) {
-        this.projectList = data;
+        this.project_data = data;
       } else if (data.length <= 0) {
         db.projects.put({
           id: 'inbox',
@@ -25,45 +33,37 @@ export const useProjectStore = defineStore('projects', {
         this.getData();
       }
     },
-    getInbox() {
-      let inbox = this.projectList.filter((project) => project.id === 'inbox');
-      return inbox[0];
-    },
     // PROJECTS: Create, Delete
     async createProject(newProjectData) {
       db.projects.put(newProjectData);
-      // let projectArray = await db.projects.toArray();
-      // projectArray.push(newProjectData)
-      this.projectList.push(newProjectData);
     },
     async deleteProject(projectINDEX, projectID) {
       db.projects.delete(projectID);
       this.projectList.splice(projectINDEX, 1);
     },
     // TASKS: Create, Delete, ToggleDone
-    async createTask(projectINDEX, projectID, title, priority) {
-      const newTask = {
-        title: title,
+    async createTask(projectID, task_title) {
+      const newtask = {
+        title: task_title,
         done: false,
-        priority: priority,
-        id: 222,
+        priority: '1',
+        id: 123,
       };
+
       let tasksArray = await db.projects.get({ id: projectID });
       tasksArray = tasksArray.tasks;
-      tasksArray.push(newTask);
+      tasksArray.push(newtask);
 
       db.projects.update({ id: projectID }, { tasks: tasksArray });
-      this.projectList[projectINDEX].tasks.push(newTask);
     },
-    async deleteTask(projectINDEX, projectID, taskINDEX) {
+    async deleteTask(projectID, taskINDEX) {
       let tasksArray = await db.projects.get({ id: projectID });
       tasksArray = tasksArray.tasks;
       tasksArray.splice(taskINDEX, 1);
 
       db.projects.update({ id: projectID }, { tasks: tasksArray });
-      this.projectList[projectINDEX].tasks.splice(taskINDEX, 1);
     },
-    async toggleTaskDone(projectINDEX, projectID, taskINDEX) {
+    async toggleTaskDone(projectID, taskINDEX) {
       let tasksArray = await db.projects.get({ id: projectID });
       tasksArray = tasksArray.tasks;
       tasksArray[taskINDEX].done = !tasksArray[taskINDEX].done;

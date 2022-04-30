@@ -44,19 +44,23 @@
       }
       #wide-sidebar {
         overflow-x: hidden;
-        transition: 0.5s;
+        resize: horizontal;
+        max-width: 300px;
+        transition: background 0s, width 0.2s;
 
         .project-list {
           margin: 5px;
+          flex-wrap: nowrap;
 
           .inbox {
-            align-items: center;
-            gap: 5px;
-            font-size: 1rem;
-            margin: 5px 5px 10px 5px;
-            margin-top: 5px;
-            margin-bottom: 10px;
-
+            a {
+              align-items: center;
+              gap: 5px;
+              font-size: 1rem;
+              margin: 5px 5px 10px 5px;
+              margin-top: 5px;
+              margin-bottom: 10px;
+            }
             .q-icon {
               font-size: 1.2rem;
             }

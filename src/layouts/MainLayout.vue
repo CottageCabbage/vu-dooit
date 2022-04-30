@@ -1,7 +1,7 @@
 <template>
   <div
     id="layout-container"
-    class="flex-col fit"
+    class="flex-col"
     :class="{ body__dark: nightmode, body__light: !nightmode }"
   >
     <header class="flex-row shadow-2">
@@ -41,7 +41,7 @@
             </q-btn>
           </router-link>
 
-          <router-link to="/project/0">
+          <router-link to="/project/inbox">
             <q-btn dense flat icon="task_alt">
               <q-tooltip
                 anchor="top right"
@@ -53,6 +53,8 @@
             </q-btn>
           </router-link>
 
+          <q-space />
+
           <q-btn
             dense
             flat
@@ -60,12 +62,12 @@
             style="font-weight: normal; text-transform: none"
             @click="settingsDialogOpen = true"
           />
+
           <q-btn
             dense
             flat
-            :icon="sidebarOpen ? 'chevron_left' : 'chevron_right'"
+            :icon="sidebarOpen ? 'chevron_right' : 'chevron_left'"
             @click="toggleSidebar"
-            style="margin-top: auto"
           />
         </div>
 
@@ -75,10 +77,14 @@
           :style="sidebarOpen ? 'width: 0;' : 'width: 200px'"
         >
           <div class="project-list non-selectable">
-            <div class="inbox flex-row">
-              <q-icon name="inbox" />
-              <span>{{ inbox.title }}</span>
+            <!-- Link to Inbox -->
+            <div class="inbox">
+              <router-link :to="'/project/inbox'" class="flex-row">
+                <q-icon name="inbox" />
+                Inbox
+              </router-link>
             </div>
+
             <div class="project-list-header flex-row">
               <span>Projects</span>
               <q-space />
@@ -95,12 +101,12 @@
 
             <div
               class="flex-row project-link"
-              v-for="(project, index) in data.projectList"
+              v-for="(project, index) in getUnarchivedNonInbox()"
               :key="project.id"
             >
-              <router-link :to="'/project/' + index">{{
-                project.title
-              }}</router-link>
+              <router-link :to="'/project/' + project.id">
+                {{ project.title }}
+              </router-link>
 
               <q-space />
               <q-btn-dropdown dense flat dropdown-icon="more_vert">
@@ -142,76 +148,70 @@
       </aside>
 
       <main>
-        <router-view :key="$route.fullPath" />
+        <router-view :key="$route.fullPath" :nightmode="nightmode" />
       </main>
     </div>
 
-    <!-- DIALOGS -->
+    <!-- Dialogs -->
     <q-dialog v-model="settingsDialogOpen">
-      <SettingsDialog />
+      <SettingsDialog :nightmode="nightmode" />
     </q-dialog>
-
     <q-dialog v-model="newProjectDialogOpen">
       <NewProjectDialog :nightmode="nightmode" />
     </q-dialog>
   </div>
 </template>
 
-<script>
-import { defineComponent, ref } from 'vue';
-// SCSS
+<script setup>
+import { ref, onMounted, watch } from 'vue';
+// Styling
 import 'src/css/layout.scss';
-// Import themes
+import 'src/css/pages.scss';
 import 'src/css/themes/dark.scss';
 import 'src/css/themes/light.scss';
-// DIALOGS
+// Dialogs
 import SettingsDialog from 'src/components/Dialogs/settingsDialog.vue';
 import NewProjectDialog from 'src/components/Dialogs/NewProjectDialog.vue';
-// STORES
+// Stores
 import { useProjectStore } from 'src/stores/ProjectStore';
 import { useUserStore } from 'src/stores/UserStore';
 
-export default defineComponent({
-  setup() {
-    const sidebarOpen = ref(true);
-    const nightmode = ref(false);
-    const settingsDialogOpen = ref(false);
-    const newProjectDialogOpen = ref(false);
+// ============================= //
 
-    return {
-      sidebarOpen,
-      nightmode,
-      settingsDialogOpen,
-      newProjectDialogOpen,
-      toggleSidebar() {
-        sidebarOpen.value = !sidebarOpen.value;
-      },
-    };
+// STORES
+const data = useProjectStore();
+const user_data = useUserStore();
+
+// DIALOGS
+const newProjectDialogOpen = ref(false);
+const settingsDialogOpen = ref(false);
+
+// TOGGLES
+// Sidebar
+const sidebarOpen = ref(true);
+function toggleSidebar() {
+  sidebarOpen.value = !sidebarOpen.value;
+}
+
+// Nightmode
+const nightmode = ref(false);
+function toggleNightmode() {
+  user_data.toggleNightmode(nightmode.value);
+}
+watch(
+  nightmode,
+  () => {
+    toggleNightmode();
   },
-  components: {
-    SettingsDialog,
-    NewProjectDialog,
-  },
-  data() {
-    return {
-      data: useProjectStore(),
-      user_data: useUserStore(),
-      inbox: '',
-    };
-  },
-  methods: {
-    toggleNightmode() {
-      this.user_data.toggleNightmode(this.nightmode);
-    },
-  },
-  watch: {
-    nightmode: {
-      handler: 'toggleNightmode',
-      immediate: true,
-    },
-  },
-  mounted() {
-    this.inbox = this.data.getInbox();
-  },
+  { immediate: true }
+);
+
+// DATA
+onMounted(() => {
+  console.log(data.project_data);
 });
+
+function getUnarchivedNonInbox() {
+  return data.project_data.filter((project) => project.id !== 'inbox');
+}
 </script>
