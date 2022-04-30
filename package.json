@@ -1,6 +1,6 @@
 {
   "name": "vu-dooit",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Task Manager",
   "productName": "vu-dooit",
   "author": "CottageCabbage <96266734+CottageCabbage@users.noreply.github.com>",
@@ -36,6 +36,7 @@
     "@vue/devtools": "^6.1.4",
     "autoprefixer": "^10.4.2",
     "electron": "^18.0.1",
+    "electron-packager": "^15.5.1",
     "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-vue": "^8.5.0",

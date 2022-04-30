@@ -1,23 +1,24 @@
-# Vu-dooit
+<h1 align="center">Vu-dooit</h1>
+<p align="center">An open source and cross-platform Task Manager, completely offline.
 
-## Persistence:
+![](README/Screenshot_lightmode.png)
 
-Testing [DexieJS](https://github.com/dexie/Dexie.js) rn. If I can't make it work, there are others:
+![](README/Screenshot_darkmode.png)
 
-- https://github.com/pouchdb/pouchdb
-- https://github.com/localForage/localForage
-- https://github.com/erikolson186/zangodb
-- https://github.com/dannyconnell/localbase
-- https://github.com/google/lovefield
-- https://github.com/ujjwalguptaofficial/JsStore
-- https://github.com/mWater/minimongo
-- https://github.com/sifrr/sifrr
-- https://github.com/jakearchibald/idb-keyval
-- https://github.com/jakearchibald/idb
+## Features
+
+- No tracking or anything similar.
+- All your data is stored locally, through Indexeddb.
+- A nice (?) dark mode
+- Create multiple projects, organize your tasks.
+
+## Instalation
 
 ---
 
-## Install the dependencies
+## Contributing
+
+### Install the dependencies
 
 ```bash
 yarn
@@ -28,7 +29,10 @@ npm install
 ### Start the app in development mode (hot-code reloading, error reporting, etc.)
 
 ```bash
+# to open on browser:
 quasar dev
+# or with Electron:
+quasar dev -m electron
 ```
 
 ### Lint the files
