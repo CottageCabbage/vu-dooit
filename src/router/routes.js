@@ -4,8 +4,18 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') }
-    ]
+      { path: '', name: 'Home', component: () => import('pages/HomePage.vue') },
+      {
+        path: 'project/:id',
+        name: 'Project',
+        component: () => import('pages/ProjectPage.vue'),
+      },
+      {
+        path: 'profile',
+        name: 'Profile',
+        component: () => import('pages/ProfilePage.vue'),
+      },
+    ],
   },
 
   // Always leave this as last one,
@@ -17,3 +27,5 @@ const routes = [
 ]
 
 export default routes
+
+
