@@ -29,6 +29,14 @@
                   </q-item-label>
                 </q-item-section>
               </q-item>
+              <q-item clickable v-close-popup @click="editTask(index)">
+                <q-item-section>
+                  <q-item-label class="text-grey-8 flex-row list-label">
+                    <q-icon name="edit" />
+                    Edit Task
+                  </q-item-label>
+                </q-item-section>
+              </q-item>
             </q-list>
           </q-btn-dropdown>
         </div>
@@ -45,6 +53,10 @@
         </q-fab>
       </div>
 
+      <q-dialog v-model="EditTaskDialogIsOpen">
+        <EditTaskDialog :nightmode="props.nightmode" />
+      </q-dialog>
+
       <q-dialog v-model="NewTaskDialogIsOpen">
         <NewTaskDialog :data="data" :nightmode="props.nightmode" />
       </q-dialog>
@@ -58,36 +70,39 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useRoute } from 'vue-router';
-import NewTaskDialog from 'src/components/Dialogs/NewTaskDialog.vue';
-import { useProjectStore } from 'stores/ProjectStore.js';
+import { ref } from "vue";
+import { useRoute } from "vue-router";
+import NewTaskDialog from "src/components/Dialogs/NewTaskDialog.vue";
+import EditTaskDialog from "src/components/Dialogs/EditTaskDialog.vue";
+import { useProjectStore } from "stores/ProjectStore.js";
 
 const route = useRoute();
 const data = useProjectStore();
+
 const NewTaskDialogIsOpen = ref(false);
+const EditTaskDialogIsOpen = ref(false);
 
 const props = defineProps({
   nightmode: Boolean,
 });
 
-import { useObservable } from '@vueuse/rxjs';
-import { liveQuery } from 'dexie';
-import { db } from '../db';
+import { useObservable } from "@vueuse/rxjs";
+import { liveQuery } from "dexie";
+import { db } from "../db";
 
 const project = useObservable(
   liveQuery(() => db.projects.get({ id: route.params.id }))
 );
 
 function assignTaskPriority(priority) {
-  let priorityClass = '';
+  let priorityClass = "";
   switch (priority) {
     case null:
-    case '1':
-      priorityClass = 'priority-1';
+    case "1":
+      priorityClass = "priority-1";
       break;
-    case '2':
-      priorityClass = 'priority-2';
+    case "2":
+      priorityClass = "priority-2";
       break;
   }
   return priorityClass;
@@ -95,6 +110,9 @@ function assignTaskPriority(priority) {
 
 function deleteTask(taskINDEX) {
   data.deleteTask(route.params.id, taskINDEX);
+}
+function editTask(taskINDEX) {
+  EditTaskDialogIsOpen.value = true;
 }
 
 function toggleTaskDone(taskINDEX) {

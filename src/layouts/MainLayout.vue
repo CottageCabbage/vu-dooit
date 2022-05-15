@@ -163,18 +163,18 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, watch } from "vue";
 // Styling
-import 'src/css/layout.scss';
-import 'src/css/pages.scss';
-import 'src/css/themes/dark.scss';
-import 'src/css/themes/light.scss';
+import "src/css/layout.scss";
+import "src/css/pages.scss";
+import "src/css/themes/dark.scss";
+import "src/css/themes/light.scss";
 // Dialogs
-import SettingsDialog from 'src/components/Dialogs/settingsDialog.vue';
-import NewProjectDialog from 'src/components/Dialogs/NewProjectDialog.vue';
+import SettingsDialog from "src/components/Dialogs/settingsDialog.vue";
+import NewProjectDialog from "src/components/Dialogs/NewProjectDialog.vue";
 // Stores
-import { useProjectStore } from 'src/stores/ProjectStore';
-import { useUserStore } from 'src/stores/UserStore';
+import { useProjectStore } from "src/stores/ProjectStore";
+import { useUserStore } from "src/stores/UserStore";
 
 // ============================= //
 
@@ -212,6 +212,6 @@ onMounted(() => {
 });
 
 function getUnarchivedNonInbox() {
-  return data.project_data.filter((project) => project.id !== 'inbox');
+  return data.project_data.filter((project) => project.id !== "inbox");
 }
 </script>

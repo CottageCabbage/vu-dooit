@@ -14,6 +14,12 @@
 
 ## Instalation
 
+### Desktop
+
+Clone repository, install dependencies, npm run build:electron (or yarn equivalent)
+
+This should build it for your platform. If you use linux, you can download the latest release [here](#)
+
 ---
 
 ## Contributing

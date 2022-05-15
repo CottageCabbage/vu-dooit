@@ -46,7 +46,7 @@
         overflow-x: hidden;
         resize: horizontal;
         max-width: 300px;
-        transition: background 0s, width 0.2s;
+        transition: background 0s, width 0s, flex-basis 0.2s;
 
         .project-list {
           margin: 5px;
