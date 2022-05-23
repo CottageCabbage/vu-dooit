@@ -9,6 +9,7 @@
       <section class="task-list flex-col">
         <div
           class="task flex-row"
+          :class="taskBeingEdited === index ? 'editing' : ''"
           v-for="(task, index) in project.tasks"
           :key="task.id"
         >
@@ -73,14 +74,17 @@
 import { ref } from "vue";
 import { useRoute } from "vue-router";
 import NewTaskDialog from "src/components/Dialogs/NewTaskDialog.vue";
-import EditTaskDialog from "src/components/Dialogs/EditTaskDialog.vue";
+// import EditTaskDialog from "src/components/Dialogs/EditTaskDialog.vue";
 import { useProjectStore } from "stores/ProjectStore.js";
 
 const route = useRoute();
 const data = useProjectStore();
 
 const NewTaskDialogIsOpen = ref(false);
-const EditTaskDialogIsOpen = ref(false);
+
+const taskBeingEdited = ref();
+const beingEdited = ref(false);
+// const EditTaskDialogIsOpen = ref(false);
 
 const props = defineProps({
   nightmode: Boolean,
@@ -112,7 +116,8 @@ function deleteTask(taskINDEX) {
   data.deleteTask(route.params.id, taskINDEX);
 }
 function editTask(taskINDEX) {
-  EditTaskDialogIsOpen.value = true;
+  taskBeingEdited.value = taskINDEX;
+  beingEdited.value = true;
 }
 
 function toggleTaskDone(taskINDEX) {
@@ -152,5 +157,9 @@ function toggleTaskDone(taskINDEX) {
   font-size: 16px;
   align-items: center;
   gap: 5px;
+}
+
+.editing {
+  background: grey;
 }
 </style>
