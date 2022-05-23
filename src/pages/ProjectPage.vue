@@ -20,6 +20,14 @@
             @click="toggleTaskDone(index)"
           />
           <q-space />
+          <q-btn
+            v-if="taskBeingEdited === index"
+            @click="taskBeingEdited = ''"
+            icon="done"
+            dense
+            flat
+            color="green"
+          />
           <q-btn-dropdown dense flat dropdown-icon="more_vert">
             <q-list>
               <q-item clickable v-close-popup @click="deleteTask(index)">
@@ -160,6 +168,8 @@ function toggleTaskDone(taskINDEX) {
 }
 
 .editing {
-  background: grey;
+  background: #ddd;
+  box-shadow: 0 0 8px 3px #333;
+  margin-bottom: 5px;
 }
 </style>
