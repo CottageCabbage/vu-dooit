@@ -27,6 +27,16 @@
     .task {
       font-family: Ubuntu;
       font-family: 1rem;
+
+      .task-checkbox-title {
+        margin-bottom: 0;
+      }
+      .task-description {
+        font-size: 0.8rem;
+        color: #222e;
+        margin-top: -7px;
+        margin-left: 40px;
+      }
     }
   }
 

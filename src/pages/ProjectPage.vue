@@ -9,16 +9,26 @@
       <section class="task-list flex-col">
         <div
           class="task flex-row"
-          :class="taskBeingEdited === index ? 'editing' : ''"
+          :class="taskBeingEdited === index ? 'task-being-edited' : ''"
           v-for="(task, index) in project.tasks"
           :key="task.id"
         >
-          <q-checkbox
-            v-model="task.done"
-            :label="task.title"
-            :class="assignTaskPriority(task.priority)"
-            @click="toggleTaskDone(index)"
-          />
+          <div class="flex-col" v-if="taskBeingEdited !== index">
+            <q-checkbox
+              v-model="task.done"
+              :label="task.title"
+              class="task-checkbox-title"
+              :class="assignTaskPriority(task.priority)"
+              @click="toggleTaskDone(index)"
+            />
+            <p class="task-description">
+              Lorem Ipsum asd asdqwoeh ohqoeh jkqhwkje jqhwejkqwhejkhjk hqjkweh
+            </p>
+          </div>
+          <div class="flex-col" v-else>
+            <input v-model="task.title" />
+          </div>
+
           <q-space />
           <q-btn
             v-if="taskBeingEdited === index"
@@ -167,9 +177,9 @@ function toggleTaskDone(taskINDEX) {
   gap: 5px;
 }
 
-.editing {
+.task-being-edited {
   background: #ddd;
   box-shadow: 0 0 8px 3px #333;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 </style>
