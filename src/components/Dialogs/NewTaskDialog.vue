@@ -16,49 +16,79 @@
         type="text"
         id="newtask_title"
         v-model="newtask_title"
-        :placeholder="expanded ? '' : 'Press enter when done to create task'"
+        :placeholder="
+          expanded ? 'Task\'s Title' : 'Press enter when done to create task'
+        "
       />
+
+      <div v-if="expanded === true" class="flex-col">
+        <textarea
+          type="text"
+          id="newtask_desc"
+          v-model="newtask_desc"
+          placeholder="Task's Description"
+        ></textarea>
+
+        <div class="flex-row" style="padding: 10px">
+          <q-space />
+          <q-btn-dropdown
+            dropdown-icon="flag"
+            flat
+            no-icon-animation
+            :color="getIconColor()"
+          >
+            <q-list>
+              <q-item
+                clickable
+                v-close-popup
+                @click="assignPriority(1)"
+                :class="selected_priority === 1 ? 'selected-priority' : ''"
+              >
+                <q-btn icon="flag" dense flat color="grey-7" />
+              </q-item>
+              <q-item
+                clickable
+                v-close-popup
+                @click="assignPriority(2)"
+                :class="selected_priority === 2 ? 'selected-priority' : ''"
+              >
+                <q-btn icon="flag" dense flat color="amber-8" />
+              </q-item>
+              <q-item
+                clickable
+                v-close-popup
+                @click="assignPriority(3)"
+                :class="selected_priority === 3 ? 'selected-priority' : ''"
+              >
+                <q-btn icon="flag" dense flat color="red-5" />
+              </q-item>
+            </q-list>
+          </q-btn-dropdown>
+        </div>
+
+        <q-btn
+          label="Cancel"
+          class="fixed-bottom-left"
+          color="red-5"
+          style="left: 5px; bottom: 5px"
+        />
+        <q-btn
+          label="Create"
+          class="fixed-bottom-left"
+          color="green-5"
+          style="left: 100px; bottom: 5px"
+          type="submit"
+        />
+      </div>
 
       <q-btn
         :icon="expanded ? 'expand_less' : 'expand_more'"
-        class="fixed-right"
+        :class="expanded ? 'fixed-bottom-right' : 'fixed-right'"
         @click="toggleExpanded"
         dense
         flat
       />
     </form>
-
-    <!-- <form @submit.prevent="createTask()" class="flex-col">
-      <textarea
-        id="newtask_desc"
-        type="text"
-        v-model="newtask_desc"
-        placeholder="Description"
-      ></textarea>
-      <fieldset class="flex-row">
-        <q-select />
-        <q-btn flat dense icon="sell" />
-        <q-space />
-        <q-btn flat dense icon="flag" />
-      </fieldset>
-
-      <q-btn
-        type="submit"
-        id="create-new-task-btn"
-        label="Add Task"
-        dense
-        flat
-        class="fixed-bottom-left bg-green-4"
-      />
-
-      <div
-        id="expand-btn"
-        class="fixed-bottom-right shadow-9"
-        style="bottom: -15px; right: -0px"
-      >
-        <q-btn flat icon="expand_less" />
-      </div>
-    </form> -->
   </q-layout>
 </template>
 
@@ -85,9 +115,24 @@ function createTask() {
 function toggleExpanded() {
   expanded.value = !expanded.value;
 }
+
+const selected_priority = ref(1);
+function assignPriority(priority) {
+  selected_priority.value = priority;
+}
+function getIconColor() {
+  switch (selected_priority.value) {
+    case 1:
+      return "grey-7";
+    case 2:
+      return "amber-8";
+    case 3:
+      return "red-5";
+  }
+}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #new-task-dialog {
   form {
     input {
@@ -95,90 +140,32 @@ function toggleExpanded() {
       font-size: 1rem;
       outline: none;
       height: 50px;
+      border: none;
     }
   }
 
   form.expanded-form {
     height: 250px;
 
-    input {
-      border: none;
+    input#newtask_title {
       background: #fffa;
     }
+    textarea#newtask_desc {
+      min-height: 2.6rem;
+      height: 2.6rem;
+      max-height: 6rem;
+      border: none;
+      outline: none;
+      resize: vertical;
+      background: #fff5;
+      font-size: 0.9rem;
+      padding: 10px;
+      padding-left: 15px;
+    }
   }
+}
 
-  // form {
-  //   // padding: 10px;
-  //   // gap: 7px;
-
-  //   #newtask_title {
-  //     appearance: none;
-  //     border: none;
-  //     padding: 12px;
-  //     font-size: 1rem;
-  //     background: #9992;
-  //   }
-  //   #newtask_desc {
-  //     appearance: none;
-  //     border: none;
-  //     resize: vertical;
-  //     padding: 9px;
-  //     padding-left: 15px;
-  //     font-size: 0.9rem;
-  //     background: #ddd4;
-  //     min-height: 40px;
-  //     height: 65px;
-  //     max-height: 105px;
-  //   }
-
-  //   fieldset {
-  //     border: none;
-  //     font-size: 0.5rem;
-
-  //     .q-btn {
-  //       font-size: 0.75rem;
-  //     }
-  //   }
-
-  //   #create-new-task-btn {
-  //     bottom: 5px;
-  //     left: 5px;
-  //     padding: 5px 10px 5px 10px;
-  //   }
-  // }
-
-  // &.dark {
-  //   form {
-  //     #newtask_title {
-  //       color: #eee;
-  //     }
-  //     #newtask_desc {
-  //       background: #ddd2;
-  //       color: #e9e9e9;
-  //     }
-  //   }
-  // }
-
-  // #expand-btn {
-  //   background: #ccc;
-  //   border-radius: 50%;
-  //   width: 40px;
-  //   height: 40px;
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: flex-start;
-
-  //   button {
-  //     position: relative;
-  //     width: 40px;
-  //     height: 40px;
-  //     border-radius: 50%;
-
-  //     .q-icon {
-  //       position: relative;
-  //       top: -5px;
-  //     }
-  //   }
-  // }
+.selected-priority {
+  background: #ccca;
 }
 </style>
