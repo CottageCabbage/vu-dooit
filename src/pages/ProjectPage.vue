@@ -22,7 +22,7 @@
               @click="toggleTaskDone(index)"
             />
             <p class="task-description">
-              Lorem Ipsum asd asdqwoeh ohqoeh jkqhwkje jqhwejkqwhejkhjk hqjkweh
+              {{ task.desc }}
             </p>
           </div>
           <div class="flex-col" v-else>

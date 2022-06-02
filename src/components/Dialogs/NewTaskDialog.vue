@@ -29,8 +29,14 @@
           placeholder="Task's Description"
         ></textarea>
 
-        <div class="flex-row" style="padding: 10px">
-          <q-space />
+        <hr style="width: 99%; border: 1px dashed #aaa" />
+
+        <div
+          class="flex-row fixed-bottom-left"
+          style="padding: 5px; padding-bottom: 7px; gap: 7px"
+        >
+          <q-btn label="Cancel" color="red-5" />
+          <q-btn label="Create" color="green-5" type="submit" />
           <q-btn-dropdown
             dropdown-icon="flag"
             flat
@@ -65,28 +71,15 @@
             </q-list>
           </q-btn-dropdown>
         </div>
-
-        <q-btn
-          label="Cancel"
-          class="fixed-bottom-left"
-          color="red-5"
-          style="left: 5px; bottom: 5px"
-        />
-        <q-btn
-          label="Create"
-          class="fixed-bottom-left"
-          color="green-5"
-          style="left: 100px; bottom: 5px"
-          type="submit"
-        />
       </div>
 
       <q-btn
         :icon="expanded ? 'expand_less' : 'expand_more'"
         :class="expanded ? 'fixed-bottom-right' : 'fixed-right'"
         @click="toggleExpanded"
-        dense
         flat
+        :dense="!expanded"
+        :style="expanded ? 'right: 5px; bottom: 5px' : ''"
       />
     </form>
   </q-layout>
@@ -109,7 +102,11 @@ const newtask_desc = ref("");
 const route = useRoute();
 
 function createTask() {
-  data.createTask(route.params.id, newtask_title.value);
+  if (newtask_title.value !== "") {
+    if (expanded.value === true && newtask_desc.value !== "") {
+      data.createTask(route.params.id, newtask_title.value, newtask_desc.value);
+    }
+  }
 }
 
 function toggleExpanded() {
@@ -151,16 +148,17 @@ function getIconColor() {
       background: #fffa;
     }
     textarea#newtask_desc {
-      min-height: 2.6rem;
-      height: 2.6rem;
-      max-height: 6rem;
+      // min-height: 2.6rem;
+      height: 8rem;
+      max-height: 8rem;
       border: none;
       outline: none;
-      resize: vertical;
+      resize: none;
       background: #fff5;
       font-size: 0.9rem;
       padding: 10px;
       padding-left: 15px;
+      margin-bottom: 7px;
     }
   }
 }
