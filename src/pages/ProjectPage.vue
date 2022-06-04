@@ -6,7 +6,7 @@
         <p class="project-desc">{{ project.desc }}</p>
       </section>
 
-      <section class="task-list flex-col">
+      <section class="task-list flex-col" v-if="project.tasks.length !== 0">
         <div
           class="task flex-row"
           :class="taskBeingEdited === index ? 'task-being-edited' : ''"
@@ -21,9 +21,9 @@
               :class="assignTaskPriority(task.priority)"
               @click="toggleTaskDone(index)"
             />
-            <p class="task-description">
+            <div class="task-description">
               {{ task.desc }}
-            </p>
+            </div>
           </div>
           <div class="flex-col" v-else>
             <input v-model="task.title" />
@@ -60,6 +60,7 @@
           </q-btn-dropdown>
         </div>
       </section>
+      <section v-else>Sorry, no tasks</section>
 
       <div class="fixed-bottom-right" style="bottom: 25px; right: 25px">
         <q-fab direction="left" icon="add" color="green-5">

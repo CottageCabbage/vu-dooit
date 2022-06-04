@@ -43,9 +43,9 @@ export const useProjectStore = defineStore("projects", {
     },
     // TASKS: Create, Delete, ToggleDone
     async createTask(projectID, task_title, task_desc) {
-      if (task_desc === undefined) {
-        task_desc = "";
-      }
+      // if (task_desc === undefined) {
+      //   task_desc = "";
+      // }
       const newtask = {
         title: task_title,
         desc: task_desc,
