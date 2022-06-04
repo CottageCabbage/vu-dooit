@@ -39,6 +39,21 @@
       }
     }
   }
+  section.if-no-tasks {
+    height: 70vh;
+    width: 100%;
+    padding: 15px;
+    align-items: center;
+
+    img {
+      max-height: 85%;
+      max-width: 100%;
+      margin-bottom: 15px;
+    }
+    p {
+      font-size: 1.2rem;
+    }
+  }
 
   .bottom-right {
     position: absolute;

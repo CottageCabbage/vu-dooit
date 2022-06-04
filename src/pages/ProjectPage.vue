@@ -60,7 +60,10 @@
           </q-btn-dropdown>
         </div>
       </section>
-      <section v-else>Sorry, no tasks</section>
+      <section class="if-no-tasks flex-col" v-else>
+        <img src="../assets/undraw_completing_re_i7ap.svg" alt="" />
+        <p>Looks like you've got it all done here.</p>
+      </section>
 
       <div class="fixed-bottom-right" style="bottom: 25px; right: 25px">
         <q-fab direction="left" icon="add" color="green-5">
