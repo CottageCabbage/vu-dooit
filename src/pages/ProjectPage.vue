@@ -60,6 +60,7 @@
           </q-btn-dropdown>
         </div>
       </section>
+
       <section class="if-no-tasks flex-col" v-else>
         <img src="../assets/undraw_completing_re_i7ap.svg" alt="" />
         <p>Looks like you've got it all done here.</p>
@@ -85,9 +86,9 @@
       </q-dialog>
     </div>
 
-    <div v-else>
-      It seems like this project does not exist. It may be that you have entered
-      the wrong URL, or it has been deleted.
+    <div v-else id="if-no-project" class="flex-col">
+      <img src="../assets/undraw_page_not_found_re_e9o6.svg" alt="" />
+      <p>It looks like this project doesn't not exist.</p>
     </div>
   </div>
 </template>
