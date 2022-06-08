@@ -9,6 +9,7 @@
       <section class="task-list flex-col" v-if="project.tasks.length !== 0">
         <div
           class="task flex-row"
+          @dblclick="taskBeingEdited = index"
           :class="taskBeingEdited === index ? 'task-being-edited' : ''"
           v-for="(task, index) in project.tasks"
           :key="task.id"
@@ -33,6 +34,7 @@
           <q-space v-if="taskBeingEdited !== index" />
           <q-btn
             v-if="taskBeingEdited === index"
+            type="submit"
             @click="saveTaskEdit(index, task.title, task.desc)"
             icon="done"
             dense

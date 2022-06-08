@@ -37,6 +37,7 @@
         color: #222e;
         margin-top: -7px;
         margin-left: 40px;
+        white-space: pre;
       }
     }
 
@@ -45,11 +46,13 @@
       box-shadow: 0 0 8px 3px #333;
       margin-bottom: 10px;
       width: 100%;
+      border-radius: 4px;
 
       > div {
         font-family: Ubuntu;
         font-size: 0.95rem;
         width: 100%;
+        padding: 5px;
 
         input {
           border: none;
@@ -59,7 +62,7 @@
         textarea {
           font-size: 0.85rem;
           color: #222e;
-          border: 2px solid black;
+          border: none;
           background: transparent;
           outline: none;
           resize: none;
