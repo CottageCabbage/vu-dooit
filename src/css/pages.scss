@@ -26,16 +26,45 @@
 
     .task {
       font-family: Ubuntu;
-      font-family: 1rem;
+      font-size: 0.95rem;
+      width: 100%;
 
       .task-checkbox-title {
         margin-bottom: 0;
       }
       .task-description {
-        font-size: 0.8rem;
+        font-size: 0.85rem;
         color: #222e;
         margin-top: -7px;
         margin-left: 40px;
+      }
+    }
+
+    .task-being-edited {
+      background: #ddd;
+      box-shadow: 0 0 8px 3px #333;
+      margin-bottom: 10px;
+      width: 100%;
+
+      > div {
+        font-family: Ubuntu;
+        font-size: 0.95rem;
+        width: 100%;
+
+        input {
+          border: none;
+          background: transparent;
+          outline: none;
+        }
+        textarea {
+          font-size: 0.85rem;
+          color: #222e;
+          border: 2px solid black;
+          background: transparent;
+          outline: none;
+          resize: none;
+          width: 100%;
+        }
       }
     }
   }

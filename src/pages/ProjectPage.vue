@@ -27,12 +27,13 @@
           </div>
           <div class="flex-col" v-else>
             <input v-model="task.title" />
+            <textarea v-model="task.desc" />
           </div>
 
-          <q-space />
+          <q-space v-if="taskBeingEdited !== index" />
           <q-btn
             v-if="taskBeingEdited === index"
-            @click="taskBeingEdited = ''"
+            @click="saveTaskEdit(index, task.title, task.desc)"
             icon="done"
             dense
             flat
@@ -138,13 +139,18 @@ function assignTaskPriority(priority) {
 function deleteTask(taskINDEX) {
   data.deleteTask(route.params.id, taskINDEX);
 }
+
+function toggleTaskDone(taskINDEX) {
+  data.toggleTaskDone(route.params.id, taskINDEX);
+}
+
 function editTask(taskINDEX) {
   taskBeingEdited.value = taskINDEX;
   beingEdited.value = true;
 }
-
-function toggleTaskDone(taskINDEX) {
-  data.toggleTaskDone(route.params.id, taskINDEX);
+function saveTaskEdit(index, editedTitle, editedDesc) {
+  taskBeingEdited.value = "";
+  data.saveTaskEdit(route.params.id, index, editedTitle, editedDesc);
 }
 
 // function toggleTaskDone(taskINDEX) {
@@ -180,11 +186,5 @@ function toggleTaskDone(taskINDEX) {
   font-size: 16px;
   align-items: center;
   gap: 5px;
-}
-
-.task-being-edited {
-  background: #ddd;
-  box-shadow: 0 0 8px 3px #333;
-  margin-bottom: 10px;
 }
 </style>

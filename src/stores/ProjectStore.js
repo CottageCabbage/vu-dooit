@@ -67,6 +67,15 @@ export const useProjectStore = defineStore("projects", {
 
       db.projects.update({ id: projectID }, { tasks: tasksArray });
     },
+    async saveTaskEdit(projectID, taskINDEX, editedTitle, editedDesc) {
+      let tasksArray = await db.projects.get({ id: projectID });
+      tasksArray = tasksArray.tasks;
+
+      tasksArray[taskINDEX].title = editedTitle;
+      tasksArray[taskINDEX].desc = editedDesc;
+
+      db.projects.update({ id: projectID }, { tasks: tasksArray });
+    },
     async toggleTaskDone(projectID, taskINDEX) {
       let tasksArray = await db.projects.get({ id: projectID });
       tasksArray = tasksArray.tasks;
