@@ -26,8 +26,8 @@
               {{ task.desc }}
             </div>
           </div>
-          <div class="flex-col" v-else>
-            <input v-model="task.title" />
+          <div class="flex-col" v-else @keydown.esc="taskBeingEdited = ''">
+            <input v-model="task.title" autofocus />
             <textarea v-model="task.desc" />
           </div>
 
@@ -41,6 +41,40 @@
             flat
             color="green"
           />
+          <q-btn-dropdown
+            dropdown-icon="flag"
+            flat
+            no-icon-animation
+            :color="getIconColor()"
+          >
+            <q-list>
+              <q-item
+                clickable
+                v-close-popup
+                @click="assignPriority(1)"
+                :class="selected_priority === 1 ? 'selected-priority' : ''"
+              >
+                <q-btn icon="flag" dense flat color="grey-7" />
+              </q-item>
+              <q-item
+                clickable
+                v-close-popup
+                @click="assignPriority(2)"
+                :class="selected_priority === 2 ? 'selected-priority' : ''"
+              >
+                <q-btn icon="flag" dense flat color="amber-8" />
+              </q-item>
+              <q-item
+                clickable
+                v-close-popup
+                @click="assignPriority(3)"
+                :class="selected_priority === 3 ? 'selected-priority' : ''"
+              >
+                <q-btn icon="flag" dense flat color="red-5" />
+              </q-item>
+            </q-list>
+          </q-btn-dropdown>
+
           <q-btn-dropdown dense flat dropdown-icon="more_vert">
             <q-list>
               <q-item clickable v-close-popup @click="deleteTask(index)">
@@ -155,17 +189,20 @@ function saveTaskEdit(index, editedTitle, editedDesc) {
   data.saveTaskEdit(route.params.id, index, editedTitle, editedDesc);
 }
 
-// function toggleTaskDone(taskINDEX) {
-//   let projectINDEX = route.path;
-//   projectINDEX = projectINDEX.split('/');
-//   projectINDEX = projectINDEX.slice(-1);
-
-//   this.data.toggleTaskDone(
-//     projectINDEX,
-//     data.projectList[route.params.id].id,
-//     taskINDEX
-//   );
-// }
+const selected_priority = ref(1);
+function assignPriority(priority) {
+  selected_priority.value = priority;
+}
+function getIconColor() {
+  switch (selected_priority.value) {
+    case 1:
+      return "grey-7";
+    case 2:
+      return "amber-8";
+    case 3:
+      return "red-5";
+  }
+}
 </script>
 
 <style lang="scss">

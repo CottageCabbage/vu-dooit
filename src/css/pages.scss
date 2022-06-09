@@ -42,8 +42,9 @@
     }
 
     .task-being-edited {
-      background: #ddd;
-      box-shadow: 0 0 8px 3px #333;
+      background: #ddd4;
+      box-shadow: 0 4px 10px 1px #555d;
+      margin-top: 10px;
       margin-bottom: 10px;
       width: 100%;
       border-radius: 4px;
@@ -65,8 +66,9 @@
           border: none;
           background: transparent;
           outline: none;
-          resize: none;
+          resize: vertical;
           width: 100%;
+          height: min-content;
         }
       }
     }
