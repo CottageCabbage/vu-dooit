@@ -45,6 +45,7 @@
       #wide-sidebar {
         overflow-x: hidden;
         resize: horizontal;
+        min-width: 150px;
         max-width: 300px;
         transition: background 0s, width 0s, flex-basis 0.2s;
 
@@ -82,6 +83,25 @@
             align-items: center;
             font-size: 1rem;
             padding-left: 5px;
+          }
+
+          #empty-project-list {
+            width: 100%;
+            padding: 10px;
+            padding-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            img {
+              width: 80%;
+              max-width: 100%;
+              margin-bottom: 10px;
+            }
+            p {
+              font-size: 0.9rem;
+            }
           }
         }
       }

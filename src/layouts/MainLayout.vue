@@ -100,48 +100,62 @@
             </div>
 
             <div
-              class="flex-row project-link"
-              v-for="(project, index) in getUnarchivedNonInbox()"
-              :key="project.id"
+              id="project-list-content"
+              v-if="getUnarchivedNonInbox().length !== 0"
             >
-              <router-link :to="'/project/' + project.id">
-                {{ project.title }}
-              </router-link>
+              <div
+                class="flex-row project-link"
+                v-for="(project, index) in getUnarchivedNonInbox()"
+                :key="project.id"
+              >
+                <router-link :to="'/project/' + project.id">
+                  {{ project.title }}
+                </router-link>
 
-              <q-space />
-              <q-btn-dropdown dense flat dropdown-icon="more_vert">
-                <q-list>
-                  <q-item
-                    clickable
-                    :disable="project.id === 'inbox'"
-                    v-close-popup
-                    @click="data.deleteProject(index, project.id)"
-                  >
-                    <q-item-section avatar>
-                      <q-avatar
-                        icon="delete"
-                        color="grey-3"
-                        text-color="red-5"
-                      />
-                    </q-item-section>
-                    <q-item-section>
-                      <q-item-label>Delete Project</q-item-label>
-                    </q-item-section>
-                  </q-item>
-                  <q-item
-                    clickable
-                    :disable="project.id === 'inbox'"
-                    v-close-popup
-                  >
-                    <q-item-section avatar>
-                      <q-avatar icon="edit" color="grey-3" text-color="black" />
-                    </q-item-section>
-                    <q-item-section>
-                      <q-item-label>Rename Project</q-item-label>
-                    </q-item-section>
-                  </q-item>
-                </q-list>
-              </q-btn-dropdown>
+                <q-space />
+                <q-btn-dropdown dense flat dropdown-icon="more_vert">
+                  <q-list>
+                    <q-item
+                      clickable
+                      :disable="project.id === 'inbox'"
+                      v-close-popup
+                      @click="data.deleteProject(index, project.id)"
+                    >
+                      <q-item-section avatar>
+                        <q-avatar
+                          icon="delete"
+                          color="grey-3"
+                          text-color="red-5"
+                        />
+                      </q-item-section>
+                      <q-item-section>
+                        <q-item-label>Delete Project</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                    <q-item
+                      clickable
+                      :disable="project.id === 'inbox'"
+                      v-close-popup
+                    >
+                      <q-item-section avatar>
+                        <q-avatar
+                          icon="edit"
+                          color="grey-3"
+                          text-color="black"
+                        />
+                      </q-item-section>
+                      <q-item-section>
+                        <q-item-label>Rename Project</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                  </q-list>
+                </q-btn-dropdown>
+              </div>
+            </div>
+
+            <div id="empty-project-list" class="flex-col" v-else>
+              <img src="../assets/undraw_no_data_re_kwbl.svg" alt="" />
+              <p>No Projects Created</p>
             </div>
           </div>
         </div>

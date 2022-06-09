@@ -1,3 +1,16 @@
+// HOME PAGE
+#home-page {
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 15px;
+  img {
+    height: 80%;
+    max-width: 100%;
+  }
+}
+
 // PROJECT PAGE
 #project-page {
   section.project-details {
