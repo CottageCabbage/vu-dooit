@@ -103,7 +103,12 @@ const route = useRoute();
 
 function createTask() {
   if (newtask_title.value !== "") {
-    data.createTask(route.params.id, newtask_title.value, newtask_desc.value);
+    data.createTask(
+      route.params.id,
+      newtask_title.value,
+      newtask_desc.value,
+      selected_priority.value
+    );
   }
 }
 

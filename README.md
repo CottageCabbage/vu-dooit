@@ -1,12 +1,12 @@
 <h1 align="center">Vu-dooit</h1>
 <p align="center">An open source and cross-platform Task Manager, completely offline.</p>
 
-<!-- ![](README/light.png) -->
+![](README/light.png)
 
-<!-- ![](README/dark.png) -->
+![](README/dark.png)
 
 ![](https://img.shields.io/badge/Quasar-%5E2.6.0-blue)
-![](https://img.shields.io/badge/Vue-%5E3.0.0-green)  
+![](https://img.shields.io/badge/Vue-%5E3.0.0-green)
 ![](https://img.shields.io/badge/Pinia-%5E2.0.11-yellow)
 ![](https://img.shields.io/badge/nanoid-%5E3.3.4-yellowgreen)
 ![](https://img.shields.io/badge/dixie-3.2.2-red)
@@ -16,7 +16,7 @@
 - Create multiple projects, organize your tasks.
 - All your data is saved locally, through Indexeddb.
 - No tracking or anything similar.
-- A nice (?) dark mode
+- An unfinished dark mode
 
 ## Installation
 

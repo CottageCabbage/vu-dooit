@@ -1,30 +1,31 @@
 <template>
   <q-layout
-    view="lhh LpR lff"
     container
     style="height: 250px"
     :class="nightmode ? 'bg-grey-9' : 'bg-grey-3'"
   >
     <form @submit.prevent="createNewProject()">
-      <q-btn icon="insert_emoticon" flat text-color="grey-8" />
-      <q-input filled v-model="newProjectTitle" :dark="nightmode" />
-      <q-btn type="submit" label="Create New Project" color="green-5" />
+      <q-input
+        v-model="newProjectTitle"
+        :dark="nightmode"
+        placeholder="Create"
+      />
     </form>
   </q-layout>
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue';
-import { useProjectStore } from 'stores/ProjectStore.js';
-import { nanoid } from 'nanoid';
+import { defineComponent, ref } from "vue";
+import { useProjectStore } from "stores/ProjectStore.js";
+import { nanoid } from "nanoid";
 
 export default defineComponent({
-  name: 'NewProjectDialog',
-  props: ['nightmode'],
+  name: "NewProjectDialog",
+  props: ["nightmode"],
   setup() {
     return {
       data: useProjectStore(),
-      newProjectTitle: ref(''),
+      newProjectTitle: ref(""),
     };
   },
   methods: {
@@ -32,7 +33,7 @@ export default defineComponent({
       const newProject = {
         id: nanoid(7),
         title: this.newProjectTitle,
-        desc: 'Insert Desc',
+        desc: "Insert Desc",
         tasks: [],
       };
       this.data.createProject(newProject);
@@ -46,11 +47,11 @@ form {
   position: relative;
   width: 80%;
   height: 250px;
-  margin: auto;
+  // margin: auto;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 30px;
+  padding: 15px;
 
   .q-input {
     font-size: 1rem;

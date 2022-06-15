@@ -45,7 +45,7 @@
             dropdown-icon="flag"
             flat
             no-icon-animation
-            :color="getIconColor()"
+            :color="getIconColor(task.priority)"
           >
             <q-list>
               <q-item
@@ -193,8 +193,8 @@ const selected_priority = ref(1);
 function assignPriority(priority) {
   selected_priority.value = priority;
 }
-function getIconColor() {
-  switch (selected_priority.value) {
+function getIconColor(priority) {
+  switch (priority) {
     case 1:
       return "grey-7";
     case 2:

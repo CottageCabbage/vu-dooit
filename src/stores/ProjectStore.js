@@ -42,7 +42,7 @@ export const useProjectStore = defineStore("projects", {
       this.projectList.splice(projectINDEX, 1);
     },
     // TASKS: Create, Delete, ToggleDone
-    async createTask(projectID, task_title, task_desc) {
+    async createTask(projectID, task_title, task_desc, task_priority) {
       // if (task_desc === undefined) {
       //   task_desc = "";
       // }
@@ -50,7 +50,7 @@ export const useProjectStore = defineStore("projects", {
         title: task_title,
         desc: task_desc,
         done: false,
-        priority: "1",
+        priority: task_priority,
         id: 123,
       };
 
