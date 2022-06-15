@@ -53,6 +53,30 @@
             </q-btn>
           </router-link>
 
+          <router-link to="/habits">
+            <q-btn dense flat icon="event_repeat">
+              <q-tooltip
+                anchor="top right"
+                self="bottom middle"
+                :offset="[0, 10]"
+              >
+                <strong>Habits</strong>
+              </q-tooltip>
+            </q-btn>
+          </router-link>
+
+          <router-link to="/rewards">
+            <q-btn dense flat icon="emoji_events">
+              <q-tooltip
+                anchor="top right"
+                self="bottom middle"
+                :offset="[0, 10]"
+              >
+                <strong>Rewards</strong>
+              </q-tooltip>
+            </q-btn>
+          </router-link>
+
           <q-space />
 
           <q-btn
