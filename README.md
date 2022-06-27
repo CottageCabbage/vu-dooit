@@ -18,6 +18,8 @@
 - No tracking or anything similar.
 - An unfinished dark mode
 
+> I apologize for the lack of updates to Vu-dooit. I'm at my last year of highschool and I feel that it's more important to focus on my grades & entering college rn.
+
 ## Installation
 
 ### Clone Repository
